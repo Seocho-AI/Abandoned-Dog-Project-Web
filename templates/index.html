@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서초 AI 프로젝트 제목</title>
+
+  <!-------------------- CSS IMPORT -------------------->
+  <link rel="stylesheet" href="./index.css">
+
+  <!-------------------- BOOTSTRAP (CSS) -------------------->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <!-------------------- Survey JS : Modern theme (CSS) -------------------->
+  <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
+
+  <!-------------------- Survey JS : Default V2 theme (CSS) -------------------->
+  <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
+
+  <!-------------------- JQuery -------------------->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-------------------- Survey JS -------------------->
+  <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
+
+  <!-------------------- Velocity JS -------------------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-------------------- NAVBAR -------------------->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="dog-navbar"> <!-- navbar expands at md -->
+    <div class="container-fluid">
+
+      <!-- NAV-LOGO -->
+      <a class="navbar-brand" href="#">유기견 프로젝트 제목</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar"
+        aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- NAV-COLLAPSE -->
+      <div class="collapse navbar-collapse" id="dog-navbar">
+
+        <!-- NAV-LINKS -->
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+          <!-- LINK-HOME -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+
+          <!-- LINK-LINK -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+
+          <!-- LINK-DISABLED -->
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+
+          <!-- LINK-DROPDOWN -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">Dropdown</a>
+
+            <!-- DROPDOWN-LINKS -->
+            <ul class="dropdown-menu" aria-labelledby="dropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <!-- NAV-SEARCH -->
+        <form>
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-------------------- SECTION 1 -------------------->
+  <div class="section section0 container-fluid bg-info vh-100">
+    <h1>여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
+  </div>
+
+  <!-------------------- SECTION 2 -------------------->
+  <div class="section section1 container-fluid bg-light vh-100">
+    <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
+  </div>
+
+  <!-------------------- SECTION 3 -------------------->
+  <div class="section section2 container-fluid bg-warning vh-100">
+    <h1>여기에는 AI 기반 유기견 종 추천 질문/설문 기능 들어갔으면.</h1>
+
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+
+  </div>
+
+  <!-------------------- JS IMPORT -------------------->
+  <script src="./index.js"></script>
+
+  <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
