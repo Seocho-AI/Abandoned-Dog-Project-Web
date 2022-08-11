@@ -12,11 +12,12 @@ def main_page():
     return render_template("index.html")
 
 
-# @app.route("/survey", methods=["POST"])
-# def survey_answer():
-#     answer = request.form["answer"]
-#     print(answer)
-#     return "Answer received"
+@app.route("/survey", methods=["POST"])
+def survey_answer():
+    answer_receive = request.get_json()
+    print(type(answer_receive))
+    # print(answer)
+    return "Answer received"
 
 
 if __name__ == "__main__":
