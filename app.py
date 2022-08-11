@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import pymysql
 
 app = Flask(__name__)
@@ -15,9 +15,7 @@ def main_page():
 @app.route("/survey", methods=["POST"])
 def survey_answer():
     answer_receive = request.get_json()
-    print(type(answer_receive))
-    # print(answer)
-    return "Answer received"
+    return jsonify(answer_receive)
 
 
 if __name__ == "__main__":

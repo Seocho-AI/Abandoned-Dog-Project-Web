@@ -158,11 +158,10 @@ survey.onComplete.add(function (sender) {
   // Sending user answer to server
   $.ajax({
     type: "POST",
+    contentType: "application/json",
     url: "/survey",
     dataType: "json",
-    data: {
-      answer_give
-    },
+    data: answer_give,
     success: function (response) {
       alert("보내기 성공")
       console.log(response)
