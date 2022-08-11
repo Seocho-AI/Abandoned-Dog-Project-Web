@@ -152,6 +152,20 @@ $("#surveyElement").Survey({
 // -------------------- Actions when survey is complete -------------------- //
 survey.onComplete.add(function (sender) {
   document.querySelector('#surveyResult').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+
+  var survey_answer = sender.data; // User survey answer in JSON
+
+  // Sending user answer to server
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/survey",
+  //   data: {
+  //     "answer": survey_answer
+  //   },
+  //   success: function (response) {
+  //     console.log(response)
+  //   }
+  // })
 });
 
 // -------------------- Survey Animation -------------------- //

@@ -1,21 +1,22 @@
-from flask import Flask, render_template, request, url_for
-# import pymysql
+from flask import Flask, render_template, request
+import pymysql
 
 app = Flask(__name__)
-# db = pymysql.connect(host='localhost', port=3306, user='root',
-#                      passwd='WdragJ1003?', db='seocho_abandoned_dog', charset="utf8")
-# cursor = db.cursor()
+db = pymysql.connect(host='localhost', port=3306, user='root',
+                     passwd='WdragJ1003?', db='seocho_abandoned_dog', charset="utf8")
+cursor = db.cursor()
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def main_page():
     return render_template("index.html")
 
-# url_for('static', filename='css/style.css')
 
-# @app.route("/")
-# def home():
-#     return "Hello, Flask!"
+# @app.route("/survey", methods=["POST"])
+# def survey_answer():
+#     answer = request.form["answer"]
+#     print(answer)
+#     return "Answer received"
 
 
 if __name__ == "__main__":
