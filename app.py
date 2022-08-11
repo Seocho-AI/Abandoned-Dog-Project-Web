@@ -15,7 +15,11 @@ def main_page():
 @app.route("/survey", methods=["POST"])
 def survey_answer():
     answer_receive = request.get_json()
-    return jsonify(answer_receive)
+
+    for answers in answer_receive:
+        print(answers)
+
+    return "Receive survey answer success."
 
 
 if __name__ == "__main__":
