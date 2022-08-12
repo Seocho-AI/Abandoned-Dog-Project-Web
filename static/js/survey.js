@@ -163,20 +163,19 @@ survey.onComplete.add(function (sender) {
     success: function (response) {
       alert("보내기 성공")
 
-      var recommend_info = JSON.parse(response)
+      console.log(response)
 
-      var breed_name = `${recommend_info.dog_breed} ${recommend_info.dog_breed_kr}` // 종 이름 (영어 + 한국어어
-      var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
-      var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
-      var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
-      var recommend_reason = recommend_info.dog_info_json.recommend_reason // 추천 이유
+      // var breed_name = `${recommend_info.dog_breed} ${recommend_info.dog_breed_kr}` // 종 이름 (영어 + 한국어어
+      // var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
+      // var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
+      // var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
+      // var recommend_reason = recommend_info.dog_info_json.recommend_reason // 추천 이유
 
-      console.log("이건 테스트")
-      console.log(breed_name)
-      console.log(breed_desc)
-      console.log(breed_img)
-      console.log(breed_cost)
-      console.log(recommend_reason)
+      // console.log(breed_name)
+      // console.log(breed_desc)
+      // console.log(breed_img)
+      // console.log(breed_cost)
+      // console.log(recommend_reason)
 
       // document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
       // document.querySelector('.recommended-dog-image').innerHTML = breed_img
