@@ -19,14 +19,12 @@ def survey_result():
 
 @app.route("/survey", methods=["POST"])
 def survey_answer():
-    answer_receive = request.get_json()  # Stores user's survey answer
+    # answer_receive = request.get_json()  # Stores user's survey answer
 
     sql = "select * from dog_info where dog_breed = 'Affenpinscher';"
     cursor.execute(sql)
     result = cursor.fetchall()
     result = result[0]  # Tuple unboxing
-
-    recommendation_info = []
 
     info_dict = {
         "dog_breed": result[0],
@@ -34,13 +32,10 @@ def survey_answer():
         "dog_info_json": json.loads(result[2])
     }
 
-    recommendation_info.append(info_dict)
-    # recommendation_info.append(dog_info_json)
-
     # for question_type, rating in answer_receive.items():
     #     print(question_type, ":", rating)
 
-    return jsonify(recommendation_info)
+    return info_dict
 
 
 if __name__ == "__main__":

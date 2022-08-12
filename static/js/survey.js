@@ -162,29 +162,43 @@ survey.onComplete.add(function (sender) {
     data: answer_give,
     success: function (response) {
       alert("보내기 성공")
-      console.log(response)
+
+      var recommend_info = JSON.parse(response)
+
+      var breed_name = `${recommend_info.dog_breed} ${recommend_info.dog_breed_kr}` // 종 이름 (영어 + 한국어어
+      var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
+      var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
+      var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
+      var recommend_reason = recommend_info.dog_info_json.recommend_reason // 추천 이유
+
+      console.log("이건 테스트")
+      console.log(breed_name)
+      console.log(breed_desc)
+      console.log(breed_img)
+      console.log(breed_cost)
+      console.log(recommend_reason)
+
+      // document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
+      // document.querySelector('.recommended-dog-image').innerHTML = breed_img
+      // document.querySelector('.recommended-dog-description').innerHTML = breed_desc
+      // document.querySelector('.recommended-dog-answer-title').innerHTML = "귀하께서 알려주신 정보"
+      // document.querySelector('.recommended-dog-answer-1').innerHTML = "q1 answer"
+      // document.querySelector('.recommended-dog-answer-2').innerHTML = "q2 answer"
+      // document.querySelector('.recommended-dog-answer-3').innerHTML = "q3 answer"
+      // document.querySelector('.recommended-dog-answer-4').innerHTML = "q4 answer"
+      // document.querySelector('.recommended-dog-answer-5').innerHTML = "q5 answer"
+      // document.querySelector('.recommended-dog-answer-6').innerHTML = "q6 answer"
+      // document.querySelector('.recommended-dog-answer-7').innerHTML = "q7 answer"
+      // document.querySelector('.recommended-dog-answer-8').innerHTML = "q8 answer"
+      // document.querySelector('.recommended-dog-info-title').innerHTML = `${breed_name} 정보`
+      // document.querySelector('.recommended-dog-reason').innerHTML = recommend_reason
+      // document.querySelector('.recommended-dog-traits').innerHTML = "특징~ 몸무게 5kg / 키: 20cm / 기타 등등 . . ."
+      // document.querySelector('.recommended-dog-cost').innerHTML = breed_cost
+      // document.querySelector('.recommended-dog-btn').innerHTML = "현재 공고중인 유기견 찾기"
     }
   })
 
-  
   // document.querySelector('#surveyResult').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
-  document.querySelector('.recommended-dog-title').textContent = "당신의 강아지 추천은: 푸들 (토이)"
-  document.querySelector('.recommended-dog-image').textContent = "여기에 푸들 (토이) 사진"
-  document.querySelector('.recommended-dog-description').textContent = "Despite his diminutive size, the Toy Poodle stands proudly among dogdom¿s true aristocrats. Beneath the curly, low-allergen coat is an elegant athlete and companion for all reasons and seasons. Poodles come in three size varieties: Standards should be more than 15 inches tall at the shoulder; Miniatures are 15 inches or under; Toys stand no more than 10 inches. All three varieties have the same build and proportions. At dog shows, Poodles are usually seen in the elaborate Continental clip. Most pet owners prefer the simpler Sporting clip, in which the coat is shorn to follow the outline of the squarely built, smoothly muscled body. Forget any preconceived notions about Poodles you may have: Poodles are eager, athletic, and wickedly smart dogs of remarkable versatility. The Standard, with his greater size and strength, is the best all-around athlete of the family, but all Poodles can be trained with great success."
-  document.querySelector('.recommended-dog-answer-title').textContent = "귀하께서 알려주신 정보"
-  document.querySelector('.recommended-dog-answer-1').textContent = "q1 answer"
-  document.querySelector('.recommended-dog-answer-2').textContent = "q2 answer"
-  document.querySelector('.recommended-dog-answer-3').textContent = "q3 answer"
-  document.querySelector('.recommended-dog-answer-4').textContent = "q4 answer"
-  document.querySelector('.recommended-dog-answer-5').textContent = "q5 answer"
-  document.querySelector('.recommended-dog-answer-6').textContent = "q6 answer"
-  document.querySelector('.recommended-dog-answer-7').textContent = "q7 answer"
-  document.querySelector('.recommended-dog-answer-8').textContent = "q8 answer"
-  document.querySelector('.recommended-dog-info-title').textContent = "푸들 (토이) 정보"
-  document.querySelector('.recommended-dog-reason').textContent = "추천의 내용"
-  document.querySelector('.recommended-dog-traits').textContent = "푸들의 종별 특징~ 몸무게 5kg / 키: 20cm / 기타 등등 . . ."
-  document.querySelector('.recommended-dog-cost').textContent = "푸들을 입양 하면 11111원이 듭니다!"
-  document.querySelector('.recommended-dog-btn').textContent = "현재 공고중인 유기견 찾기"
 
 });
 
