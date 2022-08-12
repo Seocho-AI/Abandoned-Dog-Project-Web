@@ -91,28 +91,57 @@
     </div>
   </nav>
 
-  <!-------------------- SECTION 1 -------------------->
-  <div class="test container-fluid bg-info min-vh-100">
-    <h1 class="t1">여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
-  </div>
-
-  <!-------------------- SECTION 2 -------------------->
-  <div class="container-fluid bg-light min-vh-100">
-    <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
-  </div>
-
   <!-------------------- SECTION 3 -------------------->
   <div class="container-fluid bg-warning min-vh-100">
     <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
 
-    <div class="d-flex justify-content-center">
-      <button type="button" id="survey-page-btn" class="btn btn-primary" onclick="moveToSurveyPage()">유기견 추천 받기!</button>
-    </div>
+    <!-- Survey questions will be displayed here -->
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
 
+    <!-- Survey result will be displayed here -->
+    <div id="surveyResult" class="container-fluid bg-light">
+      <div class="row">
+
+        <!-- Dog description -->
+        <div class="col-12 col-md-6 text-center bg-success">
+          <h1 class="recommended-dog-title"></h1>
+          <p class="recommended-dog-image"></p>
+          <p class="recommended-dog-description"></p>
+        </div>
+
+        <!-- User's selected answers -->
+        <div class="col-12 col-md-6 text-center bg-info">
+          <h1 class="recommended-dog-answer-title"></h1>
+          <p class="recommended-dog-answer-1"></p>
+          <p class="recommended-dog-answer-2"></p>
+          <p class="recommended-dog-answer-3"></p>
+          <p class="recommended-dog-answer-4"></p>
+          <p class="recommended-dog-answer-5"></p>
+          <p class="recommended-dog-answer-6"></p>
+          <p class="recommended-dog-answer-7"></p>
+          <p class="recommended-dog-answer-8"></p>
+        </div>
+
+        <!-- Dog info + recommendation info -->
+        <div class="col text-center bg-secondary">
+          <h1 class="recommended-dog-info-title"></h1>
+          <p class="recommended-dog-reason"></p>
+          <p class="recommended-dog-traits"></p>
+          <p class="recommended-dog-cost"></p>
+        </div>
+
+      </div>
+
+      <!-- Find abandoned-dog button -->
+      <div class="d-flex justify-content-center">
+        <button type="button" class="recommended-dog-btn btn btn-primary"></button>
+      </div>
+
+    </div>
   </div>
 
   <!-------------------- JS IMPORT -------------------->
-  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/survey.js') }}"></script>
 
   <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
