@@ -21,7 +21,7 @@ def survey_result():
 def survey_answer():
     # answer_receive = request.get_json()  # Stores user's survey answer
 
-    sql = "select * from dog_info where dog_breed = 'Afghan Hound';" # Afghan Hound / Affenpinscher
+    sql = "select * from dog_info where dog_breed = 'Affenpinscher';" # Afghan Hound / Affenpinscher
     cursor.execute(sql)
     result = cursor.fetchall()
     result = result[0]  # Tuple unboxing
@@ -35,7 +35,7 @@ def survey_answer():
     # for question_type, rating in answer_receive.items():
     #     print(question_type, ":", rating)
 
-    return info_dict
+    return info_dict # Returning dog info from DB
 
 
 if __name__ == "__main__":

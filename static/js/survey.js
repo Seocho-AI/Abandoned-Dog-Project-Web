@@ -17,7 +17,7 @@ var json = {
   }, {
     elements: [{
       type: "radiogroup",
-      name: "dog-experience",
+      name: "dog_experience",
       title: "강아지를 키운 경험",
       // isRequired: true,
       choices: [
@@ -44,7 +44,7 @@ var json = {
   }, {
     elements: [{
       type: "radiogroup",
-      name: "house-type",
+      name: "house_type",
       title: "주거 형태가 어떻게 되나요?",
       // isRequired: true,
       choices: [
@@ -58,7 +58,7 @@ var json = {
   }, {
     elements: [{
       type: "radiogroup",
-      name: "only-apartment",
+      name: "only_apartment",
       title: "아파트에 살기 적합한 강아지들 위주로 입양 하고 싶으신가요?",
       colCount: 0,
       // isRequired: true,
@@ -70,7 +70,7 @@ var json = {
   }, {
     elements: [{
       type: "radiogroup",
-      name: "dog-size",
+      name: "dog_size",
       title: "선호 하시는 유기견의 크기가 있나요?",
       // isRequired: true,
       choices: [
@@ -94,7 +94,7 @@ var json = {
   }, {
     elements: [{
         type: "radiogroup",
-        name: "spend-time",
+        name: "spend_time",
         title: "유기견이랑 얼마나 많은 시간을 보내실 수 있나요? (주)",
         // isRequired: true,
         choices: [
@@ -105,7 +105,7 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "spend-type",
+        name: "spend_type",
         title: "시간을 같이 보낸다면 어떤 활동을 선호 하시나요?",
         isRequired: true,
         visibleIf: "{spend-time} = '조금 : 1 ~ 5 시간' || {spend-time} = '적절한 : 6 ~ 10 시간' || {spend-time} = '많이 : 10+ 시간' ",
@@ -119,7 +119,7 @@ var json = {
   }, {
     elements: [{
       type: "rating",
-      name: "bark-tolerance",
+      name: "bark_tolerance",
       title: "강아지 짖는 소리를 얼마나 잘 참으시나요? (1 : 많이 안짖었으면 좋겠다 | 10 : 상관 없다)",
       // isRequired: true,
       rateMin: 1,
@@ -163,26 +163,41 @@ survey.onComplete.add(function (sender) {
     success: function (response) {
       alert("보내기 성공")
 
-      var recommend_info = response
+      var recommend_info = response // Storing dog info from DB
 
+      // Storing various dog infos as variables
       var breed_name = `${recommend_info.dog_breed} ${recommend_info.dog_breed_kr}` // 종 이름 (영어 + 한국어어
       var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
       var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
       var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
       var recommend_reason = recommend_info.dog_info_json.recommend_reason // 추천 이유
 
+      // Storing user survey answers as a variable
+      var survey_dog_experience = sender.data.dog_experience // Answer 1
+      var survey_age = sender.data.age // Answer 2
+      var survey_house_type = sender.data.house_type // Answer 3
+      var survey_only_apartment = sender.data.only_apartment // Answer 4
+      var survey_dog_size = sender.data.dog_size // Answer 5
+      var survey_kids = sender.data.kids // Answer 6
+      var survey_spend_time = sender.data.spend_time // Answer 7
+      var survey_spend_type = sender.data.spend_type // Answer 8
+      var survey_bark_tolerance = sender.data.bark_tolerance // Answer 9
+      
+      console.log(survey_bark_tolerance)
+
       document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
       document.querySelector('.recommended-dog-image').innerHTML = breed_img
       document.querySelector('.recommended-dog-description').innerHTML = breed_desc
       document.querySelector('.recommended-dog-answer-title').innerHTML = "귀하께서 알려주신 정보"
-      document.querySelector('.recommended-dog-answer-1').innerHTML = "q1 answer"
-      document.querySelector('.recommended-dog-answer-2').innerHTML = "q2 answer"
-      document.querySelector('.recommended-dog-answer-3').innerHTML = "q3 answer"
-      document.querySelector('.recommended-dog-answer-4').innerHTML = "q4 answer"
-      document.querySelector('.recommended-dog-answer-5').innerHTML = "q5 answer"
-      document.querySelector('.recommended-dog-answer-6').innerHTML = "q6 answer"
-      document.querySelector('.recommended-dog-answer-7').innerHTML = "q7 answer"
-      document.querySelector('.recommended-dog-answer-8').innerHTML = "q8 answer"
+      document.querySelector('.recommended-dog-answer-1').innerHTML = survey_dog_experience
+      document.querySelector('.recommended-dog-answer-2').innerHTML = survey_age
+      document.querySelector('.recommended-dog-answer-3').innerHTML = survey_house_type
+      document.querySelector('.recommended-dog-answer-4').innerHTML = survey_only_apartment
+      document.querySelector('.recommended-dog-answer-5').innerHTML = survey_dog_size
+      document.querySelector('.recommended-dog-answer-6').innerHTML = survey_kids
+      document.querySelector('.recommended-dog-answer-7').innerHTML = survey_spend_time
+      document.querySelector('.recommended-dog-answer-8').innerHTML = survey_spend_type
+      document.querySelector('.recommended-dog-answer-9').innerHTML = survey_bark_tolerance
       document.querySelector('.recommended-dog-info-title').innerHTML = `${breed_name} 정보`
       document.querySelector('.recommended-dog-reason').innerHTML = recommend_reason
       document.querySelector('.recommended-dog-traits').innerHTML = "특징~ 몸무게 5kg / 키: 20cm / 기타 등등 . . ."
@@ -190,9 +205,6 @@ survey.onComplete.add(function (sender) {
       document.querySelector('.recommended-dog-btn').innerHTML = "현재 공고중인 유기견 찾기"
     }
   })
-
-  // document.querySelector('#surveyResult').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
-
 });
 
 // -------------------- Survey Animation -------------------- //
