@@ -1,3 +1,13 @@
+// Move to Find Dog page
+document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
+
+function moveToAbandonedDogPage() {
+  window.location.href = "/abandoned-dogs" // Move to result page
+
+  
+}
+
+// Move to Survey page
 document.getElementById("survey-page-btn").addEventListener("click", moveToSurveyPage)
 
 function moveToSurveyPage() {

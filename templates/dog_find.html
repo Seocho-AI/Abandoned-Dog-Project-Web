@@ -90,33 +90,24 @@
       </div>
     </div>
   </nav>
-
-  <!-------------------- SECTION 1 -------------------->
-  <div class="test container-fluid bg-info min-vh-100">
-    <h1 class="t1">여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
-  </div>
-
+  <!-- col-12 col-lg-3 col-md-4 col-sm-6 bg-light border -->
   <!-------------------- SECTION 2 -------------------->
-  <div class="container-fluid bg-light min-vh-100">
-    <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
-    <div class="d-flex justify-content-center">
-      <button type="button" id="abandoned-dog-page-btn" class="btn btn-primary" onclick="moveToAbandonedDogPage()">현재 보호중인 유기견 찾기!</button>
+  <div class="dog-list-container container-fluid bg-light">
+    <div class="dog-list row g-5"></div>
+  </div>
+  </div>
+  
+  <script id="template-dog-list" type="text/template">
+    <div class="col-12 col-lg-3 col-md-4 col-sm-6 bg-light">
+      <div class="border">
+        <h4>{breed_name_kr}</h4>
+        <p>{breed_no}</p>
+      </div>
     </div>
-  </div>
-
-  <!-------------------- SECTION 3 -------------------->
-  <div class="container-fluid bg-warning min-vh-100">
-    <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
-
-    <div class="d-flex justify-content-center">
-      <button type="button" id="survey-page-btn" class="btn btn-primary" onclick="moveToSurveyPage()">유기견 추천 받기!</button>
-    </div>
-  </div>
-
-  </div>
+  </script>
 
   <!-------------------- JS IMPORT -------------------->
-  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dog_find.js') }}"></script>
 
   <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

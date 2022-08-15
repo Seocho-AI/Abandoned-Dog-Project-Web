@@ -166,7 +166,7 @@ survey.onComplete.add(function (sender) {
       var recommend_info = response // Storing dog info from DB
 
       // Storing various dog infos as variables
-      var breed_name = `${recommend_info.dog_breed} ${recommend_info.dog_breed_kr}` // 종 이름 (영어 + 한국어어
+      var breed_name = `${recommend_info.breed_name} ${recommend_info.breed_name_kr}` // 종 이름 (영어 + 한국어어
       var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
       var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
       var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
@@ -183,8 +183,7 @@ survey.onComplete.add(function (sender) {
       var survey_spend_type = sender.data.spend_type // Answer 8
       var survey_bark_tolerance = sender.data.bark_tolerance // Answer 9
       
-      console.log(survey_bark_tolerance)
-
+      // Filling the survey result page based on recommended breed and user's answer
       document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
       document.querySelector('.recommended-dog-image').innerHTML = breed_img
       document.querySelector('.recommended-dog-description').innerHTML = breed_desc
