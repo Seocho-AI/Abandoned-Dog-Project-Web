@@ -1,0 +1,81 @@
+#header {
+  /* background-color: rgb(217, 248, 196); */
+}
+
+#navbar {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+}
+
+#dog-navbar a,
+#dog-navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  transition: 0.3s;
+  position: relative;
+}
+
+/* #dog-navbar a i,
+#dog-navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+} */
+
+#dog-navbar>ul>li>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: orange;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+#dog-navbar a:hover:before,
+#dog-navbar li:hover>a:before,
+#dog-navbar .active:before {
+  visibility: visible;
+  width: 100%;
+}
+
+#dog-navbar a:hover,
+#dog-navbar .active,
+#dog-navbar .active:focus,
+#dog-navbar li:hover>a {
+  color: #fff;
+}
+
+#home-section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.overlay-home-section {
+  background-color: rgba(217, 248, 196, 0.5);
+}
+
+.overlay-find-dog-section {
+  background-color: rgba(121, 213, 186, 0.5);
+}
+
+.overlay-survey-section {
+  background-color: rgba(217, 248, 196, 0.5);
+}
+
+.card-stat {
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.card-stat:hover {
+  transform: scale(1.08);
+}

@@ -182,7 +182,7 @@ survey.onComplete.add(function (sender) {
       var survey_spend_time = sender.data.spend_time // Answer 7
       var survey_spend_type = sender.data.spend_type // Answer 8
       var survey_bark_tolerance = sender.data.bark_tolerance // Answer 9
-      
+
       // Filling the survey result page based on recommended breed and user's answer
       document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
       document.querySelector('.recommended-dog-image').innerHTML = breed_img

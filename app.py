@@ -6,10 +6,14 @@ db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazon
                      passwd='dydwnstj71507350', db='test_database', charset="utf8")
 cursor = db.cursor()
 
+# ------------------- HOME PAGE FUNCTIONS ------------------- #
+
 
 @app.route("/")  # Home page
 def main_page():
     return render_template("index.html")
+
+# ------------------- FIND DOG PAGE FUNCTIONS ------------------- #
 
 
 @app.route("/abandoned-dogs")  # Find dog page
@@ -34,6 +38,8 @@ def abandoned_dog_list():
         dog_list.append(dog_dict)
 
     return jsonify(dog_list)
+
+# ------------------- SURVEY PAGE FUNCTIONS ------------------- #
 
 
 @app.route("/survey")  # Survey page
@@ -63,5 +69,6 @@ def survey_answer():
     return info_dict  # Returning dog info from DB
 
 
+# ------------------- DEBUG MAIN ------------------- #
 if __name__ == "__main__":
     app.run(debug=True)

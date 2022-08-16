@@ -8,27 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서초 AI 프로젝트 제목</title>
 
-  <!-------------------- CSS IMPORT -------------------->
+  <!-------------------- MAIN CSS -------------------->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
-  <!-------------------- BOOTSTRAP (CSS) -------------------->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-  <!-------------------- Survey JS : Modern theme (CSS) -------------------->
+  <!-------------------- CSS IMPORTS -------------------->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
-
-  <!-------------------- Survey JS : Default V2 theme (CSS) -------------------->
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
 
-  <!-------------------- JQuery -------------------->
+  <!-------------------- JS IMPORTS -------------------->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <!-------------------- Survey JS -------------------->
   <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
-
-  <!-------------------- Velocity JS -------------------->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  </script>
 
 </head>
 
@@ -41,8 +34,7 @@
 
       <!-- NAV-LOGO -->
       <a class="navbar-brand" href="#">유기견 프로젝트 제목</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar"
-        aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -69,8 +61,7 @@
 
           <!-- LINK-DROPDOWN -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 
             <!-- DROPDOWN-LINKS -->
             <ul class="dropdown-menu" aria-labelledby="dropdown">
@@ -96,7 +87,7 @@
     <div class="dog-list row g-5"></div>
   </div>
   </div>
-  
+
   <script id="template-dog-list" type="text/template">
     <div class="col-12 col-lg-3 col-md-4 col-sm-6 bg-light">
       <div class="border">
@@ -110,8 +101,7 @@
   <script src="{{ url_for('static', filename='js/dog_find.js') }}"></script>
 
   <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
   </script>
 
 </body>

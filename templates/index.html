@@ -8,119 +8,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서초 AI 프로젝트 제목</title>
 
-  <!-------------------- CSS IMPORT -------------------->
+  <!-------------------- MAIN CSS -------------------->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
-  <!-------------------- BOOTSTRAP (CSS) -------------------->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-  <!-------------------- Survey JS : Modern theme (CSS) -------------------->
+  <!-------------------- CSS IMPORTS -------------------->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
-
-  <!-------------------- Survey JS : Default V2 theme (CSS) -------------------->
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
-
-  <!-------------------- JQuery -------------------->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <!-------------------- Survey JS -------------------->
-  <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
-
-  <!-------------------- Velocity JS -------------------->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body>
 
   <!-------------------- NAVBAR -------------------->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="dog-navbar">
-    <!-- navbar expands at md -->
-    <div class="container-fluid">
+  <header id="header" class="sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light py-3" id="navbar" aria-label="dog-navbar">
+      <!-- navbar expands at md -->
+      <div class="container">
 
-      <!-- NAV-LOGO -->
-      <a class="navbar-brand" href="#">유기견 프로젝트 제목</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar"
-        aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- NAV-LOGO -->
+        <a class="navbar-brand" href="#home">Abandog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- NAV-COLLAPSE -->
-      <div class="collapse navbar-collapse" id="dog-navbar">
+        <!-- NAV-COLLAPSE -->
+        <div class="collapse navbar-collapse" id="dog-navbar">
 
-        <!-- NAV-LINKS -->
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <!-- NAV-LINKS -->
+          <ul class="navbar-nav ms-auto">
 
-          <!-- LINK-HOME -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
+            <!-- LINK to HOME SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#home-section">Home</a></li>
 
-          <!-- LINK-LINK -->
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+            <!-- LINK to FIND DOG SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#find-dog-section">유기견 찾기</a></li>
 
-          <!-- LINK-DISABLED -->
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+            <!-- LINK to SURVEY SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#survey-section">AI 유기견 추천</a></li>
 
-          <!-- LINK-DROPDOWN -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">Dropdown</a>
+            <!-- LINK-DROPDOWN -->
+            <li class="nav-item dropdown ms-md-4">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 
-            <!-- DROPDOWN-LINKS -->
-            <ul class="dropdown-menu" aria-labelledby="dropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+              <!-- DROPDOWN-LINKS -->
+              <ul class="dropdown-menu" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
 
-        </ul>
+          </ul>
 
-        <!-- NAV-SEARCH -->
-        <form>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-------------------- HOME SECTION -------------------->
+  <section class="container-fluid bg-info min-vh-100 p-0" id="home-section" style="background-image: url({{ url_for('static', filename='img/abandoned-dog-home.jpg') }})">
+    <div class="overlay-home-section min-vh-100">
+      <div class="container">
+
+        <h1 class="t1">여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
 
       </div>
     </div>
-  </nav>
+  </section>
 
-  <!-------------------- SECTION 1 -------------------->
-  <div class="test container-fluid bg-info min-vh-100">
-    <h1 class="t1">여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
-  </div>
+  <!-------------------- STATISTICS SECTION -------------------->
+  <section class="container-fluid p-5" id="statistic-section">
+    <div class="container">
 
-  <!-------------------- SECTION 2 -------------------->
-  <div class="container-fluid bg-light min-vh-100">
-    <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
-    <div class="d-flex justify-content-center">
-      <button type="button" id="abandoned-dog-page-btn" class="btn btn-primary" onclick="moveToAbandonedDogPage()">현재 보호중인 유기견 찾기!</button>
+      <div class="row justify-content-center align-middle g-5">
+
+        <!-- 오늘 구조된 강아지 -->
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+          <div class="card-stat card text-center" style="width: 14rem;">
+            <div class="card-body">
+              <h1 class="card-title">
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>
+              </h1>
+            </div>
+            <div class="card-header">
+              오늘 구조된 강아지
+            </div>
+          </div>
+        </div>
+
+        <!-- 입양률 -->
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="300">
+          <div class="card-stat card text-center" style="width: 14rem;">
+            <div class="card-body">
+              <h1 class="card-title">
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>
+                %
+              </h1>
+            </div>
+            <div class="card-header">
+              입양률
+            </div>
+          </div>
+        </div>
+
+        <!-- 안락사율 -->
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="400">
+          <div class="card-stat card text-center" style="width: 14rem;">
+            <div class="card-body">
+              <h1 class="card-title">
+                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="2" class="purecounter"></span>
+                %
+              </h1>
+            </div>
+            <div class="card-header">
+              안락사율
+            </div>
+          </div>
+        </div>
+
+        <!-- 임시 -->
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="500">
+          <div class="card-stat card text-center" style="width: 14rem;">
+            <div class="card-body">
+              <h1 class="card-title">10</h1>
+            </div>
+            <div class="card-header">
+              제목
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </div>
+  </section>
 
-  <!-------------------- SECTION 3 -------------------->
-  <div class="container-fluid bg-warning min-vh-100">
-    <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
+  <!-------------------- FIND DOG SECTION -------------------->
+  <section class="container-fluid min-vh-100 p-0" id="find-dog-section">
+    <div class="overlay-find-dog-section min-vh-100">
+      <div class="container">
 
-    <div class="d-flex justify-content-center">
-      <button type="button" id="survey-page-btn" class="btn btn-primary" onclick="moveToSurveyPage()">유기견 추천 받기!</button>
+        <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
+        <div class="d-flex justify-content-center">
+          <button type="button" id="abandoned-dog-page-btn" class="btn btn-primary" onclick="moveToAbandonedDogPage()">현재
+            보호중인 유기견 찾기!</button>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-------------------- SURVEY SECTION -------------------->
+  <section class="container-fluid min-vh-100 p-0" id="survey-section">
+    <div class="overlay-survey-section min-vh-100">
+      <div class="container">
+
+        <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" id="survey-page-btn" class="btn btn-primary" onclick="moveToSurveyPage()">유기견 추천
+            받기!</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   </div>
 
-  <!-------------------- JS IMPORT -------------------->
+  <!-------------------- MAIN JS -------------------->
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
-  <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  <!-------------------- JS IMPORTS -------------------->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+  <!-- Initiate Pure Counter -->
+  <script>
+    new PureCounter();
   </script>
 
 </body>

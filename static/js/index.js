@@ -1,13 +1,40 @@
-// Move to Find Dog page
+/**
+ * Navbar links active state on scroll
+ */
+let navbarlinks = document.querySelectorAll('#dog-navbar a');
+
+function navbarlinksActive() {
+  navbarlinks.forEach(navbarlink => {
+
+    if (!navbarlink.hash) return;
+
+    let section = document.querySelector(navbarlink.hash);
+    if (!section) return;
+
+    let position = window.scrollY + 200;
+
+    if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+      navbarlink.classList.add('active');
+    } else {
+      navbarlink.classList.remove('active');
+    }
+  })
+}
+window.addEventListener('load', navbarlinksActive);
+document.addEventListener('scroll', navbarlinksActive);
+
+/**
+ * Move to Find Dog page
+ */
 document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
   window.location.href = "/abandoned-dogs" // Move to result page
-
-  
 }
 
-// Move to Survey page
+/**
+ * Move to Survey page
+ */
 document.getElementById("survey-page-btn").addEventListener("click", moveToSurveyPage)
 
 function moveToSurveyPage() {
@@ -21,3 +48,14 @@ function moveToSurveyPage() {
 //   "dog_cost": "입양 하면 99999원이 듭니다!"
 // }
 
+/**
+ * Animation on scroll
+ */
+window.addEventListener('load', () => {
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+  })
+})
