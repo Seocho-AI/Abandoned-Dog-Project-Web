@@ -1,57 +1,56 @@
-#header {
-  /* background-color: rgb(217, 248, 196); */
+body {
+  background-color: rgb(217, 248, 196) !important;
 }
 
+/********** NAV BAR **********/
 #navbar {
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(15px);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
-#dog-navbar a,
-#dog-navbar a:focus {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
-  transition: 0.3s;
-  position: relative;
+@media (min-width: 768px) {
+
+  #dog-navbar a,
+  #dog-navbar a:focus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    transition: 0.3s;
+    position: relative;
+  }
+
+  #dog-navbar>ul>li>a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: orange;
+    visibility: hidden;
+    width: 0px;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  #dog-navbar a:hover:before,
+  #dog-navbar li:hover>a:before,
+  #dog-navbar .active:before {
+    visibility: visible;
+    width: 100%;
+  }
+
+  #dog-navbar a:hover,
+  #dog-navbar .active,
+  #dog-navbar .active:focus,
+  #dog-navbar li:hover>a {
+    color: #fff;
+  }
 }
 
-/* #dog-navbar a i,
-#dog-navbar a:focus i {
-  font-size: 12px;
-  line-height: 0;
-  margin-left: 5px;
-} */
-
-#dog-navbar>ul>li>a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -6px;
-  left: 0;
-  background-color: orange;
-  visibility: hidden;
-  width: 0px;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-#dog-navbar a:hover:before,
-#dog-navbar li:hover>a:before,
-#dog-navbar .active:before {
-  visibility: visible;
-  width: 100%;
-}
-
-#dog-navbar a:hover,
-#dog-navbar .active,
-#dog-navbar .active:focus,
-#dog-navbar li:hover>a {
-  color: #fff;
-}
-
+/********** HOME SECTION **********/
 #home-section {
   background-size: cover;
   background-repeat: no-repeat;
@@ -60,15 +59,16 @@
 }
 
 .overlay-home-section {
-  background-color: rgba(217, 248, 196, 0.5);
+  background-color: rgba(217, 248, 196, 0);
 }
 
-.overlay-find-dog-section {
-  background-color: rgba(121, 213, 186, 0.5);
+.overlay-home-section .container {
+  padding-top: 10rem;
 }
 
-.overlay-survey-section {
-  background-color: rgba(217, 248, 196, 0.5);
+/********** STATISTICS SECTION **********/
+#statistics-section {
+  background-color: rgba(205, 220, 160, 0.6);
 }
 
 .card-stat {
@@ -78,4 +78,36 @@
 
 .card-stat:hover {
   transform: scale(1.08);
+}
+
+/********** FIND DOG SECTION **********/
+#find-dog-section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.overlay-find-dog-section {
+  background-color: rgba(121, 213, 186, 0.2);
+}
+
+.overlay-find-dog-section .container {
+  padding-top: 8rem;
+}
+
+/********** SURVEY SECTION **********/
+#survey-section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.overlay-survey-section {
+  background-color: rgba(70, 248, 196, 0.4);
+}
+
+.overlay-survey-section .container {
+  padding-top: 8rem;
 }

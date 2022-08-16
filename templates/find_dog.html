@@ -28,63 +28,54 @@
 <body>
 
   <!-------------------- NAVBAR -------------------->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="dog-navbar">
-    <!-- navbar expands at md -->
-    <div class="container-fluid">
+  <header id="header" class="sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light py-3" id="navbar" aria-label="dog-navbar">
+      <!-- navbar expands at md -->
+      <div class="container">
 
-      <!-- NAV-LOGO -->
-      <a class="navbar-brand" href="#">유기견 프로젝트 제목</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- NAV-LOGO -->
+        <a class="navbar-brand" href="#home">Abandog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- NAV-COLLAPSE -->
-      <div class="collapse navbar-collapse" id="dog-navbar">
+        <!-- NAV-COLLAPSE -->
+        <div class="collapse navbar-collapse" id="dog-navbar">
 
-        <!-- NAV-LINKS -->
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <!-- NAV-LINKS -->
+          <ul class="navbar-nav ms-auto">
 
-          <!-- LINK-HOME -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
+            <!-- LINK to HOME SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#home-section">Home</a></li>
 
-          <!-- LINK-LINK -->
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+            <!-- LINK to FIND DOG SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견 찾기</a></li>
 
-          <!-- LINK-DISABLED -->
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+            <!-- LINK to SURVEY SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#survey-section">AI 유기견 추천</a></li>
 
-          <!-- LINK-DROPDOWN -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+            <!-- LINK-DROPDOWN
+            <li class="nav-item dropdown ms-md-4">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 
-            <!-- DROPDOWN-LINKS -->
-            <ul class="dropdown-menu" aria-labelledby="dropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+              DROPDOWN-LINKS
+              <ul class="dropdown-menu" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> -->
 
-        </ul>
+          </ul>
 
-        <!-- NAV-SEARCH -->
-        <form>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
-
+        </div>
       </div>
-    </div>
-  </nav>
-  <!-- col-12 col-lg-3 col-md-4 col-sm-6 bg-light border -->
-  <!-------------------- SECTION 2 -------------------->
+    </nav>
+  </header>
+
+  <!-------------------- DOG LIST -------------------->
   <div class="dog-list-container container-fluid bg-light">
-    <div class="dog-list row g-5"></div>
+    <div class="dog-list row gy-5"></div>
   </div>
   </div>
 
@@ -98,7 +89,7 @@
   </script>
 
   <!-------------------- JS IMPORT -------------------->
-  <script src="{{ url_for('static', filename='js/dog_find.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/find_dog.js') }}"></script>
 
   <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">

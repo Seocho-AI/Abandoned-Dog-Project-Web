@@ -18,7 +18,7 @@ def main_page():
 
 @app.route("/abandoned-dogs")  # Find dog page
 def abandoned_dog_page():
-    return render_template("dog_find.html")
+    return render_template("find_dog.html")
 
 
 @app.route("/abandoned-dogs/list", methods=["GET"])

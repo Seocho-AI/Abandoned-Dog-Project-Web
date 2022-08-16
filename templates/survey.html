@@ -35,63 +35,52 @@
 <body>
 
   <!-------------------- NAVBAR -------------------->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="dog-navbar">
-    <!-- navbar expands at md -->
-    <div class="container-fluid">
+  <header id="header" class="sticky-top">
+    <nav class="navbar navbar-expand-md navbar-light py-3" id="navbar" aria-label="dog-navbar">
+      <!-- navbar expands at md -->
+      <div class="container">
 
-      <!-- NAV-LOGO -->
-      <a class="navbar-brand" href="#">유기견 프로젝트 제목</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar"
-        aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- NAV-LOGO -->
+        <a class="navbar-brand" href="#home">Abandog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- NAV-COLLAPSE -->
-      <div class="collapse navbar-collapse" id="dog-navbar">
+        <!-- NAV-COLLAPSE -->
+        <div class="collapse navbar-collapse" id="dog-navbar">
 
-        <!-- NAV-LINKS -->
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <!-- NAV-LINKS -->
+          <ul class="navbar-nav ms-auto">
 
-          <!-- LINK-HOME -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
+            <!-- LINK to HOME SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#home-section">Home</a></li>
 
-          <!-- LINK-LINK -->
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+            <!-- LINK to FIND DOG SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link" href="#find-dog-section">유기견 찾기</a></li>
 
-          <!-- LINK-DISABLED -->
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+            <!-- LINK to SURVEY SECTION -->
+            <li class="nav-item ms-md-4"><a class="nav-link active" href="#survey-section">AI 유기견 추천</a></li>
 
-          <!-- LINK-DROPDOWN -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">Dropdown</a>
+            <!-- LINK-DROPDOWN
+            <li class="nav-item dropdown ms-md-4">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 
-            <!-- DROPDOWN-LINKS -->
-            <ul class="dropdown-menu" aria-labelledby="dropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+              DROPDOWN-LINKS
+              <ul class="dropdown-menu" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> -->
 
-        </ul>
+          </ul>
 
-        <!-- NAV-SEARCH -->
-        <form>
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
-
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <!-------------------- SECTION 3 -------------------->
+  <!-------------------- SURVEY PAGE -------------------->
   <div class="container-fluid bg-warning min-vh-100">
     <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
 

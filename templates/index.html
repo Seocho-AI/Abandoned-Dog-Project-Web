@@ -22,7 +22,7 @@
 <body>
 
   <!-------------------- NAVBAR -------------------->
-  <header id="header" class="sticky-top">
+  <header id="header" class="fixed-top">
     <nav class="navbar navbar-expand-md navbar-light py-3" id="navbar" aria-label="dog-navbar">
       <!-- navbar expands at md -->
       <div class="container">
@@ -48,17 +48,17 @@
             <!-- LINK to SURVEY SECTION -->
             <li class="nav-item ms-md-4"><a class="nav-link" href="#survey-section">AI 유기견 추천</a></li>
 
-            <!-- LINK-DROPDOWN -->
+            <!-- LINK-DROPDOWN
             <li class="nav-item dropdown ms-md-4">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 
-              <!-- DROPDOWN-LINKS -->
+              DROPDOWN-LINKS
               <ul class="dropdown-menu" aria-labelledby="dropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
-            </li>
+            </li> -->
 
           </ul>
 
@@ -68,28 +68,33 @@
   </header>
 
   <!-------------------- HOME SECTION -------------------->
-  <section class="container-fluid bg-info min-vh-100 p-0" id="home-section" style="background-image: url({{ url_for('static', filename='img/abandoned-dog-home.jpg') }})">
+  <section class="container-fluid bg-info min-vh-100 px-0 align-items-center" id="home-section" style="background-image: url({{ url_for('static', filename='img/home-bg-img.jpg') }})">
     <div class="overlay-home-section min-vh-100">
-      <div class="container">
+      <div class="container" data-aos="fade-up" data-aos-delay="100" data-aos-once="true">
 
-        <h1 class="t1">여기에는 짧은 설명 + 주제 소개 + 오늘의 구조된 동물 + 입양률 + 안락사율 들어갔으면 좋겠당.</h1>
+        <div class="row justify-content-center">
+          <div class="col text-center">
+            <h1>큰 제목</h1>
+            <h2>작은 제목</h2>
+          </div>
+        </div>
 
       </div>
     </div>
   </section>
 
   <!-------------------- STATISTICS SECTION -------------------->
-  <section class="container-fluid p-5" id="statistic-section">
+  <section class="container-fluid p-5" id="statistics-section">
     <div class="container">
 
       <div class="row justify-content-center align-middle g-5">
 
         <!-- 오늘 구조된 강아지 -->
-        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
               </h1>
             </div>
             <div class="card-header">
@@ -99,11 +104,11 @@
         </div>
 
         <!-- 입양률 -->
-        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="300">
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="200">
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="2" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
                 %
               </h1>
             </div>
@@ -114,11 +119,11 @@
         </div>
 
         <!-- 안락사율 -->
-        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="400">
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="300">
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="2" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
                 %
               </h1>
             </div>
@@ -129,10 +134,12 @@
         </div>
 
         <!-- 임시 -->
-        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="500">
+        <div class="col-6 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="zoom-in" data-aos-delay="400">
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
-              <h1 class="card-title">10</h1>
+              <h1 class="card-title">
+                <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
+              </h1>
             </div>
             <div class="card-header">
               제목
@@ -146,14 +153,22 @@
   </section>
 
   <!-------------------- FIND DOG SECTION -------------------->
-  <section class="container-fluid min-vh-100 p-0" id="find-dog-section">
+  <section class="container-fluid min-vh-100 px-0" id="find-dog-section" style="background-image: url({{ url_for('static', filename='img/find-dog-bg-img.jpg') }})">
     <div class="overlay-find-dog-section min-vh-100">
-      <div class="container">
+      <div class="container" data-aos="fade-right" data-aos-delay="200">
 
-        <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
-        <div class="d-flex justify-content-center">
-          <button type="button" id="abandoned-dog-page-btn" class="btn btn-primary" onclick="moveToAbandonedDogPage()">현재
-            보호중인 유기견 찾기!</button>
+        <div class="row justify-content-center">
+
+          <div class="col-12 text-center">
+            <h1>여기에는 동물의 필터 적용 시켜서 동물 찾기 기능이 들어갔으면.</h1>
+            <h2>작은 제목</h2>
+          </div>
+
+          <div class="col-12 text-center">
+            <button type="button" id="abandoned-dog-page-btn" class="btn btn-primary" onclick="moveToAbandonedDogPage()">현재
+              보호중인 유기견 찾기!</button>
+          </div>
+
         </div>
 
       </div>
@@ -161,9 +176,9 @@
   </section>
 
   <!-------------------- SURVEY SECTION -------------------->
-  <section class="container-fluid min-vh-100 p-0" id="survey-section">
+  <section class="container-fluid min-vh-100 px-0" id="survey-section" style="background-image: url({{ url_for('static', filename='img/survey-bg-img.jpg') }})">
     <div class="overlay-survey-section min-vh-100">
-      <div class="container">
+      <div class="container" data-aos="fade-right" data-aos-delay="200">
 
         <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
 
