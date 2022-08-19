@@ -8,9 +8,9 @@ html {
 /**
  * Body BG color
  */
-body {
-  /* background-color: rgb(217, 248, 196) !important; */
-}
+/* body {
+  background-color: rgb(217, 248, 196) !important;
+} */
 
 /**
  * Scroll bar custom
@@ -84,71 +84,8 @@ body {
 }
 
 /**
- * HOME SECTION
+ * SURVEY PAGE SECTION
  */
-#home-section {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-
-.overlay-home-section {
-  background-color: rgba(217, 248, 196, 0.3);
-}
-
-.overlay-home-section .container {
-  padding-top: 10rem;
-}
-
-/**
- * STATISTICS SECTION
- */
-#statistics-section {
-  background-color: rgba(205, 220, 160, 0.6);
-}
-
-.card-stat {
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
-}
-
-.card-stat:hover {
-  transform: scale(1.08);
-}
-
-/**
- * FIND DOG SECTION
- */
-#find-dog-section {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-
-.overlay-find-dog-section {
-  background-color: rgba(121, 213, 186, 0.3);
-}
-
-.overlay-find-dog-section .container {
-  padding-top: 8rem;
-}
-
-/**
- * SURVEY SECTION
- */
-#survey-section {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-
-.overlay-survey-section {
-  background-color: rgba(70, 248, 196, 0.3);
-}
-
-.overlay-survey-section .container {
-  padding-top: 8rem;
+.overlay-survey-page-section .container {
+  padding-top: 72px;
 }

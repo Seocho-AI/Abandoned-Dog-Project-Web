@@ -8,26 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서초 AI 프로젝트 제목</title>
 
-  <!-------------------- CSS IMPORT -------------------->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <!-------------------- MAIN CSS -------------------->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/survey.css') }}">
 
-  <!-------------------- BOOTSTRAP (CSS) -------------------->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
-  <!-------------------- Survey JS : Modern theme (CSS) -------------------->
+  <!-------------------- CSS IMPORTS -------------------->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
-
-  <!-------------------- Survey JS : Default V2 theme (CSS) -------------------->
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-------------------- JQuery -------------------->
+  <!-------------------- JS IMPORTS(PRE) -------------------->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-  <!-------------------- Survey JS -------------------->
   <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
-
-  <!-------------------- Velocity JS -------------------->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
 
 </head>
@@ -81,61 +73,71 @@
   </header>
 
   <!-------------------- SURVEY PAGE -------------------->
-  <div class="container-fluid bg-warning min-vh-100">
-    <h1 class="text-center">나에게 맞는 AI 기반 유기견 추천!</h1>
+  <section class="container-fluid min-vh-100 px-0 align-items-center">
+    <div class="overlay-survey-page-section min-vh-100">
+      <div class="container">
 
-    <!-- Survey questions will be displayed here -->
-    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+        <!-- Survey questions will be displayed here -->
+        <div id="surveyElement"></div>
 
-    <!-- Survey result will be displayed here -->
-    <div id="surveyResult" class="container-fluid bg-light">
-      <div class="row">
+        <!-- Survey result will be displayed here -->
+        <div id="surveyResult" class="container-fluid bg-light">
+          <div class="row">
 
-        <!-- Dog description -->
-        <div class="col-12 col-md-6 text-center bg-success">
-          <h1 class="recommended-dog-title"></h1>
-          <p class="recommended-dog-image"></p>
-          <p class="recommended-dog-description"></p>
-        </div>
+            <!-- Dog description -->
+            <div class="col-12 col-md-6 text-center bg-success">
+              <h1 class="recommended-dog-title"></h1>
+              <p class="recommended-dog-image"></p>
+              <p class="recommended-dog-description"></p>
+            </div>
 
-        <!-- User's selected answers -->
-        <div class="col-12 col-md-6 text-center bg-info">
-          <h1 class="recommended-dog-answer-title"></h1>
-          <p class="recommended-dog-answer-1"></p>
-          <p class="recommended-dog-answer-2"></p>
-          <p class="recommended-dog-answer-3"></p>
-          <p class="recommended-dog-answer-4"></p>
-          <p class="recommended-dog-answer-5"></p>
-          <p class="recommended-dog-answer-6"></p>
-          <p class="recommended-dog-answer-7"></p>
-          <p class="recommended-dog-answer-8"></p>
-          <p class="recommended-dog-answer-9"></p>
-        </div>
+            <!-- User's selected answers -->
+            <div class="col-12 col-md-6 text-center bg-info">
+              <h1 class="recommended-dog-answer-title"></h1>
+              <p class="recommended-dog-answer-1"></p>
+              <p class="recommended-dog-answer-2"></p>
+              <p class="recommended-dog-answer-3"></p>
+              <p class="recommended-dog-answer-4"></p>
+              <p class="recommended-dog-answer-5"></p>
+              <p class="recommended-dog-answer-6"></p>
+              <p class="recommended-dog-answer-7"></p>
+              <p class="recommended-dog-answer-8"></p>
+              <p class="recommended-dog-answer-9"></p>
+            </div>
 
-        <!-- Dog info + recommendation info -->
-        <div class="col text-center bg-secondary">
-          <h1 class="recommended-dog-info-title"></h1>
-          <p class="recommended-dog-reason"></p>
-          <p class="recommended-dog-traits"></p>
-          <p class="recommended-dog-cost"></p>
+            <!-- Dog info + recommendation info -->
+            <div class="col text-center bg-secondary">
+              <h1 class="recommended-dog-info-title"></h1>
+              <p class="recommended-dog-reason"></p>
+              <p class="recommended-dog-traits"></p>
+              <p class="recommended-dog-cost"></p>
+            </div>
+
+          </div>
+
+          <!-- Find abandoned-dog button -->
+          <div class="d-flex justify-content-center">
+            <button type="button" class="recommended-dog-btn btn btn-primary"></button>
+          </div>
+
         </div>
 
       </div>
-
-      <!-- Find abandoned-dog button -->
-      <div class="d-flex justify-content-center">
-        <button type="button" class="recommended-dog-btn btn btn-primary"></button>
-      </div>
-
     </div>
-  </div>
+  </section>
 
-  <!-------------------- JS IMPORT -------------------->
+  <!-------------------- MAIN JS -------------------->
   <script src="{{ url_for('static', filename='js/survey.js') }}"></script>
 
-  <!-------------------- BOOTSTRAP IMPORT (JS) -------------------->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  <!-------------------- JS IMPORTS -------------------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+  <!-- Initiate Pure Counter -->
+  <script>
+    new PureCounter();
   </script>
 
 </body>

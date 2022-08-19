@@ -24,6 +24,16 @@ window.addEventListener('load', navbarlinksActive);
 document.addEventListener('scroll', navbarlinksActive);
 
 /**
+ * Navbar box-shadow
+ */
+function scrollHeader(){
+  const nav = document.getElementById('header')
+  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
+  if(this.scrollY >= 80) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)
+
+/**
  * Move to Find Dog page
  */
 document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
@@ -49,7 +59,7 @@ function moveToSurveyPage() {
 // }
 
 /**
- * Animation on scroll
+ * AOS JS Initiation
  */
 window.addEventListener('load', () => {
   AOS.init({

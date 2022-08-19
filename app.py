@@ -23,7 +23,7 @@ def abandoned_dog_page():
 
 @app.route("/abandoned-dogs/list", methods=["GET"])
 def abandoned_dog_list():
-    sql = "select * from dog_info order by breed_name_kr asc;"
+    sql = "select breed_no, breed_name_kr from dog_info order by breed_name_kr asc;"
     cursor.execute(sql)
     result = cursor.fetchall()
 
@@ -31,9 +31,7 @@ def abandoned_dog_list():
     for dog_info in result:
         dog_dict = {
             "breed_no": dog_info[0],
-            "breed_name": dog_info[1],
-            "breed_name_kr": dog_info[2],
-            "dog_json": dog_info[3]
+            "breed_name_kr": dog_info[1]
         }
         dog_list.append(dog_dict)
 
