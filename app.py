@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify, json
+from datetime import datetime
 import pymysql
 
 app = Flask(__name__)
@@ -7,12 +8,22 @@ db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazon
 cursor = db.cursor()
 
 
+today = datetime.today().strftime('%Y%m%d')
+todayYear = today[:4]
+
 # ------------------- HOME PAGE FUNCTIONS ------------------- #
 
 
 @app.route("/")  # Home page
 def main_page():
     return render_template("index.html")
+
+
+@app.route("/", methods=["GET"])  # Get statistics to home
+def get_statistics():
+    sql = f"select count(*) from dog_list where happenDt >= '{todayYear}0101';"
+    print(sql)
+    return
 
 # ------------------- FIND DOG PAGE FUNCTIONS ------------------- #
 
