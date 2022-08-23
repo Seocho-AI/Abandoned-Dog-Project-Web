@@ -33,7 +33,7 @@
       <div class="container">
 
         <!-- NAV-LOGO -->
-        <a class="navbar-brand" href="#home">Abandog</a>
+        <a class="navbar-brand" href="#home" onclick="moveToHomePage()">Abandog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,13 +45,13 @@
           <ul class="navbar-nav ms-auto">
 
             <!-- LINK to HOME SECTION -->
-            <li class="nav-item ms-md-4"><a class="nav-link" href="#home-section">Home</a></li>
+            <li class="nav-item ms-md-4"><a class="nav-link nav-home" href="#home-section" onclick="moveToHomePage()">Home</a></li>
 
             <!-- LINK to FIND DOG SECTION -->
             <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견 찾기</a></li>
 
             <!-- LINK to SURVEY SECTION -->
-            <li class="nav-item ms-md-4"><a class="nav-link" href="#survey-section">AI 유기견 추천</a></li>
+            <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">AI 유기견 추천</a></li>
 
             <!-- LINK-DROPDOWN
             <li class="nav-item dropdown ms-md-4">

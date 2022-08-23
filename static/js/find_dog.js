@@ -1,4 +1,23 @@
 /**
+ * Move to Home page
+ */
+document.querySelector(".navbar-brand").addEventListener("click", moveToHomePage)
+document.querySelector(".nav-home").addEventListener("click", moveToHomePage)
+
+function moveToHomePage() {
+  window.location.href = "/" // Move to home page
+}
+
+/**
+ * Move to Survey page
+ */
+document.querySelector(".nav-survey").addEventListener("click", moveToSurveyPage)
+
+function moveToSurveyPage() {
+  window.location.href = "/survey" // Move to page
+}
+
+/**
  * Navbar box-shadow
  */
 function scrollHeader() {
