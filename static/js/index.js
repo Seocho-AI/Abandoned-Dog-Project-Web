@@ -1,17 +1,20 @@
+/**
+ * Getting abandoned-dog statistics from DB and show on Homepage
+ */
 $.ajax({
   type: "GET",
-  url: "/",
+  url: "/statistics",
   data: {},
   success: function (response) {
-    console.log(response)
+    let rescued_today = document.querySelector(".rescued-today")
+    let adopt_in_year = document.querySelector(".adopt-in-year")
+    let death_in_year = document.querySelector(".death-in-year")
+    let protect_in_year = document.querySelector(".protect-in-year")
 
-    let dog_list_template = document.querySelector("#template-dog-list").innerHTML
-    let res = ""
-    response.forEach(function (el) {
-      res += dog_list_template.replace("{breed_name_kr}", el.breed_name_kr)
-        .replace("{breed_no}", el.breed_no)
-    })
-    document.querySelector(".dog-list").innerHTML = res
+    rescued_today.textContent = response[0]
+    adopt_in_year.textContent = response[1]
+    death_in_year.textContent = response[2]
+    protect_in_year.textContent = response[3]
   }
 })
 

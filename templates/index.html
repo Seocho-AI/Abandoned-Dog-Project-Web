@@ -21,6 +21,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/counterup2/2.0.2/index.js"></script>
 
 </head>
 
@@ -99,8 +101,7 @@
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
-                마리
+                <span class="counter rescued-today"></span><span> 마리</span>
               </h1>
             </div>
             <div class="card-header">
@@ -114,8 +115,7 @@
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
-                %
+                <span class="counter adopt-in-year"></span><span>%</span>
               </h1>
             </div>
             <div class="card-header">
@@ -129,8 +129,7 @@
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
-                %
+                <span class="counter death-in-year"></span><span>%</span>
               </h1>
             </div>
             <div class="card-header">
@@ -144,7 +143,7 @@
           <div class="card-stat card text-center" style="width: 14rem;">
             <div class="card-body">
               <h1 class="card-title">
-                <span data-purecounter-start="0" data-purecounter-end="70000" data-purecounter-duration="1.5" data-purecounter-once="false" class="purecounter"></span>
+                <span class="counter protect-in-year"></span><span> 마리</span>
               </h1>
             </div>
             <div class="card-header">
@@ -205,11 +204,28 @@
   <!-------------------- JS IMPORTS -------------------->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
 
   <!-- Initiate Pure Counter -->
   <script>
-    new PureCounter();
+    jQuery(function ($) {
+      'use strict';
+      var counterUp = window.counterUp['default']; // import counterUp from "counterup2"
+      var $counters = $('.counter');
+      /* Start counting, do this on DOM ready or with Waypoints. */
+      $counters.each(function (ignore, counter) {
+        var waypoint = new Waypoint({
+          element: $(this),
+          handler: function () {
+            counterUp(counter, {
+              duration: 1500,
+              delay: 20,
+            });
+            this.destroy();
+          },
+          offset: 'bottom-in-view',
+        });
+      });
+    });
   </script>
 
 </body>
