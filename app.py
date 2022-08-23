@@ -3,10 +3,13 @@ from urllib.parse import urlencode, unquote, parse_qsl
 import math
 import threading
 import time
-from flask import Flask, render_template, jsonify, json
+from flask import Flask, render_template, jsonify, json, request
 import pymysql
 import requests
-# import schedule
+import pickle
+import pandas as pd
+import numpy as np
+
 
 app = Flask(__name__)
 db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com', port=3306, user='kaist',
@@ -107,7 +110,7 @@ def db_insert_dog():
         cursor.executemany(sql, dogs)
         db.commit()
         print(i + 1, "번째", cursor.rowcount, "record inserted.")
-    
+
     # 1시간 마다 함수 반복
     threading.Timer(3600, db_insert_dog).start()
 
@@ -177,9 +180,18 @@ def db_update_dog():
         cursor.executemany(sql, dogs)
         db.commit()
         print(i + 1, "번째", cursor.rowcount, "record updated.")
-    
+
     # 24시간 마다 함수 반복
     threading.Timer(86400, db_update_dog).start()
+
+
+# ------------------- SURVEY PREDICT MODEL ------------------- #
+
+
+with open('survey_model/content_based_recommender.pickle', 'rb') as f:
+    model = pickle.load(f)  # 단 한줄씩 읽어옴
+
+breeds_data = pd.read_parquet("survey_model/data/pre-processed/breeds.parquet")
 
 
 # ------------------- HOME PAGE FUNCTIONS ------------------- #
@@ -265,31 +277,35 @@ def survey_page():
 
 @app.route("/survey", methods=["POST"])  # Posing survey result
 def survey_answer():
-    # answer_receive = request.get_json()  # Stores user's survey answer
+    user_answer = request.get_json()  # Stores user's survey answer
 
     # Afghan Hound / Affenpinscher
-    sql = "select * from breed_info where breed_name = 'Afghan Hound';"
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    result = result[0]  # Tuple unboxing
+    # sql = "select * from breed_info where breed_name = 'Afghan Hound';"
+    # cursor.execute(sql)
+    # result = cursor.fetchall()
+    # result = result[0]  # Tuple unboxing
 
-    info_dict = {
-        "breed_name": result[0],
-        "breed_name_kr": result[1],
-        "dog_info_json": json.loads(result[2])
-    }
+    # info_dict = {
+    #     "breed_name": result[0],
+    #     "breed_name_kr": result[1],
+    #     "dog_info_json": json.loads(result[2])
+    # }
 
     # for question_type, rating in answer_receive.items():
     #     print(question_type, ":", rating)
 
-    return info_dict  # Returning dog info from DB
+    # Returning predicted dog breed list
+    return model.predict(target_user_dict=user_answer)
 
 
 # ------------------- 정해진 시간마다 API_TO_DB() 함수 호출 ------------------- #
 
 
-db_insert_dog()
-db_update_dog()
+# DB 삽입 함수 호출
+# db_insert_dog()
+
+# DB 업데이트 함수 호출
+# db_update_dog()
 
 
 # ------------------- DEBUG MAIN ------------------- #

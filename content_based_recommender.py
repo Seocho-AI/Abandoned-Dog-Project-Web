@@ -80,10 +80,10 @@ class ContentBasedRecommender():
 
         self.user_survey_data.index = self.user_survey_data.index.astype(dtype='int64', copy=True)
 
-        #print(self.user_survey_data.columns, self.breeds_data.columns)
+        # print(self.user_survey_data.columns, self.breeds_data.columns)
         target_user_dict_df=pd.DataFrame.from_dict(self.target_user_dict, orient='index')
-        print(target_user_dict_df.T.shape)
-        print(self.breeds_data.shape)
+        # print(target_user_dict_df.T.shape)
+        # print(self.breeds_data.shape)
         # self._breed_rec_scores = cosine_similarity(self.user_survey_data, self.breeds_data).argsort()[:, ::-1]
         self._breed_rec_scores = cosine_similarity(target_user_dict_df.T, self.breeds_data).argsort()[:, ::-1]
 
@@ -92,24 +92,24 @@ class ContentBasedRecommender():
                                                     sim_df=self._breed_rec_scores,
                                                     target_user_id=self.target_user_id,
                                                     top_n=10)
-        print(self.recommendations)
+        # print(self.recommendations)
         return list(self.recommendations.index)
 
     def find_sim_breeds(self, user_survey_data, breeds_data, sim_df, target_user_id, top_n=10):
-        #user_survey_data.reset_index(inplace=True)
+        # user_survey_data.reset_index(inplace=True)
         # print(user_survey_data)
-        #print(user_survey_data.columns)
-        #user_id = user_survey_data[user_survey_data['userId'] == target_user_id]
-        print(sim_df)
-        #print(user_id)
+        # print(user_survey_data.columns)
+        # user_id = user_survey_data[user_survey_data['userId'] == target_user_id]
+        # print(sim_df)
+        # print(user_id)
 
         user_index = user_survey_data.values
-        #print("user_index=", user_index)
+        # print("user_index=", user_index)
         similar_indexes = sim_df[:, :top_n]
 
         # 추출된 top_n index들 출력. top_n index는 2차원 데이터 임.
-        #dataframe에서 index로 사용하기 위해서 1차원 array로 변경
-        #print(similar_indexes)
+        # dataframe에서 index로 사용하기 위해서 1차원 array로 변경
+        # print(similar_indexes)
         similar_indexes = similar_indexes.reshape(-1)
         return breeds_data.iloc[similar_indexes]
     # def predict(self):

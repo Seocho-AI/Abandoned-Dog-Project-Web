@@ -164,18 +164,7 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "dog_experience",
-        title: "강아지를 키운 경험",
-        // isRequired: true,
-        choices: [
-          "강아지를 처음 키운다",
-          "강아지를 키우고 있다",
-          "강아지를 키운 적이 있다"
-        ]
-      },
-      {
-        type: "radiogroup",
-        name: "age",
+        name: "user_age",
         title: "나이대가 어떻게 되세요?",
         // isRequired: true,
         choices: [
@@ -189,7 +178,18 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "house_type",
+        name: "user_sex",
+        title: "성별이 어떻게 되세요?",
+        // isRequired: true,
+        choices: [
+          "남성",
+          "여성",
+          "기타"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "user_house_type",
         title: "주거 형태가 어떻게 되나요?",
         // isRequired: true,
         choices: [
@@ -202,8 +202,42 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "only_apartment",
-        title: "아파트에 살기 적합한 강아지들 위주로 입양 하고 싶으신가요?",
+        name: "user_dog_experience",
+        title: "강아지를 키운 경험",
+        // isRequired: true,
+        choices: [
+          "강아지를 처음 키운다",
+          "강아지를 키우고 있다",
+          "강아지를 키운 적이 있다"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "neighbor_agreement",
+        title: "주민 동의 여부",
+        // isRequired: true,
+        choices: [
+          "예",
+          "아니오"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "user_family_size",
+        title: "가족 구성원은 어떻게 되나요?",
+        // isRequired: true,
+        choices: [
+          "1인",
+          "2인",
+          "3인",
+          "4인",
+          "5인 이상"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "user_kids",
+        title: "아이를 키우고 있나요? (초등학생)",
         colCount: 0,
         // isRequired: true,
         choices: [
@@ -224,14 +258,24 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "kids",
-        title: "아이를 키우고 있나요? (초등학생)",
+        name: "shedding_level",
+        title: "털날림 정도",
         colCount: 0,
         // isRequired: true,
         choices: [
           "예",
           "아니오"
         ]
+      },
+      {
+        type: "rating",
+        name: "bark_tolerance",
+        title: "강아지 짖는 소리를 얼마나 잘 참으시나요? (1 : 많이 안짖었으면 좋겠다 | 10 : 상관 없다)",
+        // isRequired: true,
+        rateMin: 1,
+        rateMax: 10,
+        minRateDescription: "(필요할 때만 짖는다)",
+        maxRateDescription: "(자주 짖는다)"
       },
       {
         type: "radiogroup",
@@ -248,8 +292,7 @@ var json = {
         type: "radiogroup",
         name: "spend_type",
         title: "시간을 같이 보낸다면 어떤 활동을 선호 하시나요?",
-        isRequired: true,
-        visibleIf: "{spend-time} = '조금 : 1 ~ 5 시간' || {spend-time} = '적절한 : 6 ~ 10 시간' || {spend-time} = '많이 : 10+ 시간' ",
+        // isRequired: true,
         choices: [
           "실내 활동",
           "둘다 왔다 갔다 한다",
@@ -257,14 +300,918 @@ var json = {
         ]
       },
       {
-        type: "rating",
-        name: "bark_tolerance",
-        title: "강아지 짖는 소리를 얼마나 잘 참으시나요? (1 : 많이 안짖었으면 좋겠다 | 10 : 상관 없다)",
+        type: "radiogroup",
+        name: "dog_sex",
+        title: "어떤 성별의 강아지를 원하시나요?",
         // isRequired: true,
-        rateMin: 1,
-        rateMax: 10,
-        minRateDescription: "(필요할 때만 짖는다)",
-        maxRateDescription: "(자주 짖는다)"
+        choices: [
+          "수컷",
+          "암컷",
+          "상관 없음"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "dog_environment",
+        title: "반려견이 지낼 장소는 어디 입니까?",
+        colCount: 0,
+        // isRequired: true,
+        choices: [
+          "실내",
+          "실외",
+          "실내외 둘다",
+          "별도의 공간 (보일러실, 농장, 베란다 등)"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "dog_support_agreement",
+        title: "양육비 동의 여부",
+        colCount: 0,
+        // isRequired: true,
+        choices: [
+          "예",
+          "아니오"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "dog_health_agreement",
+        title: "유기견 건강 인지 여부",
+        colCount: 0,
+        // isRequired: true,
+        choices: [
+          "예",
+          "아니오"
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a_adaptability",
+        title: "a_adaptability",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a1_adapts_well_to_apartment_living",
+        title: "a1_adapts_well_to_apartment_living",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a2_good_for_novice_owners",
+        title: "a2_good_for_novice_owners",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a3_sensitivity_level",
+        title: "a3_sensitivity_level",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a4_tolerates_being_alone",
+        title: "a4_tolerates_being_alone",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a5_tolerates_cold_weather",
+        title: "a5_tolerates_cold_weather",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "a6_tolerates_hot_weather",
+        title: "a6_tolerates_hot_weather",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "b_all_around_friendliness",
+        title: "b_all_around_friendliness",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "b1_affectionate_with_family",
+        title: "b1_affectionate_with_family",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "b2_incredibly_kid_friendly_dogs",
+        title: "b2_incredibly_kid_friendly_dogs",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "b3_dog_friendly",
+        title: "b3_dog_friendly",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "b4_friendly_toward_strangers",
+        title: "b4_friendly_toward_strangers",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c_health_grooming",
+        title: "c_health_grooming",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c1_amount_of_shedding",
+        title: "c1_amount_of_shedding",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c2_drooling_potential",
+        title: "c2_drooling_potential",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c3_easy_to_groom",
+        title: "c3_easy_to_groom",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c4_general_health",
+        title: "c4_general_health",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c5_potential_for_weight_gain",
+        title: "c5_potential_for_weight_gain",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "c6_size",
+        title: "c6_size",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d_trainability",
+        title: "d_trainability",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d1_easy_to_train",
+        title: "d1_easy_to_train",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d2_intelligence",
+        title: "d2_intelligence",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d3_potential_for_mouthiness",
+        title: "d3_potential_for_mouthiness",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d4_prey_drive",
+        title: "d4_prey_drive",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d5_tendency_to_bark_or_howl",
+        title: "d5_tendency_to_bark_or_howl",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "d6_wanderlust_potential",
+        title: "d6_wanderlust_potential",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "e_exercise_needs",
+        title: "e_exercise_needs",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "e1_energy_level",
+        title: "e1_energy_level",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "e2_intensity",
+        title: "e2_intensity",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "e3_exercise_needs",
+        title: "e3_exercise_needs",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
+      },
+      {
+        type: "radiogroup",
+        name: "e4_potential_for_playfulness",
+        title: "e4_potential_for_playfulness",
+        colCount: 0,
+        // isRequired: true,
+        choices: [{
+            "value": "1",
+            "text": "1"
+          },
+          {
+            "value": "2",
+            "text": "2"
+          },
+          {
+            "value": "3",
+            "text": "3"
+          },
+          {
+            "value": "4",
+            "text": "4"
+          },
+          {
+            "value": "5",
+            "text": "5"
+          }
+        ]
       }
     ]
   }]
@@ -310,52 +1257,8 @@ survey.onComplete.add(function (sender) {
     data: answer_give,
     success: function (response) {
       alert("보내기 성공")
-
-      var recommend_info = response // Storing dog info from DB
-
-      /**
-       * Storing various dog infos as variables
-       */
-      var breed_name = `${recommend_info.breed_name} ${recommend_info.breed_name_kr}` // 종 이름 (영어 + 한국어어
-      var breed_desc = recommend_info.dog_info_json.dog_description // 종 설명
-      var breed_img = recommend_info.dog_info_json.dog_img // 종 사진
-      var breed_cost = recommend_info.dog_info_json.dog_cost // 키우는 비용
-      var recommend_reason = recommend_info.dog_info_json.recommend_reason // 추천 이유
-
-      /**
-       * Storing user survey answers as a variable
-       */
-      var survey_dog_experience = sender.data.dog_experience // Answer 1
-      var survey_age = sender.data.age // Answer 2
-      var survey_house_type = sender.data.house_type // Answer 3
-      var survey_only_apartment = sender.data.only_apartment // Answer 4
-      var survey_dog_size = sender.data.dog_size // Answer 5
-      var survey_kids = sender.data.kids // Answer 6
-      var survey_spend_time = sender.data.spend_time // Answer 7
-      var survey_spend_type = sender.data.spend_type // Answer 8
-      var survey_bark_tolerance = sender.data.bark_tolerance // Answer 9
-
-      /**
-       * Filling the survey result page based on recommended breed and user's answer
-       */
-      document.querySelector('.recommended-dog-title').innerHTML = `당신의 강아지 추천은: ${breed_name}`
-      document.querySelector('.recommended-dog-image').innerHTML = breed_img
-      document.querySelector('.recommended-dog-description').innerHTML = breed_desc
-      document.querySelector('.recommended-dog-answer-title').innerHTML = "귀하께서 알려주신 정보"
-      document.querySelector('.recommended-dog-answer-1').innerHTML = survey_dog_experience
-      document.querySelector('.recommended-dog-answer-2').innerHTML = survey_age
-      document.querySelector('.recommended-dog-answer-3').innerHTML = survey_house_type
-      document.querySelector('.recommended-dog-answer-4').innerHTML = survey_only_apartment
-      document.querySelector('.recommended-dog-answer-5').innerHTML = survey_dog_size
-      document.querySelector('.recommended-dog-answer-6').innerHTML = survey_kids
-      document.querySelector('.recommended-dog-answer-7').innerHTML = survey_spend_time
-      document.querySelector('.recommended-dog-answer-8').innerHTML = survey_spend_type
-      document.querySelector('.recommended-dog-answer-9').innerHTML = survey_bark_tolerance
-      document.querySelector('.recommended-dog-info-title').innerHTML = `${breed_name} 정보`
-      document.querySelector('.recommended-dog-reason').innerHTML = recommend_reason
-      document.querySelector('.recommended-dog-traits').innerHTML = "특징~ 몸무게 5kg / 키: 20cm / 기타 등등 . . ."
-      document.querySelector('.recommended-dog-cost').innerHTML = breed_cost
-      document.querySelector('.recommended-dog-btn').innerHTML = "현재 공고중인 유기견 찾기"
+      alert(response)
+      console.log(response)
     }
   })
 });
