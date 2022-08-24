@@ -39,7 +39,7 @@ $.ajax({
         .replace("{processState}", el.processState)
     })
     document.querySelector(".dog-list").innerHTML = res
-    abandonedDogList = response.slice(30)
+    abandonedDogList = response.slice(10)
   }
 })
 
@@ -50,27 +50,17 @@ $(window).scroll(function () {
   if (($(window).scrollTop() == $(document).height() - $(window).height()) && (abandonedDogList.length !== 0)) {
     let dog_list_template = document.querySelector("#template-dog-list").innerHTML
     let res = ""
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 10 % abandonedDogList.length; i++) {
       res += dog_list_template
-        .replace("{popfile}", abandonedDogList[i].popfile)
-        .replace("{kindCd}", abandonedDogList[i].kindCd)
-        .replace("{sexCd}", abandonedDogList[i].sexCd)
-        .replace("{happenDt}", abandonedDogList[i].happenDt)
-        .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-        .replace("{processState}", abandonedDogList[i].processState)
-    }
-    for (i = 0; i < 10; i++) {
+        .replace("{popfile}", abandonedDogList[0].popfile)
+        .replace("{kindCd}", abandonedDogList[0].kindCd)
+        .replace("{sexCd}", abandonedDogList[0].sexCd)
+        .replace("{happenDt}", abandonedDogList[0].happenDt)
+        .replace("{noticeNo}", abandonedDogList[0].noticeNo)
+        .replace("{processState}", abandonedDogList[0].processState)
       abandonedDogList.shift()
     }
-    // abandonedDogList.forEach(function (el) {
-    //   res += dog_list_template
-    //     .replace("{popfile}", el.popfile)
-    //     .replace("{kindCd}", el.kindCd)
-    //     .replace("{sexCd}", el.sexCd)
-    //     .replace("{happenDt}", el.happenDt)
-    //     .replace("{noticeNo}", el.noticeNo)
-    //     .replace("{processState}", el.processState)
-    // })
+
     document.querySelector(".dog-list").insertAdjacentHTML('beforeend', res)
     console.log(abandonedDogList)
   }

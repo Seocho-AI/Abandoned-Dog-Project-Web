@@ -30,7 +30,7 @@ def find_dog_page():
 
 @find_dog.route("/thumbnail_page", methods=["GET"])
 def load_thumbnail():
-    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list ORDER BY happenDt DESC LIMIT 100;"
+    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list ORDER BY happenDt DESC;"
     cursor.execute(sql)
     result = cursor.fetchall()
 
