@@ -18,19 +18,11 @@ function moveToSurveyPage() {
 }
 
 /**
- * Navbar box-shadow
+ * Load abandoned dogs thumbnails to find_dog page
  */
-function scrollHeader() {
-  const nav = document.getElementById('header')
-  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
-  if (this.scrollY >= 80) nav.classList.add('scroll-header');
-  else nav.classList.remove('scroll-header')
-}
-window.addEventListener('scroll', scrollHeader)
-
 $.ajax({
   type: "GET",
-  url: "/abandoned-dogs/list",
+  url: "/find_dog/thumbnail_page",
   data: {},
   success: function (response) {
     console.log(response)
@@ -56,3 +48,14 @@ window.addEventListener('load', () => {
     mirror: false
   })
 })
+
+/**
+ * Navbar box-shadow
+ */
+function scrollHeader() {
+  const nav = document.getElementById('header')
+  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
+  if (this.scrollY >= 80) nav.classList.add('scroll-header');
+  else nav.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)

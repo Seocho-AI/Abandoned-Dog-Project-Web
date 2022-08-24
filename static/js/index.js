@@ -1,9 +1,36 @@
 /**
+ * Move to Home page
+ */
+document.querySelector(".navbar-brand").addEventListener("click", moveToHomePage)
+
+function moveToHomePage() {
+  window.location.href = "/" // Move to home page
+}
+
+/**
+ * Move to Find Dog page
+ */
+document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
+
+function moveToAbandonedDogPage() {
+  window.location.href = "/find_dog" // Move to page
+}
+
+/**
+ * Move to Survey page
+ */
+document.getElementById("survey-page-btn").addEventListener("click", moveToSurveyPage)
+
+function moveToSurveyPage() {
+  window.location.href = "/survey" // Move to page
+}
+
+/**
  * Getting abandoned-dog statistics from DB and show on Homepage
  */
 $.ajax({
   type: "GET",
-  url: "/statistics",
+  url: "/dog_statistics",
   data: {},
   success: function (response) {
     let rescued_today = document.querySelector(".rescued-today")
@@ -65,30 +92,3 @@ window.addEventListener('load', () => {
     mirror: false
   })
 })
-
-/**
- * Move to Home page
- */
-document.querySelector(".navbar-brand").addEventListener("click", moveToHomePage)
-
-function moveToHomePage() {
-  window.location.href = "/" // Move to home page
-}
-
-/**
- * Move to Find Dog page
- */
-document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
-
-function moveToAbandonedDogPage() {
-  window.location.href = "/abandoned-dogs" // Move to page
-}
-
-/**
- * Move to Survey page
- */
-document.getElementById("survey-page-btn").addEventListener("click", moveToSurveyPage)
-
-function moveToSurveyPage() {
-  window.location.href = "/survey" // Move to page
-}

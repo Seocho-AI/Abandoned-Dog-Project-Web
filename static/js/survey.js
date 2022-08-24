@@ -14,19 +14,8 @@ function moveToHomePage() {
 document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = "/abandoned-dogs" // Move to page
+  window.location.href = "/find_dog" // Move to page
 }
-
-/**
- * Navbar box-shadow
- */
-function scrollHeader() {
-  const nav = document.getElementById('header')
-  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
-  if (this.scrollY >= 80) nav.classList.add('scroll-header');
-  else nav.classList.remove('scroll-header')
-}
-window.addEventListener('scroll', scrollHeader)
 
 // const SURVEY_ID = 1;
 
@@ -1237,20 +1226,6 @@ var json = {
 };
 
 /**
- * Showing Alert To User
- */
-// function alertResults(sender) {
-//   const results = JSON.stringify(sender.data);
-//   alert(results);
-//   // saveSurveyResults(
-//   //     "https://your-web-service.com/" + SURVEY_ID,
-//   //     sender.data
-//   // )
-// }
-
-// survey.onComplete.add(alertResults);
-
-/**
  * Targeting HTML Survey div to JS
  */
 window.survey = new Survey.Model(json);
@@ -1271,7 +1246,7 @@ survey.onComplete.add(function (sender) {
   $.ajax({
     type: "POST",
     contentType: "application/json",
-    url: "/survey",
+    url: "/survey/result",
     dataType: "json",
     data: answer_give,
     success: function (response) {
@@ -1335,3 +1310,14 @@ window.addEventListener('load', () => {
     mirror: false
   })
 })
+
+/**
+ * Navbar box-shadow
+ */
+function scrollHeader() {
+  const nav = document.getElementById('header')
+  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
+  if (this.scrollY >= 80) nav.classList.add('scroll-header');
+  else nav.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)
