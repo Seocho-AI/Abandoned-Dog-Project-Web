@@ -30,15 +30,20 @@ def find_dog_page():
 
 @find_dog.route("/thumbnail_page", methods=["GET"])
 def load_thumbnail():
-    sql = "select breed_no, breed_name_kr from breed_info order by breed_name_kr asc;"
+    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list ORDER BY happenDt DESC LIMIT 100;"
     cursor.execute(sql)
     result = cursor.fetchall()
 
     dog_list = []
+
     for dog_info in result:
         dog_dict = {
-            "breed_no": dog_info[0],
-            "breed_name_kr": dog_info[1]
+            "popfile": dog_info[0],
+            "kindCd": dog_info[1],
+            "sexCd": dog_info[2],
+            "happenDt": dog_info[3],
+            "noticeNo": dog_info[4],
+            "processState": dog_info[5]
         }
         dog_list.append(dog_dict)
 

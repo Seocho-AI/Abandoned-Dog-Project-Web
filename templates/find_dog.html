@@ -85,6 +85,21 @@
 
   <script id="template-dog-list" type="text/template">
     <div class="col-12 col-lg-3 col-md-4 col-sm-6 bg-light">
+      <div class="card">
+        <img class="card-img-top" src="{popfile}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">{kindCd}</p>
+          <p class="card-text">{sexCd}</p>
+          <p class="card-text">{happenDt}</p>
+          <p class="card-text">{noticeNo}</p>
+          <p class="card-text">{processState}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script id="template-shelter-list" type="text/template">
+    <div class="col-12 col-lg-3 col-md-4 col-sm-6 bg-light">
       <div class="border">
         <h4>{breed_name_kr}</h4>
         <p>{breed_no}</p>

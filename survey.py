@@ -42,21 +42,7 @@ def survey_page():
 @survey.route("/result", methods=["POST"])  # Posing survey result
 def survey_answer():
     user_answer = request.get_json()  # Stores user's survey answer
+    recommended_dog_list = ["Sapsaree", "Poongsan Dog", "Afghan Hound", "Airedale Terrier", "Akita", "Alaskan Malamute", "Australian Cattle Dog", "Basset Hound", "Beagle", "Belgian Shepherd Dog"] # TESTING STAGE => model's predicted dog list
 
-    # Afghan Hound / Affenpinscher
-    # sql = "select * from breed_info where breed_name = 'Afghan Hound';"
-    # cursor.execute(sql)
-    # result = cursor.fetchall()
-    # result = result[0]  # Tuple unboxing
-
-    # info_dict = {
-    #     "breed_name": result[0],
-    #     "breed_name_kr": result[1],
-    #     "dog_info_json": json.loads(result[2])
-    # }
-
-    # for question_type, rating in answer_receive.items():
-    #     print(question_type, ":", rating)
-
-    # Returning predicted dog breed list
+    
     return model.predict(target_user_dict=user_answer)
