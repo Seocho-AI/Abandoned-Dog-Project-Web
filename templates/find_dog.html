@@ -16,12 +16,14 @@
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+  
   <!-------------------- JS IMPORTS(PRE) -------------------->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+  
 </head>
 
 <body>
@@ -77,7 +79,8 @@
     <div class="overlay-dog-list-section min-vh-100">
       <div class="container">
 
-        <div class="dog-list row gy-5"></div>
+        <div class="dog-list row gy-5" id="data-container"></div>
+        <div id="pagination"></div>
 
       </div>
     </div>
@@ -90,18 +93,24 @@
         <div class="row g-0">
 
           <div class="col-6 col-md-12">
-            <img class="card-img img-thumbnail" src="{popfile}" alt="Card image cap" style="height: 15rem;">
+            <img class="mx-auto d-block dog-thumbnail-img" src="{popfile}" alt="Card image cap" style="height: 15rem;">
           </div>
 
           <div class="col-6 col-md-12">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">{kindCd}</p>
-              <p class="card-text">{sexCd}</p>
-              <p class="card-text">{happenDt}</p>
-              <p class="card-text">{noticeNo}</p>
-              <p class="card-text">{processState}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <div class="d-flex">
+                <div class="">{kindCd}</div>
+                <div class="ms-auto">{processState}</div>
+                <div class="ps-3">{sexCd}</div>
+              </div>
+              <div class="d-flex">
+                <div class="">등록일 :</div>
+                <div class="ms-auto">{happenDt}</div>
+              </div>
+              <div class="d-flex">
+                <div class="">지역 :</div>
+                <div class="ms-auto">{noticeNo}</div>
+              </div>
             </div>
           </div>
 

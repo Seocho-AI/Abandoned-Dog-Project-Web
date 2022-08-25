@@ -24,6 +24,10 @@ cursor = db.cursor()
 
 today = datetime.strftime(datetime.now() - timedelta(1), '%Y%m%d')  # 오늘
 yesterday = datetime.strftime(datetime.now() - timedelta(2), '%Y%m%d')  # 어제
+two_weeks_before = datetime.strftime(
+    datetime.now() - timedelta(14), '%Y%m%d')  # 2주전
+sixty_days_before = datetime.strftime(
+    datetime.now() - timedelta(60), '%Y%m%d')  # 60일전
 today_year = today[:4]  # 이번년도
 
 

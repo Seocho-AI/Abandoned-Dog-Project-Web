@@ -18,7 +18,7 @@ function moveToSurveyPage() {
 }
 
 /**
- * Load abandoned dogs thumbnails to find_dog page
+ * DB에서 현재 보호중인 유기견들 불러오기
  */
 var abandonedDogList = null
 $.ajax({
@@ -27,44 +27,58 @@ $.ajax({
   data: {},
   async: false,
   success: function (response) {
-    let dog_list_template = document.querySelector("#template-dog-list").innerHTML
-    let res = ""
-    response.slice(0, 10).forEach(function (el) {
-      res += dog_list_template
-        .replace("{popfile}", el.popfile)
-        .replace("{kindCd}", el.kindCd)
-        .replace("{sexCd}", el.sexCd)
-        .replace("{happenDt}", el.happenDt)
-        .replace("{noticeNo}", el.noticeNo)
-        .replace("{processState}", el.processState)
-    })
-    document.querySelector(".dog-list").innerHTML = res
-    abandonedDogList = response.slice(10)
+    abandonedDogList = response
   }
+})
+
+/**
+ * Load abandoned dogs thumbnails to find_dog page
+ */
+$(function () {
+  let container = $('#pagination');
+  container.pagination({
+    dataSource: abandonedDogList,
+    pageSize: 48,
+    callback: function (abandonedDogList, pagination) {
+      // template method of yourself
+      let dog_list_template = document.querySelector("#template-dog-list").innerHTML
+      let res = ""
+      for (i = 0; i < abandonedDogList.length; i++) {
+        res += dog_list_template
+          .replace("{popfile}", abandonedDogList[i].popfile)
+          .replace("{kindCd}", abandonedDogList[i].kindCd)
+          .replace("{sexCd}", abandonedDogList[i].sexCd)
+          .replace("{happenDt}", abandonedDogList[i].happenDt)
+          .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+          .replace("{processState}", abandonedDogList[i].processState)
+      }
+      document.querySelector(".dog-list").innerHTML = res
+    }
+  })
 })
 
 /**
  * Load 10 abandoned dogs thumbnails when bottom of page reached
  */
-$(window).scroll(function () {
-  if (($(window).scrollTop() == $(document).height() - $(window).height()) && (abandonedDogList.length !== 0)) {
-    let dog_list_template = document.querySelector("#template-dog-list").innerHTML
-    let res = ""
-    for (i = 0; i < 10 % abandonedDogList.length; i++) {
-      res += dog_list_template
-        .replace("{popfile}", abandonedDogList[0].popfile)
-        .replace("{kindCd}", abandonedDogList[0].kindCd)
-        .replace("{sexCd}", abandonedDogList[0].sexCd)
-        .replace("{happenDt}", abandonedDogList[0].happenDt)
-        .replace("{noticeNo}", abandonedDogList[0].noticeNo)
-        .replace("{processState}", abandonedDogList[0].processState)
-      abandonedDogList.shift()
-    }
+// $(window).scroll(function () {
+//   if (($(window).scrollTop() == $(document).height() - $(window).height()) && (abandonedDogList.length !== 0)) {
+//     let dog_list_template = document.querySelector("#template-dog-list").innerHTML
+//     let res = ""
+//     for (i = 0; i < 10 % abandonedDogList.length; i++) {
+//       res += dog_list_template
+//         .replace("{popfile}", abandonedDogList[0].popfile)
+//         .replace("{kindCd}", abandonedDogList[0].kindCd)
+//         .replace("{sexCd}", abandonedDogList[0].sexCd)
+//         .replace("{happenDt}", abandonedDogList[0].happenDt)
+//         .replace("{noticeNo}", abandonedDogList[0].noticeNo)
+//         .replace("{processState}", abandonedDogList[0].processState)
+//       abandonedDogList.shift()
+//     }
 
-    document.querySelector(".dog-list").insertAdjacentHTML('beforeend', res)
-    console.log(abandonedDogList)
-  }
-});
+//     document.querySelector(".dog-list").insertAdjacentHTML('beforeend', res)
+//     console.log(abandonedDogList)
+//   }
+// });
 
 /**
  * AOS JS Initiation

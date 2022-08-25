@@ -89,3 +89,13 @@ html {
 .overlay-dog-list-section .container {
   padding-top: 10rem;
 }
+
+/**
+ * Dog Thumbnail Image
+ */
+.dog-thumbnail-img {
+  pointer-events: none;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+}

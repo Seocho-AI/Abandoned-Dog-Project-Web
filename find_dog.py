@@ -30,7 +30,7 @@ def find_dog_page():
 
 @find_dog.route("/thumbnail_page", methods=["GET"])
 def load_thumbnail():
-    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list ORDER BY happenDt DESC;"
+    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
     cursor.execute(sql)
     result = cursor.fetchall()
 
@@ -41,8 +41,8 @@ def load_thumbnail():
             "popfile": dog_info[0],
             "kindCd": dog_info[1],
             "sexCd": dog_info[2],
-            "happenDt": dog_info[3],
-            "noticeNo": dog_info[4],
+            "happenDt": dog_info[3][:4] + "/" + dog_info[3][4:6] + "/" + dog_info[3][6:],
+            "noticeNo": dog_info[4].replace("-", " ")[:5],
             "processState": dog_info[5]
         }
         dog_list.append(dog_dict)
