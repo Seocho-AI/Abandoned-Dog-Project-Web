@@ -34,48 +34,61 @@ body {
  * NAVBAR
  */
 #navbar {
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(15px);
+  background-color: transparent;
 }
 
-@media (min-width: 768px) {
+/**
+ * Nav change color on scroll
+ */
+#header.scroll-header {
+  background-color: #FFFFFF !important;
+  transition: background-color 300ms linear;
+}
 
-  #dog-navbar a,
-  #dog-navbar a:focus {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
-    transition: 0.3s;
-    position: relative;
-  }
+#dog-navbar a,
+#dog-navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #575757;
+  transition: all 0.3s ease-in-out 0s;
+  position: relative;
+}
 
-  #dog-navbar>ul>li>a:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -6px;
-    left: 0;
-    background-color: orange;
-    visibility: hidden;
-    width: 0px;
-    transition: all 0.3s ease-in-out 0s;
-  }
+#dog-navbar>ul>li>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: orange;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+#dog-navbar a:hover:before,
+#dog-navbar li:hover>a:before,
+#dog-navbar .active:before {
+  visibility: visible;
+  width: 100%;
+}
+
+#dog-navbar a:hover,
+#dog-navbar .active,
+#dog-navbar .active:focus,
+#dog-navbar li:hover>a {
+  color: orange;
+}
+
+@media (max-width: 768px) {
 
   #dog-navbar a:hover:before,
   #dog-navbar li:hover>a:before,
   #dog-navbar .active:before {
-    visibility: visible;
-    width: 100%;
-  }
-
-  #dog-navbar a:hover,
-  #dog-navbar .active,
-  #dog-navbar .active:focus,
-  #dog-navbar li:hover>a {
-    color: #fff;
+    visibility: hidden;
   }
 }
 

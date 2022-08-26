@@ -26,6 +26,16 @@ function moveToSurveyPage() {
 }
 
 /**
+ * Nav change bg on scroll
+ */
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $("#header");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
+});
+
+/**
  * Getting abandoned-dog statistics from DB and show on Homepage
  */
 $.ajax({

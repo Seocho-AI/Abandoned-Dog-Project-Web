@@ -76,7 +76,7 @@
 
   <!-------------------- DOG LIST -------------------->
   <section class="container-fluid min-vh-100 px-0" id="dog-list-section">
-    <div class="overlay-dog-list-section min-vh-100">
+    <div class="overlay-dog-list-section min-vh-100 find-dog-bg">
       <div class="container">
 
         <div class="dog-list row gy-5" id="data-container"></div>
@@ -87,17 +87,17 @@
   </section>
 
   <script id="template-dog-list" type="text/template">
-    <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 bg-light dog-card-container">
-      <div class="card dog-card">
+    <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 dog-card-container">
+      <div class="card dog-card border-0 rounded-3 shadow-sm">
 
         <div class="row g-0">
 
           <div class="col-6 col-md-12">
-            <img class="mx-auto d-block dog-thumbnail-img" src="{popfile}" alt="Card image cap" style="height: 15rem;">
+            <img class="mx-auto d-block dog-thumbnail-img rounded-3" src="{popfile}" alt="Card image cap" style="height: 15rem;">
           </div>
 
           <div class="col-6 col-md-12">
-            <div class="card-body">
+            <div class="card-body rounded-3 fw-bold">
               <div class="d-flex">
                 <div class="">{kindCd}</div>
                 <div class="ms-auto">{processState}</div>
