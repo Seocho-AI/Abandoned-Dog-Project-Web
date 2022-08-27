@@ -9,8 +9,13 @@ import pymysql
 
 
 survey = Blueprint("survey", __name__, template_folder="templates")
-db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com', port=3306, user='kaist',
-                     passwd='0916', db='abandoned_dog', charset="utf8")
+db = pymysql.connect(
+    host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
+    port=3306,
+    user='kaist',
+    passwd='0916',
+    db='abandoned_dog',
+    charset="utf8")
 cursor = db.cursor()
 
 
@@ -25,10 +30,10 @@ today_year = today[:4]  # 이번년도
 # ------------------- SURVEY PREDICT MODEL ------------------- #
 
 
-with open('survey_model/content_based_recommender.pickle', 'rb') as f:
+with open('survey_model/content_based_recommender.pkl', 'rb') as f:
     model = pickle.load(f)  # 단 한줄씩 읽어옴
 
-breeds_data = pd.read_parquet("survey_model/data/pre-processed/breeds.parquet")
+# breeds_data = pd.read_parquet("survey_model/data/pre-processed/breeds.parquet")
 
 
 # ------------------- SURVEY PAGE API ------------------- #
@@ -42,7 +47,10 @@ def survey_page():
 @survey.route("/result", methods=["POST"])  # Posing survey result
 def survey_answer():
     user_answer = request.get_json()  # Stores user's survey answer
-    recommended_dog_list = ["Sapsaree", "Poongsan Dog", "Afghan Hound", "Airedale Terrier", "Akita", "Alaskan Malamute", "Australian Cattle Dog", "Basset Hound", "Beagle", "Belgian Shepherd Dog"] # TESTING STAGE => model's predicted dog list
+    user_answer['user_id'] = '1'
 
-    
+    # print(user_answer)
+    # print(type(user_answer))
+
+    # return user_answer
     return model.predict(target_user_dict=user_answer)

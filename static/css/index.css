@@ -40,7 +40,7 @@ body {
 /**
  * Nav change color on scroll
  */
-#header.scroll-header {
+#header.scrolled {
   background-color: #FFFFFF !important;
   transition: background-color 300ms linear;
 }
@@ -90,6 +90,14 @@ body {
   #dog-navbar .active:before {
     visibility: hidden;
   }
+}
+
+/**
+ * NAVBAR Logo
+ */
+.navbar-logo {
+  color: orange !important;
+  font-weight: 600;
 }
 
 .scroll-header {

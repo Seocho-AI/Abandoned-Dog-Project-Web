@@ -18,6 +18,16 @@ function moveToSurveyPage() {
 }
 
 /**
+ * Nav change bg on scroll & show logo
+ */
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $("#navbar2");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.outerHeight());
+  });
+});
+
+/**
  * DB에서 현재 보호중인 유기견들 불러오기
  */
 var abandonedDogList = null

@@ -16,26 +16,27 @@
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+
   <!-------------------- JS IMPORTS(PRE) -------------------->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-  
+  <script src="https://kit.fontawesome.com/4946433bc0.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 
-  <!-------------------- NAVBAR -------------------->
-  <header id="header" class="sticky-top">
+  <!-------------------- NAVBAR 1 -------------------->
+  <header id="header" class="">
     <nav class="navbar navbar-expand-md navbar-light py-3" id="navbar" aria-label="dog-navbar">
       <!-- navbar expands at md -->
       <div class="container">
 
         <!-- NAV-LOGO -->
-        <a class="navbar-brand" href="#home" onclick="moveToHomePage()">Abandog</a>
+        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Abandog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,24 +56,37 @@
             <!-- LINK to SURVEY SECTION -->
             <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">AI 유기견 추천</a></li>
 
-            <!-- LINK-DROPDOWN
-            <li class="nav-item dropdown ms-md-4">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-
-              DROPDOWN-LINKS
-              <ul class="dropdown-menu" aria-labelledby="dropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li> -->
-
           </ul>
 
         </div>
       </div>
     </nav>
   </header>
+
+  <!-------------------- NAVBAR 2 -------------------->
+  <nav class="navbar navbar-expand navbar-light py-3 sticky-top" id="navbar2" aria-label="dog-navbar2">
+    <div class="container" id="dog-navbar2">
+      <!-- NAV-FILTER -->
+      <a class="navbar-brand">전체 지역</a>
+      <a class="navbar-brand">전체 종</a>
+
+      <!-- NAV-LINKS -->
+      <ul class="navbar-nav ms-auto">
+        
+        <!-- LINK to FIND DOG SECTION -->
+        <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견</a></li>
+        
+        <!-- LINK to SURVEY SECTION -->
+        <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">보호소</a></li>
+
+        <!-- SEARCH ICON -->
+        <!-- <li class="nav-item ms-md-4"><button class="btn dog-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg dog-search"></i></button></li> -->
+        <li class="nav-item ms-md-4"><a class="nav-link dog-search"><i class="fa-solid fa-magnifying-glass fa-lg fa-align-center dog-search-icon"></i></a></li>
+        
+      </ul>
+
+    </div>
+  </nav>
 
   <!-------------------- DOG LIST -------------------->
   <section class="container-fluid min-vh-100 px-0" id="dog-list-section">
@@ -119,14 +133,14 @@
     </div>
   </script>
 
-  <script id="template-shelter-list" type="text/template">
+  <!-- <script id="template-shelter-list" type="text/template">
     <div class="col-12 col-lg-3 col-md-4 col-sm-6 bg-light">
       <div class="border">
         <h4>{breed_name_kr}</h4>
         <p>{breed_no}</p>
       </div>
     </div>
-  </script>
+  </script> -->
 
   <!-------------------- MAIN JS -------------------->
   <script src="{{ url_for('static', filename='js/find_dog.js') }}"></script>

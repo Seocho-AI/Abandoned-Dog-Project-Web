@@ -14,8 +14,13 @@ app = Flask(__name__)
 app.register_blueprint(dog_statistics, url_prefix="/")
 app.register_blueprint(find_dog, url_prefix="/find_dog")
 app.register_blueprint(survey, url_prefix="/survey")
-db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com', port=3306, user='kaist',
-                     passwd='0916', db='abandoned_dog', charset="utf8")
+db = pymysql.connect(
+    host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
+    port=3306,
+    user='kaist',
+    passwd='0916',
+    db='abandoned_dog',
+    charset="utf8")
 cursor = db.cursor()
 
 

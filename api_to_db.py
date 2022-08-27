@@ -11,8 +11,13 @@ import requests
 # ------------------- Connect PyMySQL ------------------- #
 
 
-db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com', port=3306, user='kaist',
-                     passwd='0916', db='abandoned_dog', charset="utf8")
+db = pymysql.connect(
+    host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
+    port=3306,
+    user='kaist',
+    passwd='0916',
+    db='abandoned_dog',
+    charset="utf8")
 cursor = db.cursor()
 
 
