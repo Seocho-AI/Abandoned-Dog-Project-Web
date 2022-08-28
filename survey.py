@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import pickle
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 import pandas as pd
 import pymysql
 
@@ -53,4 +53,4 @@ def survey_answer():
     # print(type(user_answer))
 
     # return user_answer
-    return model.predict(target_user_dict=user_answer)
+    return jsonify(model.predict(target_user_dict=user_answer))

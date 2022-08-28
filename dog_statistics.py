@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from flask import Blueprint
+from flask import Blueprint, jsonify
 import pymysql
 
 
@@ -65,4 +65,4 @@ def get_statistics():
     adopt_in_year = int(round(adopt_in_year/total_in_year, 2)*100)
     death_in_year = int(round(death_in_year/total_in_year, 2)*100)
 
-    return [rescued_today, adopt_in_year, death_in_year, protect_in_year]
+    return jsonify(rescued_today, adopt_in_year, death_in_year, protect_in_year)
