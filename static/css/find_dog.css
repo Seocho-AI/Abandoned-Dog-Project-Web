@@ -87,6 +87,7 @@ body {
 #dog-navbar2 .active:focus,
 #dog-navbar2 li:hover>a {
   color: orange;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -107,7 +108,7 @@ body {
 }
 
 /**
- * Dog search
+ * Dog filter search
  */
 .dog-search-icon {
   color: #575757;
@@ -119,6 +120,10 @@ body {
 .dog-search:hover>i {
   color: orange;
   transition: all 0.3s ease-in-out 0s;
+}
+
+.filter-search-links:hover {
+  cursor: pointer;
 }
 
 .scroll-header {

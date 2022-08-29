@@ -117,3 +117,14 @@ body {
 .overlay-survey-page-section .container {
   padding-top: 72px;
 }
+
+/**
+ * SURVEY CUSTOMIZATION
+ */
+.sd-root-modern {
+  background-color: blue;
+}
+
+.sd-root-modern:not(.svc-tab-designer) .sd-container-modern__title {
+  background-color: blue;
+}

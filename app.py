@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 import pymysql
 from api_to_db import db_insert_dog, db_update_dog
 from dog_statistics import dog_statistics
