@@ -66,23 +66,30 @@
   <!-------------------- NAVBAR 2 -------------------->
   <nav class="navbar navbar-expand navbar-light py-3 sticky-top" id="navbar2" aria-label="dog-navbar2">
     <div class="container" id="dog-navbar2">
-      <!-- NAV-FILTER -->
-      <a class="navbar-brand">전체 지역</a>
-      <a class="navbar-brand">전체 종</a>
+      <ul class="navbar-nav">
+        <!-- NAV-FILTER -->
+        <li class="nav-item me-2">
+          <a class="nav-link">전체 지역</a>
+        </li>
 
-      <!-- NAV-LINKS -->
-      <ul class="navbar-nav ms-auto">
-        
-        <!-- LINK to FIND DOG SECTION -->
-        <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견</a></li>
-        
-        <!-- LINK to SURVEY SECTION -->
-        <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">보호소</a></li>
+        <li class="nav-item me-2">
+          <a class="nav-link">전체 종</a>
+        </li>
 
         <!-- SEARCH ICON -->
         <!-- <li class="nav-item ms-md-4"><button class="btn dog-search-btn"><i class="fa-solid fa-magnifying-glass fa-lg dog-search"></i></button></li> -->
-        <li class="nav-item ms-md-4"><a class="nav-link dog-search"><i class="fa-solid fa-magnifying-glass fa-lg fa-align-center dog-search-icon"></i></a></li>
-        
+        <li class="nav-item me-2"><a class="nav-link dog-search"><i class="fa-solid fa-magnifying-glass fa-lg dog-search-icon"></i></a></li>
+      </ul>
+
+      <!-- NAV-LINKS -->
+      <ul class="navbar-nav">
+
+        <!-- LINK to FIND DOG SECTION -->
+        <li class="nav-item ms-2"><a class="nav-link active" href="#find-dog-section">유기견</a></li>
+
+        <!-- LINK to SURVEY SECTION -->
+        <li class="nav-item ms-2"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">보호소</a></li>
+
       </ul>
 
     </div>
