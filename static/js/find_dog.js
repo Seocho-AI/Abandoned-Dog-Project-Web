@@ -106,7 +106,7 @@ window.addEventListener('load', () => {
  * Navbar box-shadow
  */
 function scrollHeader() {
-  const nav = document.getElementById('header')
+  const nav = document.getElementById('navbar2')
   // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
   if (this.scrollY >= 80) nav.classList.add('scroll-header');
   else nav.classList.remove('scroll-header')

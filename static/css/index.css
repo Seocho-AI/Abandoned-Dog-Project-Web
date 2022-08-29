@@ -101,7 +101,7 @@ body {
 }
 
 .scroll-header {
-  box-shadow: 0 -1px 10px rgba(0, 0, 0, .15);
+  box-shadow: 0 0 10px rgba(255, 165, 0);
 }
 
 /**
