@@ -14,7 +14,7 @@ function moveToHomePage() {
 document.querySelector(".nav-survey").addEventListener("click", moveToSurveyPage)
 
 function moveToSurveyPage() {
-  window.location.href = "/survey" // Move to page
+  window.location.href = "/survey" // Move to survey page
 }
 
 /**
@@ -51,16 +51,17 @@ $(function () {
     pageSize: 48,
     callback: function (abandonedDogList, pagination) {
       // template method of yourself
-      let dog_list_template = document.querySelector("#template-dog-list").innerHTML
+      let template_dog_list = document.querySelector("#template-dog-list").innerHTML
       let res = ""
       for (i = 0; i < abandonedDogList.length; i++) {
-        res += dog_list_template
+        res += template_dog_list
           .replace("{popfile}", abandonedDogList[i].popfile)
           .replace("{kindCd}", abandonedDogList[i].kindCd)
           .replace("{sexCd}", abandonedDogList[i].sexCd)
           .replace("{happenDt}", abandonedDogList[i].happenDt)
           .replace("{noticeNo}", abandonedDogList[i].noticeNo)
           .replace("{processState}", abandonedDogList[i].processState)
+          .replace("{desertionNo}", abandonedDogList[i].desertionNo)
       }
       document.querySelector(".dog-list").innerHTML = res
     }
@@ -98,9 +99,41 @@ $.ajax({
   url: "/find_dog/filter",
   data: {},
   success: function (response) {
-    console.log(response)
+    let breed_count = response[0]
+    let state_city = response[1]
+
+    let template_breed_filter = document.querySelector("#template-breed-filter").innerHTML
+    let res = "<option selected>전체</option>"
+    Object.keys(breed_count).forEach(function (key) {
+      res += template_breed_filter
+        .replace("{key}", key)
+        .replace("{key}", key)
+        .replace("{value}", breed_count[key])
+    })
+
+    document.querySelector(".filter-breed").innerHTML = res
+    console.log(breed_count, state_city)
   }
 })
+
+/**
+ * Move to Dog posts page
+ */
+function moveToDogPosts(item) {
+  var desertionNo = $(item).attr("id")
+
+  $.ajax({
+    type: "POST",
+    url: "/dog_posts/dog_info",
+    data: {
+      desertionNo
+    },
+    async: false,
+    success: function () {
+      window.location.href = "/dog_posts" // Move to dog posts page
+    }
+  })
+}
 
 /**
  * AOS JS Initiation

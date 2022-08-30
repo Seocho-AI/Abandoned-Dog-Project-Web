@@ -39,7 +39,7 @@ def find_dog_page():
 
 @find_dog.route("/thumbnail_page", methods=["GET"])
 def load_thumbnail():
-    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
+    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
     cursor.execute(sql)
     result = cursor.fetchall()
 
@@ -51,7 +51,8 @@ def load_thumbnail():
             "sexCd": dog_info[2],
             "happenDt": dog_info[3][:4] + "/" + dog_info[3][4:6] + "/" + dog_info[3][6:],
             "noticeNo": dog_info[4].replace("-", " ")[:5],
-            "processState": dog_info[5]
+            "processState": dog_info[5],
+            "desertionNo": dog_info[6]
         }
         dog_list.append(dog_dict)
 
@@ -61,27 +62,35 @@ def load_thumbnail():
 @find_dog.route("/filter", methods=["GET"])
 def load_filter():
     # Fetching filter(region)
-    sql_region = "SELECT DISTINCT(LEFT(noticeNo, 5)) FROM dog_list WHERE processState = '보호중';"
+    sql_region = "SELECT DISTINCT(orgNm) FROM dog_list WHERE processState = '보호중';"
     cursor.execute(sql_region)
     result_region = cursor.fetchall()
 
     result_region_dict = {}
     for region in result_region:
-        state_city = region[0].split('-')
+        state_city = region[0].split(" ")
         state = state_city[0]
-        city = state_city[1]
-        if state not in result_region_dict.keys():
+        if len(state_city) > 2:
+            city = state_city[1] + state_city[2]
+        elif len(state_city) == 1:
+            city = state_city[0]
+        else:
+            city = state_city[1]
+
+        if state not in result_region_dict:
             result_region_dict[state] = [city]
         else:
             result_region_dict[state].append(city)
 
     # Fetching filter(breed)
-    sql_breed = "SELECT DISTINCT(kindCd) FROM dog_list WHERE processState = '보호중' ORDER BY kindCd ASC;"
+    sql_breed = "SELECT kindCd, COUNT(*) as count FROM dog_list WHERE processState = '보호중' GROUP BY kindCd ORDER BY kindCd ASC;"
     cursor.execute(sql_breed)
     result_breed = cursor.fetchall()
-    result_breed_list = []
 
-    for breed in result_breed:
-        result_breed_list.append(breed[0])
+    result_breed_dict = {}
+    for breed_count in result_breed:
+        breed = breed_count[0]
+        count = breed_count[1]
+        result_breed_dict[breed] = count
 
-    return jsonify(result_breed_list, result_region_dict)
+    return jsonify(result_breed_dict, result_region_dict)

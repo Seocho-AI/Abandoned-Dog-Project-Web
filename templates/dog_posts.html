@@ -9,7 +9,7 @@
   <title>서초 AI 프로젝트 제목</title>
 
   <!-------------------- MAIN CSS -------------------->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/find_dog.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dog_posts.css') }}">
 
   <!-------------------- CSS IMPORTS -------------------->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -192,8 +192,8 @@
   </div>
 
   <!-------------------- DOG LIST -------------------->
-  <section class="container-fluid min-vh-100 px-0" id="dog-list-section">
-    <div class="overlay-dog-list-section min-vh-100 find-dog-bg">
+  <section class="container-fluid min-vh-100 px-0" id="dog-posts-section">
+    <div class="overlay-dog-posts-section min-vh-100 dog-posts-bg">
       <div class="container">
 
         <div class="dog-list row gy-5" id="data-container"></div>
@@ -203,45 +203,12 @@
     </div>
   </section>
 
-  <script id="template-dog-list" type="text/template">
-    <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 dog-card-container">
-      <div class="card dog-card border-0 rounded-3 shadow-sm dog-thumbnail-box" id="{desertionNo}" onclick="moveToDogPosts(this)">
-        
-        <div class="row g-0">
-          
-          <div class="col-6 col-md-12">
-            <img class="mx-auto d-block dog-thumbnail-img rounded-3" src="{popfile}" alt="Card image cap" style="height: 15rem;">
-          </div>
-
-          <div class="col-6 col-md-12">
-            <div class="card-body rounded-3 fw-bold">
-              <div class="d-flex">
-                <div class="">{kindCd}</div>
-                <div class="ms-auto">{processState}</div>
-                <div class="ps-3">{sexCd}</div>
-              </div>
-              <div class="d-flex">
-                <div class="">등록일 :</div>
-                <div class="ms-auto">{happenDt}</div>
-              </div>
-              <div class="d-flex">
-                <div class="">지역 :</div>
-                <div class="ms-auto">{noticeNo}</div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </script>
-
   <script id="template-breed-filter" type="text/template">
     <option value="{key}">{key} ({value} 마리)</option>
   </script>
 
   <!-------------------- MAIN JS -------------------->
-  <script src="{{ url_for('static', filename='js/find_dog.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dog_posts.js') }}"></script>
 
   <!-------------------- JS IMPORTS -------------------->
 
