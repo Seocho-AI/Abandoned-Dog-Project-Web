@@ -91,6 +91,18 @@ $(function () {
 // });
 
 /**
+ * Load abandoned dogs filter features from DB
+ */
+$.ajax({
+  type: "GET",
+  url: "/find_dog/filter",
+  data: {},
+  success: function (response) {
+    console.log(response)
+  }
+})
+
+/**
  * AOS JS Initiation
  */
 window.addEventListener('load', () => {

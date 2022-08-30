@@ -33,8 +33,6 @@ today_year = today[:4]  # 이번년도
 with open('survey_model/content_based_recommender.pkl', 'rb') as f:
     model = pickle.load(f)  # 단 한줄씩 읽어옴
 
-# breeds_data = pd.read_parquet("survey_model/data/pre-processed/breeds.parquet")
-
 
 # ------------------- SURVEY PAGE API ------------------- #
 
@@ -49,8 +47,24 @@ def survey_answer():
     user_answer = request.get_json()  # Stores user's survey answer
     user_answer['user_id'] = '1'
 
-    # print(user_answer)
-    # print(type(user_answer))
+    query = 'SELECT * FROM breeds_panel'
+    breeds_panel = pd.read_sql(sql=query, con=db)
+
+    query = 'SELECT * FROM adopter_data'
+    adopter_data = pd.read_sql(sql=query, con=db)
+
+    query = 'SELECT * FROM dog_list ' \
+            'WHERE processState="보호중" AND kindCd != "믹스견"'
+    dog_list_data = pd.read_sql(sql=query, con=db)
+
+    query = 'SELECT * FROM breed_info'
+    breed_info = pd.read_sql(sql=query, con=db)
+
+    model.fit(breeds_panel=breeds_panel,
+              target_user_survey=user_answer,
+              adopter_data=adopter_data,
+              dog_list_data=dog_list_data,
+              breed_info=breed_info)
 
     # return user_answer
-    return jsonify(model.predict(target_user_dict=user_answer))
+    return jsonify(model.predict(user_survey_data=user_answer))

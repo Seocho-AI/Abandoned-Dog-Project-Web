@@ -46,13 +46,21 @@ class ContentBasedRecommender():
 
     """
 
-    def __init__(self, breeds_panel, user_survey_data, adopter_data, dog_list_data):
+    def __init__(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info):
         self.breeds_panel = breeds_panel
-        self.user_survey_data = user_survey_data
+        self.user_survey_data = target_user_survey
         self.adopter_data = adopter_data
         self.dog_list_data = dog_list_data
+        self.breed_info = breed_info
 
-    def predict(self, target_user_dict, target_user_id: str = None):
+    def fit(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info):
+        self.breeds_panel = breeds_panel
+        self.user_survey_data = target_user_survey
+        self.adopter_data = adopter_data
+        self.dog_list_data = dog_list_data
+        self.breed_info = breed_info
+
+    def fit_transform(self, target_user_survey, target_user_id = None):
         """
         fit takes in a target_user str and transforms all relevant, breeds data to train
         the model. Recommend breeds indices will be in self. recommendations.
@@ -61,21 +69,23 @@ class ContentBasedRecommender():
         :param target_user_id: str user_id from user_survey_data
 
         """
-        user_survey_data=pd.Series(target_user_dict)
+
+        user_survey_data=pd.Series(self.user_survey_data)
         #print(self.user_survey_data)
+
         self.target_user_id = target_user_id
-        self.target_user_dict = target_user_dict
         self._transform = BreedsDataFeatureProcessor(
             target_user_id=self.target_user_id,
-            target_user_dict=self.target_user_dict,
-            breeds_panel=self.breeds_panel,
             user_survey_data=user_survey_data,
+            breeds_panel=self.breeds_panel,
             adopter_data=self.adopter_data,
-            dog_list_data=self.dog_list_data
+            dog_list_data=self.dog_list_data,
+            breed_info=self.breed_info
         )
         # print("BreedsDataFeatureProcessor Call Clear")
         # get breeds features and ratings
-
+        # print(self.breeds_panel.columns)
+        # print(self.breed_info.columns)
         processed_user_data, processed_dog_list = self._transform.transform()
         # print("transform Clear")
         processed_user_data = pd.DataFrame.from_dict(processed_user_data, orient='index')
@@ -88,35 +98,49 @@ class ContentBasedRecommender():
         # print(processed_user_data)
 
         # print(processed_dog_list[processed_dog_list.isnull()==True])
-
-        processed_dog_list = processed_dog_list.fillna(3) # null값 예외처리 해야함 8/27
+        # print(processed_dog_list)
+        processed_dog_list = processed_dog_list.fillna(0) # null값 예외처리 해야함 8/27
         processed_dog_list['sexCd'] = processed_dog_list.loc[:, 'sexCd'].astype(dtype='int64')
 
         # print(len(self.dog_list_data))
         #print(processed_dog_list.isnull())
-        #print(processed_user_data)
-        #print(processed_dog_list)
+        # print(processed_user_data.columns)
+        # print(processed_user_data.T.head())
+        # print(processed_dog_list.columns)
+        # print(processed_dog_list.head())
+        processed_user_data = processed_user_data.T.set_index('user_id')
+        processed_dog_list = processed_dog_list.set_index('desertionNo')
+        # print(processed_user_data.head())
+        # print(processed_dog_list.head())
+
+        self.processed_user_data = processed_user_data
+        self.processed_dog_list = processed_dog_list
+
+    def predict(self, user_survey_data):
+
         # self._breed_rec_scores = cosine_similarity(self.user_survey_data, self.breeds_data).argsort()[:, ::-1]
-        self._breed_rec_scores = cosine_similarity(processed_user_data.T, processed_dog_list).argsort()[:, ::-1]
+        self._breed_rec_scores = cosine_similarity(self.processed_user_data, self.processed_dog_list)
+        sorted_scores = sorted(self._breed_rec_scores[0], reverse=True)
+        # print(sorted(self._breed_rec_scores[0], reverse=True))
+        self._breed_rec_scores=self._breed_rec_scores.argsort()[:, ::-1]
         # print("user_id=", processed_user_data['user_id'])
         #print(processed_dog_list.columns)
-        self.recommendations = self.find_sim_breeds(user_survey_data=processed_user_data,
+        self.recommendations = self.find_sim_breeds(user_survey_data=self.processed_user_data,
                                                     dog_list=self.dog_list_data,
                                                     sim_df=self._breed_rec_scores,
-                                                    top_n=100) # 전체: len(self.dog_list_data)
+                                                    top_n=10) # 전체: len(self.dog_list_data)
 
-        return list(self.recommendations['desertionNo'])
-
+        return list(self.recommendations['desertionNo']), sorted_scores
 
     def find_sim_breeds(self, user_survey_data, dog_list, sim_df, target_user_id=None, top_n=10):
-        #user_survey_data.reset_index(inplace=True)
-        # print(user_survey_data)
-        #print(user_survey_data.columns)
-        #user_id = user_survey_data[user_survey_data['userId'] == target_user_id]
+        # user_survey_data.reset_index(inplace=True)
+        # print(user_survey_data['user_id'])
+        # print(type(user_survey_data))
+        # user_id = user_survey_data['user_id']
         # print(sim_df)
         #print(user_id)
 
-        user_index = user_survey_data.values
+        # user_index = user_survey_data['user_id']
         #print("user_index=", user_index)
         similar_indexes = sim_df[:, :top_n]
 

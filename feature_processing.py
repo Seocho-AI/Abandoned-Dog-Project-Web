@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import Normalizer
 import gc
 
-panel=[
+panel = [
     'a_adaptability',
     'a1_adapts_well_to_apartment_living',
     'a2_good_for_novice_owners',
@@ -71,13 +71,14 @@ class BreedsDataFeatureProcessor():
 
     """
 
-    def __init__(self, target_user_id: str, target_user_dict, breeds_panel, user_survey_data, adopter_data, dog_list_data):
+    def __init__(self, target_user_id: str, breeds_panel, user_survey_data, adopter_data, dog_list_data, breed_info):
+        self.target_user_id = target_user_id
+
         self.breeds_panel = breeds_panel
         self.user_survey_data = user_survey_data
         self.adopter_data = adopter_data
         self.dog_list_data = dog_list_data
-
-        self.target_user_dict = target_user_dict
+        self.breed_info = breed_info
         self.target_user_id = target_user_id
         # 추천을 위해 필요한 columns:
         # dog_list_data
@@ -97,41 +98,41 @@ class BreedsDataFeatureProcessor():
         self.processed_user_data = {
             'user_id': 111111, # user id or survey number
             'age': 3,
-            'sexCd': 1, # m=1, f=2, don't care=3
-            'neuterYn': 1, # yes=1, no=0
+            'sexCd': 3, # m=1, f=2, don't care=3
+            'neuterYn': 3, # yes=1, no=0
             'age_range': 3,
-            'house_type': 2,
+            'house_type': 3,
             'a_adaptability': 3,
             'a1_adapts_well_to_apartment_living': 3,
-            'a2_good_for_novice_owners': 3,
-            'a3_sensitivity_level': 3,
+            'a2_good_for_novice_owners': 2,
+            'a3_sensitivity_level': 1,
             'a4_tolerates_being_alone': 3,
-            'a5_tolerates_cold_weather': 3,
-            'a6_tolerates_hot_weather': 3,
-            'b_all_around_friendliness': 3,
-            'b1_affectionate_with_family': 3,
+            'a5_tolerates_cold_weather': 4,
+            'a6_tolerates_hot_weather': 1,
+            'b_all_around_friendliness': 1,
+            'b1_affectionate_with_family': 2,
             'b2_incredibly_kid_friendly_dogs': 3,
-            'b3_dog_friendly': 3,
+            'b3_dog_friendly': 5,
             'b4_friendly_toward_strangers': 3,
-            'c_health_grooming': 3,
+            'c_health_grooming': 4,
             'c1_amount_of_shedding': 3,
-            'c2_drooling_potential': 3,
-            'c3_easy_to_groom': 3,
-            'c4_general_health': 3,
-            'c5_potential_for_weight_gain': 3,
-            'c6_size': 3,
+            'c2_drooling_potential': 1,
+            'c3_easy_to_groom': 1,
+            'c4_general_health': 2,
+            'c5_potential_for_weight_gain': 1,
+            'c6_size': 4,
             'd_trainability': 3,
-            'd1_easy_to_train': 3,
-            'd2_intelligence': 3,
+            'd1_easy_to_train': 4,
+            'd2_intelligence': 5,
             'd3_potential_for_mouthiness': 3,
             'd4_prey_drive': 3,
             'd5_tendency_to_bark_or_howl': 3,
-            'd6_wanderlust_potential': 3,
-            'e_exercise_needs': 3,
-            'e1_energy_level': 3,
-            'e2_intensity': 3,
-            'e3_exercise_needs': 3,
-            'e4_potential_for_playfulness': 3
+            'd6_wanderlust_potential': 5,
+            'e_exercise_needs': 1,
+            'e1_energy_level': 2,
+            'e2_intensity': 2,
+            'e3_exercise_needs': 4,
+            'e4_potential_for_playfulness': 5
         }
         # user_age
         # user_house_type
@@ -274,8 +275,7 @@ class BreedsDataFeatureProcessor():
     #     return data.columns
     def processing_breeds_panel_features(self):
         # processing breeds_panel features
-        breeds_panel = self.breeds_panel.copy()
-        breeds_panel = self.breeds_panel.drop(columns=['url', 'breed_group', 'height', 'weight', 'life_span'])
+        breeds_panel = self.breeds_panel.drop(columns=['url', 'breed_group', 'height', 'weight', 'life_span'], errors='ignore')
 
         # breeds_panel.pop('url',None)
         # breeds_panel.pop('breed_group',None)
@@ -392,7 +392,6 @@ class BreedsDataFeatureProcessor():
         # print("processing_user_survey_data Clear")
 
         return self.processed_user_data
-
     def processing_user_age(self):
         scaler = Normalizer()
         adopter = self.adopter_data.iloc[:, 2:-1]
@@ -410,8 +409,9 @@ class BreedsDataFeatureProcessor():
     def processing_dog_list_data_features(self):
         # processing dog_list features
         dog_list_data = self.dog_list_data.loc[:, :]
+        breeds_panel = self.processing_breeds_panel_features()
         #print(dog_list_data.shape)
-        dog_list_data=dog_list_data.drop(columns=['kindCd', 'processState', 'specialMark', 'mixPredict', 'filename',
+        dog_list_data=dog_list_data.drop(columns=['processState', 'specialMark', 'mixPredict', 'filename',
                                                   'happenDt',
                                                   'happenPlace',
                                                   'colorCd',
@@ -424,7 +424,7 @@ class BreedsDataFeatureProcessor():
                                                   'careTel',
                                                   'careAddr',
                                                   'orgNm',
-                                                  'officetel'])
+                                                  'officetel'], errors='ignore')
         #print(dog_list_data.columns)
         gc.collect()
 
@@ -435,6 +435,8 @@ class BreedsDataFeatureProcessor():
             '2020(년생)': 3,
             '2019(년생)': 4,
             '2018(년생)': 5,
+            '2017(년생)': 6,
+            '2016(년생)': 7,
             np.nan: int(0)
         }, na_action=None)
         # print(self.dog_list_data.columns)
@@ -453,8 +455,7 @@ class BreedsDataFeatureProcessor():
         dog_list_data['neuterYn'] = dog_list_data['neuterYn'].map({
             'Y': 1,
             'N': 1,
-            'U': 1,
-            np.nan: int(0)
+            'U': 1
         }, na_action=None)
         # self.dog_list_data[self.dog_list_data.loc[:, 'neuterYn']=='Y', 'neuterYn'] = 1
         # self.dog_list_data[self.dog_list_data.loc[:, 'neuterYn']!='Y', 'neuterYn'] = 2
@@ -465,8 +466,7 @@ class BreedsDataFeatureProcessor():
             '30대': 2,
             '40대': 3,
             '50대': 4,
-            '60대이상': 5,
-            np.nan: int(0)
+            '60대이상': 5
         }, na_action=None)
 
         # house_type
@@ -474,15 +474,45 @@ class BreedsDataFeatureProcessor():
             '단독주택': 1,
             '다가구주택': 2,
             '아파트': 3,
-            np.nan: int(0)
-        },na_action=None)
+            '원룸': 4,
+            '기타': 5
+        }, na_action=None)
         # 나이 년생 숫자로 전처리 해야함
         # if self.dog_list_data['age']>2022:
+        cnt=0
+        # 추후 수정
+        # print(breeds_panel.columns)
+        # print(self.breed_info.columns)
+        # print(dog_list_data.columns)
+        # print(breeds_panel.head())
+        # print(self.breed_info.head())
+        # print(self.dog_list_data.head())
+        #print(self.breed_info[self.breed_info['breed_name_kr'].values == dog_list_data['kindCd'].values])
+        # dog = dog_list_data.loc[dog_list_data['desertionNo'] == '411304202200536']
+        # print(dog_list_data.loc[dog_list_data['desertionNo'] == '411304202200536'])
 
-        for key in panel:
-            # print(key)
-            dog_list_data[key] = 3
-        # print("processing_dog_list_data_features Clear")
+        # print(type(dog_list_data))
+        # print(type(panel))
+        for i in dog_list_data['desertionNo'].values:
+            breed_kr = dog_list_data.loc[dog_list_data['desertionNo'] == i, 'kindCd'].values[0]
+            # print(breed_kr)
+            if breed_kr not in self.breed_info['breed_name_kr'].values:
+                continue
+            breed_en = self.breed_info.loc[self.breed_info['breed_name_kr'] == breed_kr, 'breed_name'].values[0]
+            # print(breed_en)
+            if breed_en not in self.breeds_panel['breed'].values:
+                continue
+            for key in panel:
+                # print(key)
+
+                panel_rating = self.breeds_panel.loc[self.breeds_panel['breed'] == breed_en, key]
+                #print(panel_rating)
+                dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = panel_rating.values[0]
+                #print(dog_list_data[dog_list_data['desertionNo']==i])
+            # cnt+=1
+            # print(cnt)
+            # print("processing_dog_list_data_features Clear")
+        # print(dog_list_data.columns)
         return dog_list_data
 
     def processing_all_features(self):
@@ -500,4 +530,6 @@ class BreedsDataFeatureProcessor():
         processed_breeds_panel, processed_user_data, adopter_data, processed_dog_list = self.processing_all_features()
         # print("processing_all_features Clear")
         # print(processed_user_data)
+        processed_dog_list=processed_dog_list.drop(columns=['kindCd'])
+        gc.collect()
         return processed_user_data, processed_dog_list

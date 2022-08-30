@@ -121,10 +121,81 @@ body {
 /**
  * SURVEY CUSTOMIZATION
  */
-.sd-root-modern {
-  background-color: blue;
+
+/* Survey Body */
+.sd-body {
+  background-color: #F5F5FA;
 }
 
-.sd-root-modern:not(.svc-tab-designer) .sd-container-modern__title {
-  background-color: blue;
+/* Survey Title Container */
+.sd-title.sd-container-modern__title {
+  border: 2px solid orange;
+  border-radius: 1rem;
+  box-shadow: none !important;
+  text-align: center;
+}
+
+/* Survey Title Header */
+.sd-header__text h3 {
+  color: orange !important;
+}
+
+/* Survey Question Container */
+.sd-row__question {
+  border: 1px solid lightgray;
+  border-radius: 1rem !important;
+  border-left: 4px solid orange;
+  border-right: 4px solid orange;
+  padding: 1rem 2rem;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+/* Survey Question Choice */
+.sd-item__control:focus+.sd-item__decorator,
+.sd-item--allowhover:hover .sd-item__decorator {
+  box-shadow: 0 0 0 2px orange !important;
+  outline: none !important;
+}
+
+/* Survey Question Choice Checked */
+.sd-item--checked .sd-item__decorator {
+  background: orange !important;
+}
+
+.sd-radio--checked .sd-radio__decorator:focus {
+  /* background: orange !important; */
+}
+
+.sd-radio--checked .sd-radio__decorator:after {
+  background-color: #FFFFFF !important;
+}
+
+/* Survey Bottom Btn Container */
+.sd-action-bar {
+  justify-content: center;
+}
+
+/* Survey Bottom Btn Default */
+.sd-btn--action {
+  background-color: orange !important;
+  color: var(--primary-foreground, #fff) !important;
+}
+
+/* Survey Bottom Btn Default Status */
+.sd-btn--action:not(:disabled):hover,
+.sd-btn--action:not(:disabled):focus {
+  color: orange !important;
+  background-color: var(--background, #fff) !important;
+}
+
+/* Survey Bottom Btn Border */
+.sd-btn {
+  border-radius: 2rem !important;
+}
+
+/* Survey Bottom Btn On Hover */
+.sd-btn:not(:disabled):hover,
+.sd-btn:not(:disabled):focus {
+  box-shadow: 0 0 0 2px orange !important;
 }
