@@ -61,6 +61,14 @@ $.ajax({
   data: {},
   success: function (response) {
     console.log(response)
+
+    let template_dog_post = document.querySelector("#template-dog-post").innerHTML
+    let res = ""
+    res += template_dog_post
+      .replace("{popfile}", response["popfile"])
+      .replace("{kindCd}", response["kindCd"])
+
+    document.querySelector(".dog-post").innerHTML = res
   }
 })
 

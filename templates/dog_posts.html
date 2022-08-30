@@ -191,13 +191,12 @@
     </div>
   </div>
 
-  <!-------------------- DOG LIST -------------------->
+  <!-------------------- DOG POST -------------------->
   <section class="container-fluid min-vh-100 px-0" id="dog-posts-section">
     <div class="overlay-dog-posts-section min-vh-100 dog-posts-bg">
       <div class="container">
 
-        <div class="dog-list row gy-5" id="data-container"></div>
-        <div id="pagination"></div>
+        <div class="dog-post row"></div>
 
       </div>
     </div>
@@ -205,6 +204,13 @@
 
   <script id="template-breed-filter" type="text/template">
     <option value="{key}">{key} ({value} 마리)</option>
+  </script>
+
+  <script id="template-dog-post" type="text/template">
+    <img class="img-fluid align-self-center" src="{popfile}" alt="dog photo">
+    <div class="col">
+      {kindCd}
+    </div>
   </script>
 
   <!-------------------- MAIN JS -------------------->
