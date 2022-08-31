@@ -124,13 +124,14 @@ function moveToDogPosts(item) {
 
   $.ajax({
     type: "POST",
-    url: "/dog_posts/dog_info",
+    url: "/find_dog/dog_info/dog_post",
     data: {
       desertionNo
     },
     async: false,
-    success: function () {
-      window.location.href = "/dog_posts" // Move to dog posts page
+    success: function (response) {
+      window.location.href = "/find_dog/dog_info" // Move to dog posts page
+      console.log(response)
     }
   })
 }

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from os import stat
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 import pymysql
 
 
@@ -37,7 +37,7 @@ def find_dog_page():
     return render_template("find_dog.html")
 
 
-@find_dog.route("/thumbnail_page", methods=["GET"])
+@find_dog.route("/thumbnail_page", methods=["GET"]) # Load thumbnails
 def load_thumbnail():
     sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
     cursor.execute(sql)
@@ -59,7 +59,7 @@ def load_thumbnail():
     return jsonify(dog_list)
 
 
-@find_dog.route("/filter", methods=["GET"])
+@find_dog.route("/filter", methods=["GET"]) # Load filters
 def load_filter():
     # Fetching filter(region)
     sql_region = "SELECT DISTINCT(orgNm) FROM dog_list WHERE processState = '보호중';"
@@ -94,3 +94,51 @@ def load_filter():
         result_breed_dict[breed] = count
 
     return jsonify(result_breed_dict, result_region_dict)
+
+
+@find_dog.route("/dog_info")  # Dog posts page
+def dog_info():
+    return render_template("dog_info.html")
+
+
+@find_dog.route("/dog_info/dog_post", methods=["GET", "POST"]) # Retreive dog info based on received desertion No
+def dog_info_load():
+    if request.method == "POST":
+        desertion_no = request.form["desertionNo"]  # Stores the dog desertionNo
+        sql = f"SELECT * FROM dog_list WHERE desertionNo = '{desertion_no}';"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        result_unbox = result[0]
+
+        global dog_info
+        dog_info = {
+            "happenDt": result_unbox[2],
+            "happenPlace": result_unbox[3],
+            "kindCd": result_unbox[4],
+            "colorCd": result_unbox[5],
+            "age": result_unbox[6],
+            "weight": result_unbox[7],
+            "noticeNo": result_unbox[8],
+            "noticeSdt": result_unbox[9],
+            "noticeEdt": result_unbox[10],
+            "popfile": result_unbox[11],
+            "processState": result_unbox[12],
+            "sexCd": result_unbox[13],
+            "neuterYn": result_unbox[14],
+            "specialMark": result_unbox[15],
+            "careNm": result_unbox[16],
+            "careTel": result_unbox[17],
+            "orgNm": result_unbox[19],
+            "officetel": result_unbox[20],
+            "mixPredict": result_unbox[21],
+        }
+        # return render_template("dog_info.html")
+        # return jsonify(dog_info)
+        return "Retreived dog info based on desertion no"
+    elif request.method == "GET":
+        return jsonify(dog_info)
+
+
+# @find_dog.route("/dog_info/dog_post", methods=["GET"]) # Send dog info
+# def dog_info_get():
+#     return jsonify(dog_info)

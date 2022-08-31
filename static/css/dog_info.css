@@ -161,3 +161,15 @@ body {
 .overlay-dog-posts-section .container {
   /* padding-top: 10rem; */
 }
+
+.dog-post-container {
+  height: 85vh;
+}
+
+.dog-post {
+  height: 520%;
+}
+
+.dog-post-img {
+  /* height: 50%; */
+}

@@ -57,7 +57,7 @@ $.ajax({
  */
 $.ajax({
   type: "GET",
-  url: "/dog_posts/dog_info",
+  url: "/find_dog/dog_info/dog_post",
   data: {},
   success: function (response) {
     console.log(response)
@@ -65,10 +65,10 @@ $.ajax({
     let template_dog_post = document.querySelector("#template-dog-post").innerHTML
     let res = ""
     res += template_dog_post
-      .replace("{popfile}", response["popfile"])
+      .replace("{popfile}", `"${response["popfile"]}"`)
       .replace("{kindCd}", response["kindCd"])
 
-    document.querySelector(".dog-post").innerHTML = res
+    document.querySelector(".dog-post-container").innerHTML = res
   }
 })
 

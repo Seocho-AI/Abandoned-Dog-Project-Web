@@ -43,7 +43,7 @@ today_year = today[:4]  # 이번년도
 
 @app.route("/")  # Home page
 def main_page():
-    return render_template("index.html")
+    return render_template("index.html",)
 
 
 # ------------------- 정해진 시간마다 API_TO_DB() 함수 호출 ------------------- #
