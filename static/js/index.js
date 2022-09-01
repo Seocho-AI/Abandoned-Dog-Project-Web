@@ -13,7 +13,7 @@ function moveToHomePage() {
 document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = "/find_dog" // Move to page
+  window.location.href = "/find_dog" // Move to find dog page
 }
 
 /**
@@ -22,7 +22,7 @@ function moveToAbandonedDogPage() {
 document.getElementById("survey-page-btn").addEventListener("click", moveToSurveyPage)
 
 function moveToSurveyPage() {
-  window.location.href = "/survey" // Move to page
+  window.location.href = "/survey" // Move to survey page
 }
 
 /**

@@ -135,10 +135,5 @@ def dog_info_load():
         # return render_template("dog_info.html")
         # return jsonify(dog_info)
         return "Retreived dog info based on desertion no"
-    elif request.method == "GET":
+    elif request.method == "GET": # Load dog info to page
         return jsonify(dog_info)
-
-
-# @find_dog.route("/dog_info/dog_post", methods=["GET"]) # Send dog info
-# def dog_info_get():
-#     return jsonify(dog_info)

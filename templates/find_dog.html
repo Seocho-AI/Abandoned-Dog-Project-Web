@@ -54,7 +54,7 @@
             <li class="nav-item ms-md-4"><a class="nav-link nav-home" href="#home-section" onclick="moveToHomePage()">Home</a></li>
 
             <!-- LINK to FIND DOG SECTION -->
-            <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견 찾기</a></li>
+            <li class="nav-item ms-md-4"><a class="nav-link active nav-find-dog" href="#find-dog-section" onclick="moveToAbandonedDogPage()">유기견 찾기</a></li>
 
             <!-- LINK to SURVEY SECTION -->
             <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">AI 유기견 추천</a></li>
@@ -210,8 +210,8 @@
         <div class="row g-0">
           
           <div class="col-6 col-md-12">
-            <img class="mx-auto d-block dog-thumbnail-img rounded-3" src="{popfile}" alt="Card image cap" style="height: 15rem;">
-          </div>
+            <img class="mx-auto d-block img-fluid dog-thumbnail-img" src="{popfile}" alt="Card image cap" style="height: 15rem;">
+          </div> 
 
           <div class="col-6 col-md-12">
             <div class="card-body rounded-3 fw-bold">

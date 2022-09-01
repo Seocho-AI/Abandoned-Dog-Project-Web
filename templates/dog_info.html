@@ -54,7 +54,7 @@
             <li class="nav-item ms-md-4"><a class="nav-link nav-home" href="#home-section" onclick="moveToHomePage()">Home</a></li>
 
             <!-- LINK to FIND DOG SECTION -->
-            <li class="nav-item ms-md-4"><a class="nav-link active" href="#find-dog-section">유기견 찾기</a></li>
+            <li class="nav-item ms-md-4"><a class="nav-link active nav-find-dog" href="#find-dog-section" onclick="moveToAbandonedDogPage()">유기견 찾기</a></li>
 
             <!-- LINK to SURVEY SECTION -->
             <li class="nav-item ms-md-4"><a class="nav-link nav-survey" href="#survey-section" onclick="moveToSurveyPage()">AI 유기견 추천</a></li>
@@ -196,7 +196,7 @@
     <div class="overlay-dog-posts-section min-vh-100 dog-posts-bg">
       <div class="container">
 
-        <div class="dog-post-container row"></div>
+        <div class="dog-post-container justify-content-center"></div>
 
       </div>
     </div>
@@ -208,17 +208,52 @@
 
   <script id="template-dog-post" type="text/template">
 
-    <div class="dog-post row bg-info">
-      <div class="col-5 justify-content-center">
-        <img class="dog-post-img" src={popfile} alt="dog photo">
+    <!-- Dog post container -->
+    <div class="dog-post row justify-content-center bg-info">
+
+      <!-- Dog post header -->
+      <div class="dog-post-header row justify-content-center bg-warning">
+        <!-- Dog post img -->
+        <img class="dog-post-img d-block col-12 col-lg-5 bg-light" src={popfile} alt="dog photo">
+
+        <!-- Dog basic info -->
+        <div class="col-12 col-lg-7 bg-danger basic-info-container">
+          <div class="row h-50">
+            <div class="col-4 bg-info">{kindCd}</div>
+            <div class="col-4 bg-light">{sexCd}</div>
+            <div class="col-4 bg-info">{age}</div>
+          </div>
+
+          <div class="row h-50">
+            <div class="col-4 bg-light">{neuterYn}</div>
+            <div class="col-4 bg-danger">{colorCd}</div>
+            <div class="col-4 bg-light">{weight}</div>
+          </div>
+        </div>
+
+        <!-- Panel trait -->
+        <div class="col-lg-6 col-12 bg-info">
+          <div class="row">
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 1</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 2</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 3</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 4</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 5</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 6</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 7</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 8</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 9</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 10</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 11</div>
+            <div class="col-xl-4 col-6 panel-trait">panel breed trait 12</div>
+          </div>
+        </div>
+
+        <!-- Breed info -->
+        <div class="col-lg-6 col-12 bg-danger">BREED INFO</div>
+
       </div>
 
-      <div class="col-7">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe et quo, veritatis consectetur pariatur voluptas, asperiores, soluta natus blanditiis facere dolorum assumenda eos praesentium eaque ipsam officia. Aut, officiis quidem.</p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe et quo, veritatis consectetur pariatur voluptas, asperiores, soluta natus blanditiis facere dolorum assumenda eos praesentium eaque ipsam officia. Aut, officiis quidem.</p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe et quo, veritatis consectetur pariatur voluptas, asperiores, soluta natus blanditiis facere dolorum assumenda eos praesentium eaque ipsam officia. Aut, officiis quidem.</p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe et quo, veritatis consectetur pariatur voluptas, asperiores, soluta natus blanditiis facere dolorum assumenda eos praesentium eaque ipsam officia. Aut, officiis quidem.</p>
-      </div>
     </div>
 
   </script>

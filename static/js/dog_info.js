@@ -9,12 +9,21 @@ function moveToHomePage() {
 }
 
 /**
+ * Move to Find Dog page
+ */
+document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
+
+function moveToAbandonedDogPage() {
+  window.location.href = "/find_dog" // Move to page
+}
+
+/**
  * Move to Survey page
  */
 document.querySelector(".nav-survey").addEventListener("click", moveToSurveyPage)
 
 function moveToSurveyPage() {
-  window.location.href = "/survey" // Move to page
+  window.location.href = "/survey" // Move to survey page
 }
 
 /**
@@ -67,6 +76,11 @@ $.ajax({
     res += template_dog_post
       .replace("{popfile}", `"${response["popfile"]}"`)
       .replace("{kindCd}", response["kindCd"])
+      .replace("{sexCd}", response["sexCd"])
+      .replace("{age}", response["age"])
+      .replace("{neuterYn}", response["neuterYn"])
+      .replace("{colorCd}", response["colorCd"])
+      .replace("{weight}", response["weight"])
 
     document.querySelector(".dog-post-container").innerHTML = res
   }

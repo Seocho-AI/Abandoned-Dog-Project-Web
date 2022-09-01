@@ -18,6 +18,15 @@ function moveToAbandonedDogPage() {
 }
 
 /**
+ * Move to Survey page
+ */
+document.querySelector(".nav-survey").addEventListener("click", moveToSurveyPage)
+
+function moveToSurveyPage() {
+  window.location.href = "/survey" // Move to survey page
+}
+
+/**
  * Nav change bg on scroll
  */
 $(function () {

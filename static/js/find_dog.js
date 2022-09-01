@@ -9,6 +9,15 @@ function moveToHomePage() {
 }
 
 /**
+ * Move to Find Dog page
+ */
+document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
+
+function moveToAbandonedDogPage() {
+  window.location.href = "/find_dog" // Move to page
+}
+
+/**
  * Move to Survey page
  */
 document.querySelector(".nav-survey").addEventListener("click", moveToSurveyPage)

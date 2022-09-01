@@ -162,14 +162,25 @@ body {
   /* padding-top: 10rem; */
 }
 
-.dog-post-container {
-  height: 85vh;
+.dog-post {
+  /* height: 100vh; */
 }
 
-.dog-post {
-  height: 520%;
+.dog-post-header {
+  /* height: 83vh; */
 }
 
 .dog-post-img {
-  /* height: 50%; */
+  height: 41.5vh;
+  /* height: calc((100vh - 144px)/2); */
+  object-fit: contain;
+}
+
+.basic-info-container {
+  height: 41.5vh;
+  /* height: calc((100vh - 144px)/2); */
+}
+
+.panel-trait {
+  height: calc((100vh - 144px)/12);
 }
