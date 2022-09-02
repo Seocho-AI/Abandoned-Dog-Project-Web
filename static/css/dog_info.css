@@ -38,7 +38,7 @@ body {
 #header.scrolled,
 #navbar2.scrolled {
   background-color: #FFFFFF !important;
-  transition: background-color 300ms linear;
+  /* transition: background-color 300ms linear; */
 }
 
 #dog-navbar a,
@@ -62,7 +62,7 @@ body {
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: orange;
+  background-color: #19B394;
   visibility: hidden;
   width: 0px;
   transition: all 0.3s ease-in-out 0s;
@@ -86,7 +86,7 @@ body {
 #dog-navbar2 .active,
 #dog-navbar2 .active:focus,
 #dog-navbar2 li:hover>a {
-  color: orange;
+  color: #19B394;
   cursor: pointer;
 }
 
@@ -103,7 +103,7 @@ body {
  * NAVBAR Logo
  */
 .navbar-logo {
-  color: orange !important;
+  color: #19B394 !important;
   font-weight: 600;
 }
 
@@ -118,7 +118,7 @@ body {
 }
 
 .dog-search:hover>i {
-  color: orange;
+  color: #19B394;
   transition: all 0.3s ease-in-out 0s;
 }
 
@@ -127,7 +127,7 @@ body {
 }
 
 .scroll-header {
-  box-shadow: 0 0 10px rgba(255, 165, 0);
+  box-shadow: 0 0 10px #19B394;
 }
 
 .dog-card:hover {
@@ -171,16 +171,18 @@ body {
 }
 
 .dog-post-img {
-  height: 41.5vh;
-  /* height: calc((100vh - 144px)/2); */
+  /* height: 41.5vh; */
+  height: calc((100vh - 144px)/2);
   object-fit: contain;
 }
 
-.basic-info-container {
-  height: 41.5vh;
-  /* height: calc((100vh - 144px)/2); */
+.basic-info-container,
+.panel-trait-container,
+.breed-info-container {
+  min-height: calc((100vh - 144px)/2);
 }
 
 .panel-trait {
-  height: calc((100vh - 144px)/12);
+  /* height: calc((100vh - 144px)/12); */
+  height: calc((100vh - 144px)/8);
 }

@@ -81,6 +81,15 @@ $.ajax({
       .replace("{neuterYn}", response["neuterYn"])
       .replace("{colorCd}", response["colorCd"])
       .replace("{weight}", response["weight"])
+      .replace("{noticeNo}", response["noticeNo"])
+      .replace("{noticeSdt}", response["noticeSdt"])
+      .replace("{noticeEdt}", response["noticeEdt"])
+      .replace("{happenPlace}", response["happenPlace"])
+
+      .replace("{careNm}", response["careNm"])
+      .replace("{careTel}", response["careTel"])
+      .replace("{orgNm}", response["orgNm"])
+      .replace("{officetel}", response["officetel"])
 
     document.querySelector(".dog-post-container").innerHTML = res
   }

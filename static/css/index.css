@@ -63,7 +63,7 @@ body {
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: orange;
+  background-color: #19B394;
   visibility: hidden;
   width: 0px;
   transition: all 0.3s ease-in-out 0s;
@@ -80,7 +80,7 @@ body {
 #dog-navbar .active,
 #dog-navbar .active:focus,
 #dog-navbar li:hover>a {
-  color: orange;
+  color: #19B394;
 }
 
 @media (max-width: 768px) {
@@ -96,12 +96,12 @@ body {
  * NAVBAR Logo
  */
 .navbar-logo {
-  color: orange !important;
+  color: #19B394 !important;
   font-weight: 600;
 }
 
 .scroll-header {
-  box-shadow: 0 0 10px rgba(255, 165, 0);
+  box-shadow: 0 0 10px #19B394;
 }
 
 /**

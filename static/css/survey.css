@@ -70,7 +70,7 @@ body {
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: orange;
+  background-color: #19B394;
   visibility: hidden;
   width: 0px;
   transition: all 0.3s ease-in-out 0s;
@@ -87,7 +87,7 @@ body {
 #dog-navbar .active,
 #dog-navbar .active:focus,
 #dog-navbar li:hover>a {
-  color: orange;
+  color: #19B394;
 }
 
 @media (max-width: 768px) {
@@ -103,12 +103,12 @@ body {
  * NAVBAR Logo
  */
 .navbar-logo {
-  color: orange !important;
+  color: #19B394 !important;
   font-weight: 600;
 }
 
 .scroll-header {
-  box-shadow: 0 0 10px rgba(255, 165, 0);
+  box-shadow: 0 0 10px #19B394;
 }
 
 /**
@@ -125,11 +125,12 @@ body {
 /* Survey Body */
 .sd-body {
   background-color: #F5F5FA;
+  /* background-color: #FFFFFF; */
 }
 
 /* Survey Title Container */
 .sd-title.sd-container-modern__title {
-  border: 2px solid orange;
+  border: 2px solid #19B394;
   border-radius: 1rem;
   box-shadow: none !important;
   text-align: center;
@@ -137,38 +138,49 @@ body {
 
 /* Survey Title Header */
 .sd-header__text h3 {
-  color: orange !important;
+  color: #19B394 !important;
+}
+
+/* Survey Question Title Container */
+.sd-question--html {
+  border: 2px solid #19B394 !important;
+  /* border-left: 1px solid lightgray !important; */
 }
 
 /* Survey Question Container */
 .sd-row__question {
   border: 1px solid lightgray;
   border-radius: 1rem !important;
-  border-left: 4px solid orange;
-  border-right: 4px solid orange;
-  padding: 1rem 2rem;
+  border-left: 4px solid #19B394;
+  /* border-right: 4px solid #19B394; */
+  padding-top: 2rem !important;
+  padding-right: 2rem !important;
+  padding-bottom: 2rem !important;
+  padding-left: 2rem !important;
   background-color: #FFFFFF;
-  text-align: center;
+  /* text-align: center; */
+}
+.sd-row--multiple>div>.sd-question {
+  padding-right: 2rem !important;
+}
+.sd-page__row {
+  padding-left: 0 !important;
 }
 
-/* Survey Question Choice */
-.sd-item__control:focus+.sd-item__decorator,
-.sd-item--allowhover:hover .sd-item__decorator {
-  box-shadow: 0 0 0 2px orange !important;
-  outline: none !important;
+/* Dog experience visible on click container */
+.sd-page__row.sd-row--multiple {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+:not(.svc-row)>.sd-row--multiple>div {
+  /* padding-left: 0 !important; */
+  padding-left: var(--base-unit, 8px) !important;
+  padding-right: var(--base-unit, 8px) !important;
 }
 
-/* Survey Question Choice Checked */
-.sd-item--checked .sd-item__decorator {
-  background: orange !important;
-}
-
-.sd-radio--checked .sd-radio__decorator:focus {
-  /* background: orange !important; */
-}
-
-.sd-radio--checked .sd-radio__decorator:after {
-  background-color: #FFFFFF !important;
+.sd-page__row {
+  padding-left: calc(2 * var(--base-unit, 8px));
 }
 
 /* Survey Bottom Btn Container */
@@ -176,26 +188,7 @@ body {
   justify-content: center;
 }
 
-/* Survey Bottom Btn Default */
-.sd-btn--action {
-  background-color: orange !important;
-  color: var(--primary-foreground, #fff) !important;
-}
-
-/* Survey Bottom Btn Default Status */
-.sd-btn--action:not(:disabled):hover,
-.sd-btn--action:not(:disabled):focus {
-  color: orange !important;
-  background-color: var(--background, #fff) !important;
-}
-
 /* Survey Bottom Btn Border */
 .sd-btn {
   border-radius: 2rem !important;
-}
-
-/* Survey Bottom Btn On Hover */
-.sd-btn:not(:disabled):hover,
-.sd-btn:not(:disabled):focus {
-  box-shadow: 0 0 0 2px orange !important;
 }

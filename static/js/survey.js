@@ -710,7 +710,7 @@ var myCss = {
 var json = {
   firstPageIsStarted: false,
   title: "나에게 맞는 AI 기반 유기견 추천!",
-  description: "모든 질문에 답을 하면 귀하에게 적합한 유기견(종)을 찾아드립니다!",
+  description: "모든 질문에 답을 하면 귀하에게 적합한 유기견을 찾아드립니다!",
   startSurveyText: "나에게 맞는 유기견 찾기!",
   // showProgressBar: "top",
   locale: "ko",
@@ -724,6 +724,7 @@ var json = {
         name: "user_age",
         title: "나이대가 어떻게 되세요?",
         // isRequired: true,
+        startWithNewLine: true,
         choices: [{
             "value": "20대이하",
             "text": "20대 이하"
@@ -751,6 +752,7 @@ var json = {
         name: "user_sex",
         title: "성별이 어떻게 되세요?",
         // isRequired: true,
+        startWithNewLine: false,
         choices: [
           "남성",
           "여성",
@@ -762,6 +764,7 @@ var json = {
         name: "user_house_type",
         title: "주거 형태가 어떻게 되나요?",
         // isRequired: true,
+        startWithNewLine: false,
         choices: [{
             "value": "다가구주택",
             "text": "다가구 주택"
@@ -775,8 +778,8 @@ var json = {
             "text": "아파트"
           },
           {
-            "value": "원룸",
-            "text": "원룸"
+            "value": "오피스텔",
+            "text": "오피스텔"
           },
           {
             "value": "기타",
@@ -786,30 +789,42 @@ var json = {
       },
       {
         type: "radiogroup",
-        name: "user_dog_experience",
+        name: "dog_experience",
         title: "강아지를 키운 경험",
-        // isRequired: true,
+        isRequired: true,
+        startWithNewLine: true,
         choices: [
-          "강아지를 처음 키운다",
+          "없음",
           "강아지를 키우고 있다",
           "강아지를 키운 적이 있다"
         ]
       },
       {
-        type: "radiogroup",
-        name: "neighbor_agreement",
-        title: "주민 동의 여부",
-        // isRequired: true,
-        choices: [
-          "예",
-          "아니오"
-        ]
+        type: "dropdown",
+        name: "dog_num",
+        title: "마리 수",
+        isRequired: true,
+        visibleIf: "{dog_experience} = '강아지를 키우고 있다' || {dog_experience} = '강아지를 키운 적이 있다'",
+        startWithNewLine: false,
+        choicesMin: 1,
+        choicesMax: 10
+      },
+      {
+        type: "dropdown",
+        name: "dog_time",
+        title: "키운 기간 (개월)",
+        isRequired: true,
+        visibleIf: "{dog_experience} = '강아지를 키우고 있다' || {dog_experience} = '강아지를 키운 적이 있다'",
+        startWithNewLine: false,
+        choicesMin: 1,
+        choicesMax: 240
       },
       {
         type: "radiogroup",
         name: "user_family_size",
         title: "가족 구성원은 어떻게 되나요?",
         // isRequired: true,
+        startWithNewLine: true,
         choices: [
           "1인",
           "2인",
@@ -820,10 +835,21 @@ var json = {
       },
       {
         type: "radiogroup",
+        name: "neighbor_agreement",
+        title: "주민 동의 여부",
+        // isRequired: true,
+        startWithNewLine: false,
+        choices: [
+          "예",
+          "아니오"
+        ]
+      },
+      {
+        type: "radiogroup",
         name: "user_kids",
         title: "아이를 키우고 있나요? (초등학생)",
-        colCount: 0,
         // isRequired: true,
+        startWithNewLine: true,
         choices: [
           "예",
           "아니오"
@@ -834,28 +860,31 @@ var json = {
         name: "dog_size",
         title: "선호 하시는 유기견의 크기가 있나요?",
         // isRequired: true,
+        startWithNewLine: false,
         choices: [
           "소형견",
           "중형견",
-          "대형견"
-        ]
-      },
-      {
-        type: "radiogroup",
-        name: "shedding_level",
-        title: "털날림 정도",
-        colCount: 0,
-        // isRequired: true,
-        choices: [
-          "예",
-          "아니오"
+          "대형견",
+          "상관없음"
         ]
       },
       {
         type: "rating",
-        name: "bark_tolerance",
-        title: "강아지 짖는 소리를 얼마나 잘 참으시나요? (1 : 많이 안짖었으면 좋겠다 | 10 : 상관 없다)",
+        name: "shedding_level",
+        title: "털날림 정도",
         // isRequired: true,
+        startWithNewLine: true,
+        rateMin: 1,
+        rateMax: 10,
+        minRateDescription: "(많이 안날린다)",
+        maxRateDescription: "(많이 날린다)"
+      },
+      {
+        type: "rating",
+        name: "bark_tolerance",
+        title: "강아지 짖는 소리를 얼마나 잘 참으시나요?",
+        // isRequired: true,
+        startWithNewLine: true,
         rateMin: 1,
         rateMax: 10,
         minRateDescription: "(필요할 때만 짖는다)",
@@ -866,6 +895,7 @@ var json = {
         name: "spend_time",
         title: "유기견이랑 얼마나 많은 시간을 보내실 수 있나요? (주)",
         // isRequired: true,
+        startWithNewLine: true,
         choices: [
           "조금 : 1 ~ 5 시간",
           "적절한 : 6 ~ 10 시간",
@@ -877,10 +907,11 @@ var json = {
         name: "spend_type",
         title: "시간을 같이 보낸다면 어떤 활동을 선호 하시나요?",
         // isRequired: true,
+        startWithNewLine: false,
         choices: [
           "실내 활동",
-          "둘다 왔다 갔다 한다",
-          "야외 활동"
+          "실외 활동",
+          "실내외 둘 다"
         ]
       },
       {
@@ -888,6 +919,7 @@ var json = {
         name: "dog_sex",
         title: "어떤 성별의 강아지를 원하시나요?",
         // isRequired: true,
+        startWithNewLine: true,
         choices: [
           "수컷",
           "암컷",
@@ -898,8 +930,8 @@ var json = {
         type: "radiogroup",
         name: "dog_environment",
         title: "반려견이 지낼 장소는 어디 입니까?",
-        colCount: 0,
         // isRequired: true,
+        startWithNewLine: false,
         choices: [
           "실내",
           "실외",
@@ -911,7 +943,6 @@ var json = {
         type: "radiogroup",
         name: "dog_support_agreement",
         title: "양육비 동의 여부",
-        colCount: 0,
         // isRequired: true,
         choices: [
           "예",
@@ -922,8 +953,8 @@ var json = {
         type: "radiogroup",
         name: "dog_health_agreement",
         title: "유기견 건강 인지 여부",
-        colCount: 0,
         // isRequired: true,
+        startWithNewLine: false,
         choices: [
           "예",
           "아니오"
@@ -933,19 +964,18 @@ var json = {
         type: "radiogroup",
         name: "want_dog_age",
         title: "원하시는 유기견 나이",
-        colCount: 0,
         // isRequired: true,
         choices: [
-          "2022(년생)",
-          "2021(년생)"
+          "자견(생후 2년 이하)",
+          "성견(생후 2년 이상)"
         ]
       },
       {
         type: "radiogroup",
         name: "neuter_yn",
         title: "유기견 중성화 여부",
-        colCount: 0,
         // isRequired: true,
+        startWithNewLine: false,
         choices: [{
             "value": "Y",
             "text": "예"
