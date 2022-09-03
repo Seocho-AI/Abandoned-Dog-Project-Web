@@ -177,9 +177,20 @@ body {
 }
 
 .basic-info-container,
-.panel-trait-container,
+.panel-trait-container {
+  min-height: calc((100vh - 144px)/2);
+}
+
+/* Breed Info */
 .breed-info-container {
   min-height: calc((100vh - 144px)/2);
+  /* height: calc((100vh - 144px)/2); */
+}
+.breed-title {
+  height: 15%;
+}
+.breed-description {
+  height: 85%;
 }
 
 .panel-trait {

@@ -86,6 +86,7 @@ $.ajax({
       .replace("{noticeEdt}", response["noticeEdt"])
       .replace("{happenPlace}", response["happenPlace"])
 
+      .replace("{specialMark}", response["specialMark"])
       .replace("{careNm}", response["careNm"])
       .replace("{careTel}", response["careTel"])
       .replace("{orgNm}", response["orgNm"])

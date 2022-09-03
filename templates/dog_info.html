@@ -353,46 +353,24 @@
         </div>
 
 
+        <!-- Breed info -->
         <div class="col-lg-6 col-12 breed-info-container">
           <div class="row h-100">
 
-            <!-- Breed info -->
             <div class="col-12 bg-warning">
-              <div class="row">
+              <div class="row h-100">
 
-                <div class="col-12 p-2 h-25">
+                <div class="col-12 p-2 breed-title">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      종 설명
-                    </h5>
+                    <h5 class="m-0">종 설명</h5>
                   </div>
                 </div>
 
-                <div class="col-12 p-2 h-75">
+                <div class="col-12 p-2 breed-description">
                   <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                    <p>BREED DESCRIPTION</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error ipsam rerum doloribus voluptate, maxime veritatis eius at sit fugiat qui earum perferendis assumenda, iure dignissimos pariatur libero quod repudiandae quo tempore dolorem magnam minus vel? Quis perferendis autem nemo natus. Corrupti eum doloremque magni ullam blanditiis temporibus nesciunt corporis minus?</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Care comment -->
-            <div class="col-12 bg-danger">
-              <div class="row">
-
-                <div class="col-12 p-2 h-25">
-                  <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      보호소 소견
-                    </h5>
-                  </div>
-                </div>
-
-                <div class="col-12 p-2 h-75">
-                  <div class="h-100 align-items-center justify-content-center d-flex border">
-                    보호소 소견 설명
+                    <p class="m-0">BREED DESCRIPTION</p>
+                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error ipsam rerum doloribus voluptate, maxime veritatis eius at sit fugiat qui earum perferendis assumenda, iure dignissimos pariatur libero quod repudiandae
+                      quo tempore dolorem magnam minus vel? Quis perferendis autem nemo natus. Corrupti eum doloremque magni ullam blanditiis temporibus nesciunt corporis minus?</p>
                   </div>
                 </div>
 
@@ -407,20 +385,18 @@
           <div class="row h-100">
 
             <!-- Dog cost -->
-            <div class="col-lg-6 col-12 bg-warning">
+            <div class="col-lg-4 col-12 bg-warning">
               <div class="row h-100">
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      비용
-                    </h5>
+                    <h5 class="m-0">비용</h5>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    비용 설명
+                    <p class="m-0">비용 설명</p>
                   </div>
                 </div>
 
@@ -428,20 +404,37 @@
             </div>
 
             <!-- Dog warning -->
-            <div class="col-lg-6 col-12 bg-info">
+            <div class="col-lg-4 col-12 bg-info">
               <div class="row h-100">
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      주의사항
-                    </h5>
+                    <h5 class="m-0">주의사항</h5>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    주의사항 설명
+                    <p class="m-0">주의사항 설명</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Care comment -->
+            <div class="col-lg-4 col-12 bg-danger">
+              <div class="row h-100">
+
+                <div class="col-12 p-2 h-50">
+                  <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <h5 class="m-0">보호소 소견</h5>
+                  </div>
+                </div>
+
+                <div class="col-12 p-2 h-50">
+                  <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <p class="m-0">{specialMark}</p>
                   </div>
                 </div>
 
@@ -461,21 +454,19 @@
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      보호센터
-                    </h5>
+                    <h5 class="m-0">보호센터</h5>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-25">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    {careNm}
+                    <p class="m-0">{careNm}</p>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-25">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    {careTel}
+                    <p class="m-0">{careTel}</p>
                   </div>
                 </div>
 
@@ -483,26 +474,24 @@
             </div>
 
             <!-- Care region -->
-            <div class="col-sm-6 col-12 bg-warning">
+            <div class="col-sm-6 col-12 bg-danger">
               <div class="row border h-100">
 
                 <div class="col-12 p-2 h-50">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    <h5>
-                      담당부서
-                    </h5>
+                    <h5 class="m-0">담당부서</h5>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-25">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    {orgNm}
+                    <p class="m-0">{orgNm}</p>
                   </div>
                 </div>
 
                 <div class="col-12 p-2 h-25">
                   <div class="h-100 align-items-center justify-content-center d-flex border">
-                    {officetel}
+                    <p class="m-0">{officetel}</p>
                   </div>
                 </div>
 
