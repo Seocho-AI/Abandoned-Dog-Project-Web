@@ -9,7 +9,7 @@ html {
  * Body BG color
  */
 body {
-  background-color: #F5F5FA !important;
+  background-color: #E9DAC1 !important;
 }
 
 /**
@@ -22,7 +22,7 @@ body {
   /* background-attachment: fixed; */
   background-image: none !important;
 
-  background-color: #fefaf6;
+  background-color: #fffffb;
 }
 
 .card-body {
@@ -168,14 +168,22 @@ body {
   /* padding-top: 10rem; */
 }
 
-.dog-post {
-  /* height: 100vh; */
+.dog-img-container,
+.basic-info-container,
+.panel-trait-basic-container,
+.panel-trait-stat-container,
+.breed-info-container,
+.dog-cost-container,
+.dog-warning-container,
+.dog-comment-container,
+.care-center-container,
+.care-region-container {
+  padding-top: 2rem;
 }
 
-.dog-post-header {
-  /* height: 83vh; */
-}
-
+/**
+ * Dog Image
+ */
 .dog-img-container {
   /* backdrop-filter: blur(2px); */
   /* border: #C3BEF0 2px solid;
@@ -187,8 +195,15 @@ body {
   height: calc((100vh - 144px)/2);
   object-fit: contain;
 
-  border: #C3BEF0 2px solid;
-  border-radius: 1rem;
+  border: lightgray 2px solid;
+  border-radius: 2rem;
+}
+
+/**
+ * Basic Info
+ */
+.basic-info-container>div {
+  background-color: #F7ECDE;
 }
 
 .basic-info-container,
@@ -196,33 +211,81 @@ body {
   min-height: calc((100vh - 144px)/2);
 }
 
-/* Breed Info */
-.breed-info-container {
-  min-height: calc((100vh - 144px)/2);
-  /* height: calc((100vh - 144px)/2); */
-}
-/* .breed-title {
-  height: 15%;
-}
-.breed-description {
-  height: 85%;
-} */
-/* .breed-description-text {
-  min-height: calc((100vh - 144px)/2);
-} */
 .basic-info-item-1 {
   background-color: #CADEFC;
-  color: #CCA8E9;
+  color: black;
   border: #C3BEF0 2px solid;
   border-radius: 1rem;
 }
+
 .basic-info-item-2 {
   background-color: #CADEFC;
   border-left: #CCA8E9 5px solid;
   border-radius: 0 20px 20px 0;
 }
 
+/**
+ * Panel Trait (basic)
+ */
+.panel-trait-basic-container>div {
+  background-color: #F7ECDE;
+}
+
+/**
+ * Panel Trait (stat)
+ */
+.panel-trait-stat-container>div {
+  background-color: #F7ECDE;
+}
+
 .panel-trait {
   /* height: calc((100vh - 144px)/12); */
   height: calc((100vh - 144px)/8);
+}
+
+/**
+ * Breed Info
+ */
+.breed-info-container>div>div>div{
+  background-color: #F7ECDE;
+}
+
+.breed-info-container {
+  min-height: calc((100vh - 144px)/2);
+  /* height: calc((100vh - 144px)/2); */
+}
+
+/**
+ * Dog Cost
+ */
+.dog-cost-container>div {
+  background-color: #F7ECDE;
+}
+
+/**
+ * Dog Warning
+ */
+.dog-warning-container>div {
+  background-color: #F7ECDE;
+}
+
+/**
+ * Dog Comment
+ */
+.dog-comment-container>div {
+  background-color: #F7ECDE;
+}
+
+/**
+ * Care Center
+ */
+.care-center-container>div {
+  background-color: #F7ECDE;
+}
+
+/**
+ * Care Region
+ */
+.care-region-container>div {
+  background-color: #F7ECDE;
 }

@@ -191,321 +191,339 @@
       <div class="container">
 
         <div class="dog-post-container justify-content-center">
+
           <!-- Dog post container -->
           <div class="dog-post row justify-content-center">
 
-            <!-- Dog post header -->
-            <div class="dog-post-header row justify-content-center">
-              <!-- Dog post img -->
-              <div class="col-12 col-lg-5 align-items-center justify-content-center d-flex dog-img-container">
-                <img class="dog-post-img d-block" src="{{ dog_info['popfile'] }}" alt="dog photo">
-              </div>
+            <!-- Dog img -->
+            <div class="dog-img-container col-12 col-lg-5 align-items-center justify-content-center d-flex">
+              <img class="dog-post-img d-block" src="{{ dog_info['popfile'] }}" alt="dog photo">
+            </div>
 
-              <!-- Dog basic info -->
-              <div class="col-12 col-lg-7 basic-info-container">
-                <div class="row h-100">
+            <!-- Dog basic info -->
+            <div class="basic-info-container col-12 col-lg-7">
+              <div class="row h-100 border border-2">
 
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        {{ dog_info["kindCd"] }}
-                      </h4>
-                    </div>
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      {{ dog_info["kindCd"] }}
+                    </h4>
                   </div>
-
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        {{ dog_info["sexCd"] }}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        {{ dog_info["age"] }}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        중성화 {{ dog_info["neuterYn"] }}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        {{ dog_info["colorCd"] }}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-4 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                      <h4 class="m-0">
-                        {{ dog_info["weight"] }}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div class="col-12 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                      <h4 class="m-0">공고번호 : {{ dog_info["noticeNo"] }}</h4>
-                    </div>
-                  </div>
-
-                  <div class="col-12 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                      <h4 class="m-0">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
-                    </div>
-                  </div>
-
-                  <div class="col-12 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                      <h4 class="m-0">발견장소 : {{ dog_info["happenPlace"] }}</h4>
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
-              <!-- Panel trait -->
-              <div class="col-12 panel-trait-container bg-info">
-                <div class="row">
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 1
-                    </div>
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      {{ dog_info["sexCd"] }}
+                    </h4>
                   </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 2
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 3
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 4
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 5
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 6
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 7
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 8
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 9
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 10
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 11
-                    </div>
-                  </div>
-
-                  <div class="panel-trait col-xl-4 col-6 p-2">
-                    <div class="h-100 align-items-center justify-content-center d-flex border">
-                      panel breed trait 12
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
-
-              <!-- Breed info -->
-              <div class="col-12 breed-info-container">
-                <div class="row h-100">
-
-                  <div class="col-12 bg-warning">
-                    <div class="row h-100">
-
-                      <div class="col-12 p-2 breed-title">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">{{ dog_info["kindCd"] }} 설명</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 breed-description">
-                        <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                          <p class="m-0">{{ dog_info["describe"] }}</p>
-                        </div>
-                      </div>
-
-                    </div>
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      {{ dog_info["age"] }}
+                    </h4>
                   </div>
-
                 </div>
-              </div>
 
-              <!-- Dog cost & warning -->
-              <div class="col-lg-6 col-12 bg-light">
-                <div class="row h-100">
-
-                  <!-- Dog cost -->
-                  <div class="col-lg-4 col-12 bg-warning">
-                    <div class="row h-100">
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">비용</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">비용 설명</p>
-                        </div>
-                      </div>
-
-                    </div>
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      중성화 {{ dog_info["neuterYn"] }}
+                    </h4>
                   </div>
-
-                  <!-- Dog warning -->
-                  <div class="col-lg-4 col-12 bg-info">
-                    <div class="row h-100">
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">주의사항</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">주의사항 설명</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <!-- Care comment -->
-                  <div class="col-lg-4 col-12 bg-danger">
-                    <div class="row h-100">
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">보호소 소견</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">{{ dog_info["specialMark"] }}</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
-              <!-- Care center & region -->
-              <div class="col-lg-6 col-12">
-                <div class="row h-100">
-
-                  <!-- Care center -->
-                  <div class="col-sm-6 col-12 bg-light">
-                    <div class="row border h-100">
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">보호센터</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-25">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">{{ dog_info["careNm"] }}</p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-25">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">{{ dog_info["careTel"]}}</p>
-                        </div>
-                      </div>
-
-                    </div>
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      {{ dog_info["colorCd"] }}
+                    </h4>
                   </div>
-
-                  <!-- Care region -->
-                  <div class="col-sm-6 col-12 bg-danger">
-                    <div class="row border h-100">
-
-                      <div class="col-12 p-2 h-50">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <h5 class="m-0">담당부서</h5>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-25">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">{{ dog_info["orgNm"] }}</p>
-                        </div>
-                      </div>
-
-                      <div class="col-12 p-2 h-25">
-                        <div class="h-100 align-items-center justify-content-center d-flex border">
-                          <p class="m-0">{{ dog_info["officetel"] }}</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
                 </div>
-              </div>
 
+                <div class="col-4 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
+                    <h4 class="m-0">
+                      {{ dog_info["weight"] }}
+                    </h4>
+                  </div>
+                </div>
+
+                <div class="col-12 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
+                    <h4 class="m-0">공고번호 : {{ dog_info["noticeNo"] }}</h4>
+                  </div>
+                </div>
+
+                <div class="col-12 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
+                    <h4 class="m-0">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
+                  </div>
+                </div>
+
+                <div class="col-12 p-2">
+                  <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
+                    <h4 class="m-0">발견장소 : {{ dog_info["happenPlace"] }}</h4>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Panel trait -->
+            <div class="panel-trait-container col-12 border border-2">
+              <div class="row p-2">
+
+                <!-- Panel trait (basic) -->
+                <div class="panel-trait-basic-container col-12">
+                  <div class="row border border-2">
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-earth-americas fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">원산지</p>
+                        <p class="m-0 pb-2">{{ dog_info["origin"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-shield-dog fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">견종 분류</p>
+                        <p class="m-0 pb-2">{{ dog_info["usage"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-dog fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">견종 크기</p>
+                        <p class="m-0 pb-2">{{ dog_info["size"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-ruler-vertical fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">키</p>
+                        <p class="m-0 pb-2">{{ dog_info["height"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-weight-scale fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">몸무게</p>
+                        <p class="m-0 pb-2">{{ dog_info["breed_weight"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
+                        <i class="fa-solid fa-palette fa-3x pb-3 pt-2"></i>
+                        <p class="m-0 pb-2">색깔</p>
+                        <p class="m-0 pb-2">{{ dog_info["color"] }}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Panel trait (stats) -->
+                <div class="panel-trait-stat-container col-12">
+                  <div class="row border border-2">
+
+                    <div class="panel-trait col-12 col-lg p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        panel breed trait 1
+                      </div>
+                    </div>
+
+                    <div class="panel-trait col-12 col-lg p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        panel breed trait 2
+                      </div>
+                    </div>
+
+                    <div class="panel-trait col-12 col-lg p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        panel breed trait 3
+                      </div>
+                    </div>
+
+                    <div class="panel-trait col-12 col-lg p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        panel breed trait 4
+                      </div>
+                    </div>
+
+                    <div class="panel-trait col-12 col-lg p-2">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        panel breed trait 5
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Breed info -->
+            <div class="breed-info-container col-12">
+              <div class="row h-100 p-2">
+
+                <div class="col-12">
+                  <div class="row h-100 border border-2">
+
+                    <div class="col-12 p-2 breed-title">
+                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
+                        <h5 class="m-0">{{ dog_info["kindCd"] }} 설명</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 breed-description">
+                      <div class="h-100 align-items-center justify-content-center d-flex flex-column border border-2">
+                        <p class="m-0">{{ dog_info["describe"] }}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Dog cost & Warning & Care comment -->
+            <div class="etc-container col-lg-6 col-12">
+              <div class="row h-100">
+
+                <!-- Dog cost -->
+                <div class="dog-cost-container col-lg-4 col-12 align-items-center justify-content-center d-flex">
+                  <div class="row h-100 w-100 border border-2">
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <h5 class="m-0">비용</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">비용 설명</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Dog warning -->
+                <div class="dog-warning-container col-lg-4 col-12 align-items-center justify-content-center d-flex">
+                  <div class="row h-100 w-100 border border-2">
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <h5 class="m-0">주의사항</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">주의사항 설명</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Care comment -->
+                <div class="dog-comment-container col-lg-4 col-12 align-items-center justify-content-center d-flex">
+                  <div class="row h-100 w-100 border border-2">
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <h5 class="m-0">보호소 소견</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">{{ dog_info["specialMark"] }}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Care center & region -->
+            <div class="care-container col-lg-6 col-12">
+              <div class="row h-100">
+
+                <!-- Care center -->
+                <div class="care-center-container col-sm-6 col-12 align-items-center justify-content-center d-flex">
+                  <div class="row border h-100 w-100 border border-2">
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <h5 class="m-0">보호센터</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-25">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">{{ dog_info["careNm"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-25">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">{{ dog_info["careTel"]}}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Care region -->
+                <div class="care-region-container col-sm-6 col-12 align-items-center justify-content-center d-flex">
+                  <div class="row border h-100 w-100 border border-2">
+
+                    <div class="col-12 p-2 h-50">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <h5 class="m-0">담당부서</h5>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-25">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">{{ dog_info["orgNm"] }}</p>
+                      </div>
+                    </div>
+
+                    <div class="col-12 p-2 h-25">
+                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                        <p class="m-0">{{ dog_info["officetel"] }}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
 
           </div>
-        </div>
 
+        </div>
       </div>
+
+    </div>
     </div>
   </section>
 

@@ -165,6 +165,9 @@ body {
   background-position: center center;
   /* background-attachment: fixed; */
 }
+.dog-list-container {
+  background-color: #9398B5;
+}
 .overlay-dog-list-section .container {
   padding-top: 10rem;
 }

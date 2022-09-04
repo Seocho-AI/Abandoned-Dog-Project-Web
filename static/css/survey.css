@@ -120,6 +120,10 @@ body {
   background-position: center top;
   /* background-attachment: fixed; */
 }
+.survey-container {
+  /* background-color: #9398b5; */
+  background-color: #90c9c2;
+}
 .overlay-survey-page-section .container {
   padding-top: 72px;
 }
@@ -130,10 +134,10 @@ body {
 
 /* Survey Body */
 .sd-root-modern {
-  background-color: #9398B5;
+  background-color: #90c9c2;
 }
 .sd-body {
-  background-color: #9398B5;
+  background-color: #90c9c2;
   /* background-color: #FFFFFF; */
 }
 

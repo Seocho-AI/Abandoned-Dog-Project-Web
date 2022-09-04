@@ -147,7 +147,7 @@ def dog_info_page():
             dog_info["origin"] = result_unbox2[4]
             dog_info["usage"] = result_unbox2[5]
             dog_info["height"] = result_unbox2[6]
-            dog_info["weight"] = result_unbox2[7]
+            dog_info["breed_weight"] = result_unbox2[7]
             dog_info["color"] = result_unbox2[8]
             dog_info["describe"] = result_unbox2[9]
 
