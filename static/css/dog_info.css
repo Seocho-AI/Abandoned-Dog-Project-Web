@@ -16,7 +16,13 @@ body {
  * Find dog BG color
  */
 .dog-posts-bg {
-  background-color: #F5F5FA;
+  background-size: 250px;
+  /* background-repeat: repeat; */
+  background-position: center top;
+  /* background-attachment: fixed; */
+  background-image: none !important;
+
+  background-color: #fefaf6;
 }
 
 .card-body {
@@ -29,7 +35,7 @@ body {
  */
 #navbar,
 #navbar2 {
-  background-color: transparent;
+  background-color: #fefaf6;
 }
 
 /**
@@ -37,7 +43,7 @@ body {
  */
 #header.scrolled,
 #navbar2.scrolled {
-  background-color: #FFFFFF !important;
+  background-color: #fefaf6 !important;
   /* transition: background-color 300ms linear; */
 }
 
@@ -127,7 +133,7 @@ body {
 }
 
 .scroll-header {
-  box-shadow: 0 0 10px #19B394;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .dog-card:hover {
@@ -170,10 +176,19 @@ body {
   /* height: 83vh; */
 }
 
+.dog-img-container {
+  /* backdrop-filter: blur(2px); */
+  /* border: #C3BEF0 2px solid;
+  border-radius: 1rem; */
+}
+
 .dog-post-img {
   /* height: 41.5vh; */
   height: calc((100vh - 144px)/2);
   object-fit: contain;
+
+  border: #C3BEF0 2px solid;
+  border-radius: 1rem;
 }
 
 .basic-info-container,
@@ -186,11 +201,25 @@ body {
   min-height: calc((100vh - 144px)/2);
   /* height: calc((100vh - 144px)/2); */
 }
-.breed-title {
+/* .breed-title {
   height: 15%;
 }
 .breed-description {
   height: 85%;
+} */
+/* .breed-description-text {
+  min-height: calc((100vh - 144px)/2);
+} */
+.basic-info-item-1 {
+  background-color: #CADEFC;
+  color: #CCA8E9;
+  border: #C3BEF0 2px solid;
+  border-radius: 1rem;
+}
+.basic-info-item-2 {
+  background-color: #CADEFC;
+  border-left: #CCA8E9 5px solid;
+  border-radius: 0 20px 20px 0;
 }
 
 .panel-trait {

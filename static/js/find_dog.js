@@ -39,42 +39,39 @@ $(function () {
 /**
  * DB에서 현재 보호중인 유기견들 불러오기
  */
-var abandonedDogList = null
 $.ajax({
   type: "GET",
-  url: "/find_dog/thumbnail_page",
+  url: "/find_dog/list",
   data: {},
   async: false,
   success: function (response) {
-    abandonedDogList = response
-  }
-})
+    /**
+     * Load abandoned dogs thumbnails to find_dog page
+     */
+    let abandonedDogList = response
 
-/**
- * Load abandoned dogs thumbnails to find_dog page
- */
-$(function () {
-  let container = $('#pagination');
-  container.pagination({
-    dataSource: abandonedDogList,
-    pageSize: 48,
-    callback: function (abandonedDogList, pagination) {
-      // template method of yourself
-      let template_dog_list = document.querySelector("#template-dog-list").innerHTML
-      let res = ""
-      for (i = 0; i < abandonedDogList.length; i++) {
-        res += template_dog_list
-          .replace("{popfile}", abandonedDogList[i].popfile)
-          .replace("{kindCd}", abandonedDogList[i].kindCd)
-          .replace("{sexCd}", abandonedDogList[i].sexCd)
-          .replace("{happenDt}", abandonedDogList[i].happenDt)
-          .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-          .replace("{processState}", abandonedDogList[i].processState)
-          .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+    let container = $('#pagination');
+    container.pagination({
+      dataSource: abandonedDogList,
+      pageSize: 48,
+      callback: function (abandonedDogList, pagination) {
+        // template method of yourself
+        let template_dog_list = document.querySelector("#template-dog-list").innerHTML
+        let res = ""
+        for (i = 0; i < abandonedDogList.length; i++) {
+          res += template_dog_list
+            .replace("{popfile}", abandonedDogList[i].popfile)
+            .replace("{kindCd}", abandonedDogList[i].kindCd)
+            .replace("{sexCd}", abandonedDogList[i].sexCd)
+            .replace("{happenDt}", abandonedDogList[i].happenDt)
+            .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+            .replace("{processState}", abandonedDogList[i].processState)
+            .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+        }
+        document.querySelector(".dog-list").innerHTML = res
       }
-      document.querySelector(".dog-list").innerHTML = res
-    }
-  })
+    })
+  }
 })
 
 /**
@@ -129,20 +126,20 @@ $.ajax({
  * Move to Dog posts page
  */
 function moveToDogPosts(item) {
-  var desertionNo = $(item).attr("id")
+  let desertionNo = $(item).attr("id")
+  window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
 
-  $.ajax({
-    type: "POST",
-    url: "/find_dog/dog_info/dog_post",
-    data: {
-      desertionNo
-    },
-    async: false,
-    success: function (response) {
-      window.location.href = "/find_dog/dog_info" // Move to dog posts page
-      console.log(response)
-    }
-  })
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/find_dog/dog_info/dog_post",
+  //   data: {
+  //     desertionNo
+  //   },
+  //   async: false,
+  //   success: function (response) {
+  //     console.log(response)
+  //   }
+  // })
 }
 
 /**

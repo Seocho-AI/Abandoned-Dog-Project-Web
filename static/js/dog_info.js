@@ -64,37 +64,39 @@ $.ajax({
 /**
  * Load dog info based on desertionNo from DB
  */
-$.ajax({
-  type: "GET",
-  url: "/find_dog/dog_info/dog_post",
-  data: {},
-  success: function (response) {
-    console.log(response)
+// $.ajax({
+//   type: "GET",
+//   url: "/find_dog/dog_info",
+//   data: {},
+//   success: function (response) {
+//     console.log(response)
 
-    let template_dog_post = document.querySelector("#template-dog-post").innerHTML
-    let res = ""
-    res += template_dog_post
-      .replace("{popfile}", `"${response["popfile"]}"`)
-      .replace("{kindCd}", response["kindCd"])
-      .replace("{sexCd}", response["sexCd"])
-      .replace("{age}", response["age"])
-      .replace("{neuterYn}", response["neuterYn"])
-      .replace("{colorCd}", response["colorCd"])
-      .replace("{weight}", response["weight"])
-      .replace("{noticeNo}", response["noticeNo"])
-      .replace("{noticeSdt}", response["noticeSdt"])
-      .replace("{noticeEdt}", response["noticeEdt"])
-      .replace("{happenPlace}", response["happenPlace"])
+//     let template_dog_post = document.querySelector("#template-dog-post").innerHTML
+//     let res = ""
+//     res += template_dog_post
+//       .replace("{popfile}", `"${response["popfile"]}"`)
+//       .replace("{kindCd}", response["kindCd"])
+//       .replace("{kindCd}", response["kindCd"])
+//       .replace("{sexCd}", response["sexCd"])
+//       .replace("{age}", response["age"])
+//       .replace("{neuterYn}", response["neuterYn"])
+//       .replace("{colorCd}", response["colorCd"])
+//       .replace("{weight}", response["weight"])
+//       .replace("{noticeNo}", response["noticeNo"])
+//       .replace("{noticeSdt}", response["noticeSdt"])
+//       .replace("{noticeEdt}", response["noticeEdt"])
+//       .replace("{happenPlace}", response["happenPlace"])
 
-      .replace("{specialMark}", response["specialMark"])
-      .replace("{careNm}", response["careNm"])
-      .replace("{careTel}", response["careTel"])
-      .replace("{orgNm}", response["orgNm"])
-      .replace("{officetel}", response["officetel"])
+//       .replace("{describe}", response["describe"])
+//       .replace("{specialMark}", response["specialMark"])
+//       .replace("{careNm}", response["careNm"])
+//       .replace("{careTel}", response["careTel"])
+//       .replace("{orgNm}", response["orgNm"])
+//       .replace("{officetel}", response["officetel"])
 
-    document.querySelector(".dog-post-container").innerHTML = res
-  }
-})
+//     document.querySelector(".dog-post-container").innerHTML = res
+//   }
+// })
 
 /**
  * AOS JS Initiation

@@ -34,15 +34,15 @@ body {
  * NAVBAR
  */
 #navbar {
-  background-color: transparent;
+  background-color: #fefaf6;
 }
 
 /**
  * Nav change color on scroll
  */
 #header.scrolled {
-  background-color: #FFFFFF !important;
-  transition: background-color 300ms linear;
+  background-color: #fefaf6 !important;
+  /* transition: background-color 300ms linear; */
 }
 
 #dog-navbar a,
@@ -101,21 +101,21 @@ body {
 }
 
 .scroll-header {
-  box-shadow: 0 0 10px #19B394;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /**
  * HOME SECTION
  */
 #home-section {
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: auto 100%;
+  /* background-repeat: no-repeat; */
   background-position: center center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 
 .overlay-home-section {
-  background-color: rgba(217, 248, 196, 0.3);
+  /* background-color: rgba(217, 248, 196, 0.3); */
 }
 
 .overlay-home-section .container {
@@ -126,7 +126,7 @@ body {
  * STATISTICS SECTION
  */
 #statistics-section {
-  background-color: rgba(205, 220, 160, 0.6);
+  background-color: #fefaf6;
 }
 
 .card-stat {
@@ -138,18 +138,25 @@ body {
   transform: scale(1.08);
 }
 
+.stat-card-body {
+  height: 60%;
+}
+.stat-card-header {
+  height: 40%;
+}
+
 /**
  * FIND DOG SECTION
  */
 #find-dog-section {
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: auto 100%;
+  /* background-repeat: no-repeat; */
   background-position: center center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 
 .overlay-find-dog-section {
-  background-color: rgba(121, 213, 186, 0.3);
+  /* background-color: rgba(121, 213, 186, 0.3); */
 }
 
 .overlay-find-dog-section .container {
@@ -160,14 +167,14 @@ body {
  * SURVEY SECTION
  */
 #survey-section {
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: auto 100%;
+  /* background-repeat: no-repeat; */
   background-position: center center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 
 .overlay-survey-section {
-  background-color: rgba(70, 248, 196, 0.3);
+  /* background-color: rgba(70, 248, 196, 0.3); */
 }
 
 .overlay-survey-section .container {
