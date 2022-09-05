@@ -130,9 +130,14 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.dog-card {
+  /* box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .3) !important; */
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, .3) !important;
+}
+
 .dog-card:hover {
   transition: 0.2s;
-  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .3) !important;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .6) !important;
   /* opacity: 0.7; */
   transform: scale(1.05);
   cursor: pointer;
