@@ -165,9 +165,11 @@ body {
   background-position: center center;
   /* background-attachment: fixed; */
 }
+
 .dog-list-container {
   background-color: #9398B5;
 }
+
 .overlay-dog-list-section .container {
   padding-top: 10rem;
 }
@@ -175,7 +177,24 @@ body {
 /**
  * Dog Thumbnail Image
  */
+.dog-card {
+  border: none !important;
+  border-radius: 1.5rem !important;
+}
+
+.dog-thumbnail-container {
+  /* background-color: #9398B5; */
+}
+
 .dog-thumbnail-img {
   /* width: 100%; */
-  object-fit: contain;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.card-bottom {
+  border-radius: 1.5rem !important;
 }
