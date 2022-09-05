@@ -48,7 +48,7 @@ body {
  * Nav change color on scroll
  */
 #header.scrolled {
-  background-color: #FFFFFF !important;
+  background-color: #fefaf6 !important;
   /* transition: background-color 300ms linear; */
 }
 
@@ -140,6 +140,9 @@ body {
   background-color: #90c9c2;
   /* background-color: #FFFFFF; */
 }
+.sd-root-modern:not(.svc-tab-designer) .sd-container-modern__title {
+  background-color: #fefaf6;
+}
 
 /* Survey Title Container */
 .sd-title.sd-container-modern__title {
@@ -170,8 +173,11 @@ body {
   padding-right: 2rem !important;
   padding-bottom: 2rem !important;
   padding-left: 2rem !important;
-  background-color: #FFFFFF;
+  background-color: #fefaf6;
   /* text-align: center; */
+}
+.svc-logic-question-value, .sd-element--with-frame:not(.sd-element--collapsed) {
+  background: #fefaf6;
 }
 .sd-row--multiple>div>.sd-question {
   padding-right: 2rem !important;
