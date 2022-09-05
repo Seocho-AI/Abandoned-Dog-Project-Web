@@ -215,7 +215,11 @@
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
-                      {{ dog_info["sexCd"] }}
+                      {% if dog_info["sexCd"] == 'M' %}
+                        <i class="fa-solid fa-mars fa-lg" style="color:#04A2F5"></i>
+                      {% else %}
+                        <i class="fa-solid fa-venus fa-lg" style="color:#E73E77"></i>
+                      {% endif %}
                     </h4>
                   </div>
                 </div>

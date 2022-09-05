@@ -38,6 +38,7 @@ def find_dog_page():
 
 @find_dog.route("/list", methods=["GET"])  # Load thumbnails
 def load_thumbnail():
+
     sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
     cursor.execute(sql)
     result = cursor.fetchall()

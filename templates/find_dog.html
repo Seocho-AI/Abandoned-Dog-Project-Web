@@ -208,20 +208,32 @@
           </div> 
 
           <div class="card-body-container col-6 col-md-12">
-            <div class="card-bottom card-body fw-bold">
+            <div class="card-bottom card-body h-100 fw-bold d-flex flex-column justify-content-between">
               <div class="d-flex">
-                <div class="">{kindCd}</div>
-                <div class="ms-auto">{processState}</div>
-                <div class="ps-3">{sexCd}</div>
+                <div class="">품종 :</div>
+                <div class="ms-auto">{kindCd}</div>
               </div>
+              
+              <div class="d-flex">
+                <div class="">성별 :</div>
+                <div class="ms-auto">{sexCd}</div>
+              </div>
+
+              <div class="d-flex">
+                <div class="">상태 :</div>
+                <div class="ms-auto">{processState}</div>
+              </div>
+              
               <div class="d-flex">
                 <div class="">등록일 :</div>
                 <div class="ms-auto">{happenDt}</div>
               </div>
+              
               <div class="d-flex">
                 <div class="">지역 :</div>
                 <div class="ms-auto">{noticeNo}</div>
               </div>
+
             </div>
           </div>
           

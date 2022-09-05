@@ -54,16 +54,27 @@ $.ajax({
     container.pagination({
       dataSource: abandonedDogList,
       pageSize: 48,
+      autoHidePrevious: true,
+      autoHideNext: true,
+      pageRange: 1,
+      className: 'paginationjs-theme-blue paginationjs-big',
       callback: function (abandonedDogList, pagination) {
         // template method of yourself
         let template_dog_list = document.querySelector("#template-dog-list").innerHTML
         let res = ""
         for (i = 0; i < abandonedDogList.length; i++) {
+          let dogSex;
+          if (abandonedDogList[i].sexCd == "M") {
+            dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
+          } else {
+            dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
+          }
           res += template_dog_list
             .replace("{popfile}", abandonedDogList[i].popfile)
             .replace("{kindCd}", abandonedDogList[i].kindCd)
-            .replace("{sexCd}", abandonedDogList[i].sexCd)
-            .replace("{happenDt}", abandonedDogList[i].happenDt)
+            // .replace("{sexCd}", abandonedDogList[i].sexCd)
+            .replace("{sexCd}", dogSex)
+            .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
             .replace("{noticeNo}", abandonedDogList[i].noticeNo)
             .replace("{processState}", abandonedDogList[i].processState)
             .replace("{desertionNo}", abandonedDogList[i].desertionNo)
@@ -73,6 +84,51 @@ $.ajax({
     })
   }
 })
+
+
+// let container = $('#pagination');
+// container.pagination({
+//   dataSource: function (abandonedDogList) {
+//     $.ajax({
+//       type: "GET",
+//       url: "/find_dog/list",
+//       data: {},
+//       success: function (response) {
+//         console.log(response)
+//         abandonedDogList(response);
+//       }
+//     });
+//   },
+//   pageNumber: 1,
+//   pageSize: 48,
+//   autoHidePrevious: true,
+//   autoHideNext: true,
+//   pageRange: 1,
+//   className: 'paginationjs-theme-blue paginationjs-big',
+//   callback: function (abandonedDogList, pagination) {
+//     // template method of yourself
+//     let template_dog_list = document.querySelector("#template-dog-list").innerHTML
+//     let res = ""
+//     for (i = 0; i < abandonedDogList.length; i++) {
+//       let dogSex;
+//       if (abandonedDogList[i].sexCd == "M") {
+//         dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
+//       } else {
+//         dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
+//       }
+//       res += template_dog_list
+//         .replace("{popfile}", abandonedDogList[i].popfile)
+//         .replace("{kindCd}", abandonedDogList[i].kindCd)
+//         // .replace("{sexCd}", abandonedDogList[i].sexCd)
+//         .replace("{sexCd}", dogSex)
+//         .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
+//         .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+//         .replace("{processState}", abandonedDogList[i].processState)
+//         .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+//     }
+//     document.querySelector(".dog-list").innerHTML = res
+//   }
+// })
 
 /**
  * Load 10 abandoned dogs thumbnails when bottom of page reached
