@@ -144,6 +144,34 @@ body {
 }
 
 /**
+ * Filter Modal
+ */
+.filter-region-container {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.filter-state,
+.filter-city,
+.filter-breed {
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+}
+
+.region-filter-gap {
+  width: 12px;
+  padding: 0;
+}
+
+select.filter-state,
+select.filter-city,
+select.filter-breed {
+  background-image: none;
+}
+
+/**
  * Scroll bar custom
  */
 ::-webkit-scrollbar {
@@ -247,7 +275,7 @@ body {
 /**
  * Breed Info
  */
-.breed-info-container>div>div>div{
+.breed-info-container>div>div>div {
   background-color: #F7ECDE;
 }
 

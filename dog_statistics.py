@@ -36,30 +36,35 @@ def get_statistics():
     cursor.execute(sql)
     total_in_year = cursor.fetchall()
     total_in_year = total_in_year[0][0]
+    
 
     # Total dog count (adopted) in current year till today's date
     sql = f"select count(*) from dog_list where happenDt between '{today_year}0101' and '{today}' and processState = '종료(입양)';"
     cursor.execute(sql)
     adopt_in_year = cursor.fetchall()
     adopt_in_year = adopt_in_year[0][0]
+    
 
     # Total dog count (euthanasia) in current year till today's date
     sql = f"select count(*) from dog_list where happenDt between '{today_year}0101' and '{today}' and processState = '종료(안락사)';"
     cursor.execute(sql)
     death_in_year = cursor.fetchall()
     death_in_year = death_in_year[0][0]
+    
 
     # Total dog count (protecting) in current year till today's date
     sql = f"select count(*) from dog_list where happenDt between '{today_year}0101' and '{today}' and processState = '보호중';"
     cursor.execute(sql)
     protect_in_year = cursor.fetchall()
     protect_in_year = protect_in_year[0][0]
+    
 
     # Number of rescued dogs today (yesterday)
     sql = f"select count(*) from dog_list where happenDt = '{today}' and processState = '보호중';"
     cursor.execute(sql)
     rescued_today = cursor.fetchall()
     rescued_today = rescued_today[0][0]
+    
 
     # Calculation
     adopt_in_year = int(round(adopt_in_year/total_in_year, 2)*100)

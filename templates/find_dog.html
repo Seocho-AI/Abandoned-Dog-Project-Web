@@ -13,7 +13,8 @@
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
   <!-------------------- MAIN CSS -------------------->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/find_dog.css') }}">
@@ -23,10 +24,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://unpkg.com/survey-jquery"></script>
+  <script src="https://unpkg.com/survey-jquery" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
   <script src="https://kit.fontawesome.com/4946433bc0.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ko.min.js"></script>
 
 </head>
 
@@ -75,20 +78,9 @@
         <li class="nav-item me-2">
           <a class="nav-link dog-search filter-search-links" data-bs-toggle="modal" data-bs-target="#filterModal">
             <i class="fa-solid fa-magnifying-glass fa-lg dog-search-icon"></i>
+            <p class="m-0 ps-3">찾기</p>
           </a>
         </li>
-
-        <li class="nav-item me-2">
-          <a class="nav-link filter-search-links" data-bs-toggle="modal" data-bs-target="#filterModal">
-            검색
-          </a>
-        </li>
-
-        <!-- <li class="nav-item me-2">
-          <button type="button" class="btn nav-link dog-search" data-bs-toggle="modal" data-bs-target="#filterModal">
-            <i class="fa-solid fa-magnifying-glass fa-lg dog-search-icon"></i>
-          </button>
-        </li> -->
 
       </ul>
 
@@ -118,66 +110,111 @@
       <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title" id="filterModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header justify-content-center">
+          <div class="row w-100">
+
+            <div class="col-12 align-items-center justify-content-end d-flex p-0">
+              <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="col-12 align-items-center justify-content-center d-flex">
+              <h4 class="modal-title" id="filterModalLabel">검색조건 설정</h4>
+            </div>
+
+          </div>
         </div>
 
         <!-- Modal Body -->
         <div class="modal-body">
 
-          <!-- State Filter (도시 필터) -->
-          <div class="input-group">
-            <label class="input-group-text" for="inputGroupSelect01">도시</label>
+          <!-- Time Filter (기간 필터) -->
+          <div class="row">
 
-            <select class="form-select filter-state">
-              <option selected>모든 지역</option>
-              <option value="서울">서울특별시</option>
-              <option value="부산">부산광역시</option>
-              <option value="대구">대구광역시</option>
-              <option value="인천">인천광역시</option>
-              <option value="광주">광주광역시</option>
-              <option value="세종">세종특별자치시</option>
-              <option value="대전">대전광역시</option>
-              <option value="울산">울산광역시</option>
-              <option value="경기">경기도</option>
-              <option value="강원">강원도</option>
-              <option value="충북">충청북도</option>
-              <option value="충남">충청남도</option>
-              <option value="전북">전라북도</option>
-              <option value="전남">전라남도</option>
-              <option value="경북">경상북도</option>
-              <option value="경남">경상남도</option>
-              <option value="제주">제주특별자치도</option>
-            </select>
+            <div class="col-3">
+              <label class="input-group-text align-items-center justify-content-center d-flex" for="inputGroupSelect01">
+                <p class="m-0">기간</p>
+              </label>
+            </div>
+
+            <div id="date-picker-container" class="col-9">
+              <div class="row">
+                <div class="date-picker-start col ps-0"></div>
+                <div class="date-picker-end col ps-0"></div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- City Filter (시군구 필터) -->
-          <div class="input-group">
-            <label class="input-group-text" for="inputGroupSelect01">시군구</label>
+          <!-- State & City Filter (시군구 & 도시 필터) -->
+          <div class="row pt-4">
 
-            <select class="form-select" disabled>
-              <option selected>전체</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <div class="col-3">
+              <label class="input-group-text align-items-center justify-content-center d-flex" for="inputGroupSelect01">
+                <p class="m-0">지역</p>
+              </label>
+            </div>
+
+            <div class="col-9">
+
+              <div class="filter-region-container row ps-0">
+                <select id="city-filter-list-toggle" class="filter-state form-select col" style="padding-right: 12px;">
+                  <option selected value="전체">모든 지역</option>
+                  <option value="서울특별시">서울특별시</option>
+                  <option value="부산광역시">부산광역시</option>
+                  <option value="대구광역시">대구광역시</option>
+                  <option value="인천광역시">인천광역시</option>
+                  <option value="광주광역시">광주광역시</option>
+                  <option value="세종특별자치시">세종특별자치시</option>
+                  <option value="대전광역시">대전광역시</option>
+                  <option value="울산광역시">울산광역시</option>
+                  <option value="경기도">경기도</option>
+                  <option value="강원도">강원도</option>
+                  <option value="충청북도">충청북도</option>
+                  <option value="충청남도">충청남도</option>
+                  <option value="전라북도">전라북도</option>
+                  <option value="전라남도">전라남도</option>
+                  <option value="경상북도">경상북도</option>
+                  <option value="경상남도">경상남도</option>
+                  <option value="제주특별자치도">제주특별자치도</option>
+                </select>
+
+                <div class="region-filter-gap"></div>
+
+                <select id="city-filter-list-before" class="filter-city form-select col" disabled style="padding-right: 12px;">
+                  <option selected value="전체">전체</option>
+                </select>
+
+                <select id="city-filter-list-after" class="filter-city form-select col" style="display: none; padding-right: 12px;">
+                  <option id="city-filter-default" selected value='전체'>전체</option>
+                </select>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- Breed Filter (품종 필터) -->
-          <div class="input-group">
-            <label class="input-group-text" for="inputGroupSelect01">품종</label>
+          <div class="row pt-4">
 
-            <select class="form-select filter-breed">
-            </select>
+            <div class="col-3">
+              <label class="input-group-text align-items-center justify-content-center d-flex" for="inputGroupSelect01">
+                <p class="m-0">품종</p>
+              </label>
+            </div>
+
+            <div class="col-9 ps-0">
+              <select class="filter-breed form-select" style="padding-right: 12px;">
+              </select>
+            </div>
+
           </div>
 
         </div>
 
         <!-- Modal Footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="modal-footer align-items-center justify-content-center d-flex">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn btn-primary">검색하기</button>
         </div>
 
       </div>
@@ -245,6 +282,10 @@
   <script id="template-breed-filter" type="text/template">
     <option value="{key}">{key} ({value} 마리)</option>
   </script>
+
+  <!-- <script id="template-city-filter" type="text/template">
+    <option selected value="전체">전체</option>
+  </script> -->
 
   <!-------------------- MAIN JS -------------------->
   <script src="{{ url_for('static', filename='js/find_dog.js') }}"></script>

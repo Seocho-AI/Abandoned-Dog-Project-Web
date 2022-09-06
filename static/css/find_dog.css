@@ -164,6 +164,12 @@ body {
 /**
  * DOG LIST SECTION
  */
+
+.filter-state>option {
+  margin: 0;
+  padding: 0;
+}
+
 .find-dog-bg {
   background-size: 250px;
   /* background-repeat: repeat; */
@@ -177,6 +183,34 @@ body {
 
 .overlay-dog-list-section .container {
   padding-top: 4rem;
+}
+
+/**
+ * Filter Modal
+ */
+.filter-region-container {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.filter-state,
+.filter-city,
+.filter-breed {
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+}
+
+.region-filter-gap {
+  width: 12px;
+  padding: 0;
+}
+
+select.filter-state,
+select.filter-city,
+select.filter-breed {
+  background-image: none;
 }
 
 /**
@@ -235,6 +269,6 @@ body {
   background-color: #fefaf6 !important;
 }
 
-.paginationjs-pages > ul {
+.paginationjs-pages>ul {
   font-size: 2rem !important;
 }

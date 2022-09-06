@@ -55,12 +55,29 @@ def load_thumbnail():
             "desertionNo": dog_info[6]
         }
         dog_list.append(dog_dict)
-
+    
+    # print(dog_list[0])
     return jsonify(dog_list)
 
 
-@find_dog.route("/filter", methods=["GET"])  # Load filters
-def load_filter():
+@find_dog.route("/filter/breed", methods=["GET"])  # Load filters
+def load_filter_breed():
+    # Fetching filter(breed)
+    sql_breed = "SELECT kindCd, COUNT(*) as count FROM dog_list WHERE processState = '보호중' GROUP BY kindCd ORDER BY kindCd ASC;"
+    cursor.execute(sql_breed)
+    result_breed = cursor.fetchall()
+
+    result_breed_dict = {}
+    for breed_count in result_breed:
+        breed = breed_count[0]
+        count = breed_count[1]
+        result_breed_dict[breed] = count
+
+    return jsonify(result_breed_dict)
+
+
+@find_dog.route("/filter/city", methods=["GET"])  # Load filters
+def load_filter_city():
     # Fetching filter(region)
     sql_region = "SELECT DISTINCT(orgNm) FROM dog_list WHERE processState = '보호중';"
     cursor.execute(sql_region)
@@ -82,18 +99,7 @@ def load_filter():
         else:
             result_region_dict[state].append(city)
 
-    # Fetching filter(breed)
-    sql_breed = "SELECT kindCd, COUNT(*) as count FROM dog_list WHERE processState = '보호중' GROUP BY kindCd ORDER BY kindCd ASC;"
-    cursor.execute(sql_breed)
-    result_breed = cursor.fetchall()
-
-    result_breed_dict = {}
-    for breed_count in result_breed:
-        breed = breed_count[0]
-        count = breed_count[1]
-        result_breed_dict[breed] = count
-
-    return jsonify(result_breed_dict, result_region_dict)
+    return jsonify(result_region_dict)
 
 
 # Retreive dog info based on received desertion No
@@ -109,6 +115,7 @@ def dog_info_page():
         cursor.execute(sql1)
         result1 = cursor.fetchall()
         result_unbox1 = result1[0]
+
 
         breed = result_unbox1[4]
         mix_predict = result_unbox1[21]
@@ -144,6 +151,8 @@ def dog_info_page():
             cursor.execute(sql2)
             result2 = cursor.fetchall()
             result_unbox2 = result2[0]
+    
+
             dog_info["size"] = result_unbox2[3]
             dog_info["origin"] = result_unbox2[4]
             dog_info["usage"] = result_unbox2[5]

@@ -45,6 +45,7 @@ def survey_page():
 @survey.route("/result", methods=["POST"])  # Posing survey result
 def survey_answer():
     user_answer = request.get_json()  # Stores user's survey answer
+    print(user_answer)
     user_answer['user_id'] = '1'
 
     query = 'SELECT * FROM breeds_panel'
