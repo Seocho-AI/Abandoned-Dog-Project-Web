@@ -45,8 +45,25 @@ def survey_page():
 @survey.route("/result", methods=["POST"])  # Posing survey result
 def survey_answer():
     user_answer = request.get_json()  # Stores user's survey answer
-    print(user_answer)
+
+    # Fix dog_experience answer (No experience)
+    if user_answer["dog_experience"] == "없음":
+        dog_experience_fix = {
+            "dog_experience_yn": user_answer["dog_experience"],
+            "dog_num": 0,
+            "dog_time": 0
+        }
+        user_answer["dog_experience"] = dog_experience_fix
+    else:  # Fix dog_experience answer (Currently own & Previously own)
+        dog_experience_fix = {
+            "dog_experience_yn": user_answer["dog_experience"],
+            "dog_num": user_answer["dog_num"],
+            "dog_time": user_answer["dog_time"]
+        }
+        user_answer["dog_experience"] = dog_experience_fix
+
     user_answer['user_id'] = '1'
+    print(user_answer)
 
     query = 'SELECT * FROM breeds_panel'
     breeds_panel = pd.read_sql(sql=query, con=db)
