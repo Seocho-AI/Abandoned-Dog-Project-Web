@@ -38,8 +38,60 @@ def find_dog_page():
 
 @find_dog.route("/list", methods=["GET"])  # Load thumbnails
 def load_thumbnail():
+    filter_params = request.args
 
-    sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
+    ds_select = filter_params.get('ds_select')
+    de_select = filter_params.get('de_select')
+    state_select = filter_params.get('state_select')
+    city_select = filter_params.get('city_select')
+    region_select = f"{state_select} {city_select}"
+    breed_select = filter_params.get('breed_select')
+
+    if ds_select is None:
+        sql = "SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' ORDER BY happenDt DESC;"
+    else:
+        ds_select = "".join(ds_select.split("-"))
+        de_select = "".join(de_select.split("-"))
+
+        sql_start = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' AND happenDt BETWEEN '{ds_select}' AND '{de_select}' "
+        sql_end = "ORDER BY happenDt DESC;"
+        
+        # 시군구: 전체 / 도시: 전체
+        if state_select == "전체":
+
+            # 종: 전체
+            if breed_select == "전체":
+                sql = sql_start + sql_end
+
+            # 종: 선택
+            else:
+                sql = sql_start + f"AND kindCd = '{breed_select}' " + sql_end
+        
+        # 시군구: 선택
+        else:
+
+            # 도시: 전체
+            if city_select == "전체":
+            
+                # 종: 전체
+                if breed_select == "전체":
+                    sql = sql_start + f"AND orgNm LIKE '%{state_select}%' " + sql_end
+            
+                # 종: 선택
+                else:
+                    sql = sql_start + f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{state_select}%' " + sql_end
+            
+            # 도시: 선택
+            else:
+
+                # 종: 전체
+                if breed_select == "전체":
+                    sql = sql_start + f"AND orgNm LIKE '%{region_select}%' " + sql_end
+            
+                # 종: 선택
+                else:
+                    sql = sql_start + f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{region_select}%' " + sql_end
+    
     cursor.execute(sql)
     result = cursor.fetchall()
 
