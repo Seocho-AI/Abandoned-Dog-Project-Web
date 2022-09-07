@@ -1,3 +1,9 @@
+let date = new Date()
+let priorDate = new Date(new Date().setDate(date.getDate() - 90))
+
+let currentDate = date.toISOString().slice(0, 10)
+let threeMonthBefore = priorDate.toISOString().slice(0, 10)
+
 /**
  * Move to Home page
  */
@@ -13,7 +19,15 @@ function moveToHomePage() {
 document.getElementById("abandoned-dog-page-btn").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = "/find_dog" // Move to find dog page
+  // $.ajax({
+  //   type: "GET",
+  //   url: `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체`,
+  //   data: {},
+  //   success: function (response) {
+  //     console.log(response)
+  //   }
+  // })
+  window.location.href = `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
 }
 
 /**

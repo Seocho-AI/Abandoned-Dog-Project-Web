@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from feature_processing import BreedsDataFeatureProcessor
 from sklearn.metrics.pairwise import cosine_similarity
-
+from sklearn.metrics import ndcg_score
 class ContentBasedRecommender():
     """
     A class used to select a target user to provide recommendations.
@@ -73,6 +73,9 @@ class ContentBasedRecommender():
         user_survey_data=pd.Series(self.user_survey_data)
         #print(self.user_survey_data)
 
+
+
+
         self.target_user_id = target_user_id
         self._transform = BreedsDataFeatureProcessor(
             target_user_id=self.target_user_id,
@@ -96,18 +99,20 @@ class ContentBasedRecommender():
         #print(self.user_survey_data.columns, self.breeds_data.columns)
 
         # print(processed_user_data)
+        # print(processed_dog_list.isnull())
 
         # print(processed_dog_list[processed_dog_list.isnull()==True])
         # print(processed_dog_list)
-        processed_dog_list = processed_dog_list.fillna(0) # null값 예외처리 해야함 8/27
-        processed_dog_list['sexCd'] = processed_dog_list.loc[:, 'sexCd'].astype(dtype='int64')
+        # processed_dog_list = processed_dog_list.fillna(3) # null값 예외처리 해야함 8/27
+        processed_dog_list = processed_dog_list.dropna() # null값 예외처리 해야함 8/27
+        #processed_dog_list['sexCd'] = processed_dog_list.loc[:, 'sexCd'].astype(dtype='int64')
 
         # print(len(self.dog_list_data))
         #print(processed_dog_list.isnull())
         # print(processed_user_data.columns)
-        # print(processed_user_data.T.head())
+        # print(processed_user_data.T)
         # print(processed_dog_list.columns)
-        # print(processed_dog_list.head())
+        print(processed_dog_list.head())
         processed_user_data = processed_user_data.T.set_index('user_id')
         processed_dog_list = processed_dog_list.set_index('desertionNo')
         # print(processed_user_data.head())
@@ -125,12 +130,15 @@ class ContentBasedRecommender():
         self._breed_rec_scores=self._breed_rec_scores.argsort()[:, ::-1]
         # print("user_id=", processed_user_data['user_id'])
         #print(processed_dog_list.columns)
+        top_n = len(self.processed_dog_list)
         self.recommendations = self.find_sim_breeds(user_survey_data=self.processed_user_data,
                                                     dog_list=self.dog_list_data,
                                                     sim_df=self._breed_rec_scores,
-                                                    top_n=10) # 전체: len(self.dog_list_data)
+                                                    top_n=top_n) # 전체: len(self.dog_list_data)
+        # print(self.recommendations)
+        # print(self.NDCG(self.processed_user_data, self.recommendations['desertionNo']))
 
-        return list(self.recommendations['desertionNo']), sorted_scores
+        return list(self.recommendations['desertionNo']), sorted_scores[:top_n]
 
     def find_sim_breeds(self, user_survey_data, dog_list, sim_df, target_user_id=None, top_n=10):
         # user_survey_data.reset_index(inplace=True)
@@ -158,4 +166,26 @@ class ContentBasedRecommender():
     #     """
     #
     #     return list(self.recommendations.index)
+    # Normalized Discount Cumulative Gain
+    def NDCG(self, user, recBreeds):
+        print("NDCG: ")
+        print(user.columns)
+        print(self.processed_dog_list.columns)
+        print(recBreeds)
+        for idx in recBreeds:
+            print(idx)
+            print(ndcg_score(user, self.processed_dog_list[self.processed_dog_list.index == idx]))
 
+    def get_processed_user_data(self):
+        return self.processed_user_data.to_dict()
+
+    def get_processed_dog_data(self):
+
+        dicted_dog_list = self.processed_dog_list.T.to_dict()
+        #print(dicted_dog_list)
+        lst=[{key:val} for key, val in dicted_dog_list.items()]
+        # for desertionNo in list(self.recommendations['desertionNo']):
+        #     lst.append(self.processed_dog_list[self.processed_dog_list['desertionNo'] == desertionNo].to_dict())
+
+        return lst
+        # return lst

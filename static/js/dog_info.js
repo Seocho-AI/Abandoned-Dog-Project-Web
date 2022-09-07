@@ -23,7 +23,7 @@ function moveToHomePage() {
 document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = "/find_dog" // Move to page
+  window.location.href = `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
 }
 
 /**
@@ -160,41 +160,34 @@ $(function () {
 }); //ready end
 
 /**
- * Load dog info based on desertionNo from DB
+ * Filter button submit => Find Dog page
  */
-// $.ajax({
-//   type: "GET",
-//   url: "/find_dog/dog_info",
-//   data: {},
-//   success: function (response) {
-//     console.log(response)
+function filterSearch() {
+  let date_start = document.getElementById("datePickerStart");
+  let date_start_selected = date_start.value;
 
-//     let template_dog_post = document.querySelector("#template-dog-post").innerHTML
-//     let res = ""
-//     res += template_dog_post
-//       .replace("{popfile}", `"${response["popfile"]}"`)
-//       .replace("{kindCd}", response["kindCd"])
-//       .replace("{kindCd}", response["kindCd"])
-//       .replace("{sexCd}", response["sexCd"])
-//       .replace("{age}", response["age"])
-//       .replace("{neuterYn}", response["neuterYn"])
-//       .replace("{colorCd}", response["colorCd"])
-//       .replace("{weight}", response["weight"])
-//       .replace("{noticeNo}", response["noticeNo"])
-//       .replace("{noticeSdt}", response["noticeSdt"])
-//       .replace("{noticeEdt}", response["noticeEdt"])
-//       .replace("{happenPlace}", response["happenPlace"])
+  let date_end = document.getElementById("datePickerEnd");
+  let date_end_selected = date_end.value;
 
-//       .replace("{describe}", response["describe"])
-//       .replace("{specialMark}", response["specialMark"])
-//       .replace("{careNm}", response["careNm"])
-//       .replace("{careTel}", response["careTel"])
-//       .replace("{orgNm}", response["orgNm"])
-//       .replace("{officetel}", response["officetel"])
+  let state = document.getElementById("city-filter-list-toggle");
+  let state_selected = state.options[state.selectedIndex].value;
 
-//     document.querySelector(".dog-post-container").innerHTML = res
-//   }
-// })
+  let city = document.getElementById("city-filter-list-after");
+  let city_selected = city.options[city.selectedIndex].value;
+
+  let breed = document.getElementById("filter-breed");
+  let breed_selected = breed.options[breed.selectedIndex].value;
+
+  window.location.href = `/find_dog?ds=${date_start_selected}&de=${date_end_selected}&state=${state_selected}&city=${city_selected}&breed=${breed_selected}`
+}
+
+/**
+ * Move to Dog posts page
+ */
+function moveToDogPosts(item) {
+  let desertionNo = $(item).attr("id")
+  window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
+}
 
 /**
  * AOS JS Initiation

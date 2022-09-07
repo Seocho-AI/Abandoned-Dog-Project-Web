@@ -89,7 +89,7 @@
 
         <!-- LINK to FIND DOG SECTION -->
         <li class="nav-item ms-2">
-          <a class="nav-link active" href="#find-dog-section">유기견</a>
+          <a class="nav-link active" href="#find-dog-section" onclick="moveToAbandonedDogPage()">유기견</a>
         </li>
 
         <!-- LINK to SURVEY SECTION -->
@@ -185,7 +185,7 @@
                 </select>
 
                 <select id="city-filter-list-after" class="filter-city form-select col" name="city-filter-list-after" style="display: none; padding-right: 12px;">
-                  <option id="city-filter-default" selected value='전체'>전체</option>
+                  <option id="city-filter-default" selected value="전체">전체</option>
                 </select>
               </div>
 
@@ -204,6 +204,7 @@
 
             <div class="col-9 ps-0">
               <select id="filter-breed" class="filter-breed form-select" name="filter-breed" style="padding-right: 12px;">
+                <!-- <option selected value="전체">전체</option> -->
               </select>
             </div>
 
@@ -229,6 +230,9 @@
 
         <div class="dog-list row gy-5" id="data-container"></div>
         <div id="pagination"></div>
+        <div class="footer-container h-100%">
+          <p class="m-0 p-0 bg-transparent align-items-center justify-content-center d-flex">. . .</p>
+        </div>
 
       </div>
     </div>
@@ -282,6 +286,49 @@
   <script id="template-breed-filter" type="text/template">
     <option value="{key}">{key} ({value} 마리)</option>
   </script>
+
+  
+  <script type="text/javascript">
+    /**
+    * DB에서 현재 보호중인 유기견들 불러오기
+    */
+    let abandonedDogList = {{response|safe}}
+    console.log(abandonedDogList)
+
+    let container = $('#pagination');
+    container.pagination({
+      dataSource: abandonedDogList,
+      pageSize: 48,
+      autoHidePrevious: true,
+      autoHideNext: true,
+      pageRange: 1,
+      className: 'paginationjs-theme-blue paginationjs-big',
+      callback: function (abandonedDogList, pagination) {
+        // template method of yourself
+        let template_dog_list = document.querySelector("#template-dog-list").innerHTML
+        let res = ""
+        for (i = 0; i < abandonedDogList.length; i++) {
+          let dogSex;
+          if (abandonedDogList[i].sexCd == "M") {
+            dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
+          } else {
+            dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
+          }
+          res += template_dog_list
+            .replace("{popfile}", abandonedDogList[i].popfile)
+            .replace("{kindCd}", abandonedDogList[i].kindCd)
+            // .replace("{sexCd}", abandonedDogList[i].sexCd)
+            .replace("{sexCd}", dogSex)
+            .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
+            .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+            .replace("{processState}", abandonedDogList[i].processState)
+            .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+        }
+        document.querySelector(".dog-list").innerHTML = res
+      }
+    })
+  </script>
+
 
   <!-- <script id="template-city-filter" type="text/template">
     <option selected value="전체">전체</option>

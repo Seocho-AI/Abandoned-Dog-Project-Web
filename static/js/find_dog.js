@@ -23,7 +23,7 @@ function moveToHomePage() {
 document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = "/find_dog" // Move to page
+  window.location.href = `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
 }
 
 /**
@@ -44,147 +44,6 @@ $(function () {
     $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.outerHeight());
   });
 });
-
-/**
- * DB에서 현재 보호중인 유기견들 불러오기
- */
-$.ajax({
-  type: "GET",
-  url: "/find_dog/list",
-  data: {},
-  async: false,
-  success: function (response) {
-    /**
-     * Load abandoned dogs thumbnails to find_dog page
-     */
-    let abandonedDogList = response
-    console.log(abandonedDogList)
-
-    let container = $('#pagination');
-    container.pagination({
-      dataSource: abandonedDogList,
-      pageSize: 48,
-      autoHidePrevious: true,
-      autoHideNext: true,
-      pageRange: 1,
-      className: 'paginationjs-theme-blue paginationjs-big',
-      callback: function (abandonedDogList, pagination) {
-        // template method of yourself
-        let template_dog_list = document.querySelector("#template-dog-list").innerHTML
-        let res = ""
-        for (i = 0; i < abandonedDogList.length; i++) {
-          let dogSex;
-          if (abandonedDogList[i].sexCd == "M") {
-            dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
-          } else {
-            dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
-          }
-          res += template_dog_list
-            .replace("{popfile}", abandonedDogList[i].popfile)
-            .replace("{kindCd}", abandonedDogList[i].kindCd)
-            // .replace("{sexCd}", abandonedDogList[i].sexCd)
-            .replace("{sexCd}", dogSex)
-            .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
-            .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-            .replace("{processState}", abandonedDogList[i].processState)
-            .replace("{desertionNo}", abandonedDogList[i].desertionNo)
-        }
-        document.querySelector(".dog-list").innerHTML = res
-      }
-    })
-  }
-})
-
-
-// let container = $('#pagination');
-// container.pagination({
-//   dataSource: function (abandonedDogList) {
-//     $.ajax({
-//       type: "GET",
-//       url: "/find_dog/list",
-//       data: {},
-//       success: function (response) {
-//         console.log(response)
-//         abandonedDogList(response);
-//       }
-//     });
-//   },
-//   pageNumber: 1,
-//   pageSize: 48,
-//   autoHidePrevious: true,
-//   autoHideNext: true,
-//   pageRange: 1,
-//   className: 'paginationjs-theme-blue paginationjs-big',
-//   callback: function (abandonedDogList, pagination) {
-//     // template method of yourself
-//     let template_dog_list = document.querySelector("#template-dog-list").innerHTML
-//     let res = ""
-//     for (i = 0; i < abandonedDogList.length; i++) {
-//       let dogSex;
-//       if (abandonedDogList[i].sexCd == "M") {
-//         dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
-//       } else {
-//         dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
-//       }
-//       res += template_dog_list
-//         .replace("{popfile}", abandonedDogList[i].popfile)
-//         .replace("{kindCd}", abandonedDogList[i].kindCd)
-//         // .replace("{sexCd}", abandonedDogList[i].sexCd)
-//         .replace("{sexCd}", dogSex)
-//         .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
-//         .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-//         .replace("{processState}", abandonedDogList[i].processState)
-//         .replace("{desertionNo}", abandonedDogList[i].desertionNo)
-//     }
-//     document.querySelector(".dog-list").innerHTML = res
-//   }
-// })
-
-/**
- * Load 10 abandoned dogs thumbnails when bottom of page reached
- */
-// $(window).scroll(function () {
-//   if (($(window).scrollTop() == $(document).height() - $(window).height()) && (abandonedDogList.length !== 0)) {
-//     let dog_list_template = document.querySelector("#template-dog-list").innerHTML
-//     let res = ""
-//     for (i = 0; i < 10 % abandonedDogList.length; i++) {
-//       res += dog_list_template
-//         .replace("{popfile}", abandonedDogList[0].popfile)
-//         .replace("{kindCd}", abandonedDogList[0].kindCd)
-//         .replace("{sexCd}", abandonedDogList[0].sexCd)
-//         .replace("{happenDt}", abandonedDogList[0].happenDt)
-//         .replace("{noticeNo}", abandonedDogList[0].noticeNo)
-//         .replace("{processState}", abandonedDogList[0].processState)
-//       abandonedDogList.shift()
-//     }
-
-//     document.querySelector(".dog-list").insertAdjacentHTML('beforeend', res)
-//     console.log(abandonedDogList)
-//   }
-// });
-
-/**
- * Load abandoned dogs filter features from DB
- */
-$.ajax({
-  type: "GET",
-  url: "/find_dog/filter/breed",
-  data: {},
-  success: function (response) {
-    let breed_count = response
-
-    let template_breed_filter = document.querySelector("#template-breed-filter").innerHTML
-    let res = "<option selected>전체</option>"
-    Object.keys(breed_count).forEach(function (key) {
-      res += template_breed_filter
-        .replace("{key}", key)
-        .replace("{key}", key)
-        .replace("{value}", breed_count[key])
-    })
-
-    document.querySelector(".filter-breed").innerHTML = res
-  }
-})
 
 /**
  * Filter change
@@ -215,6 +74,25 @@ $('#city-filter-list-toggle').on('change', function () {
     $("#city-filter-list-after").hide()
   }
 });
+
+/**
+ * Load abandoned dogs filter features from DB <option value="{key}">{key} ({value} 마리)</option>
+ */
+$.ajax({
+  type: "GET",
+  url: "/find_dog/filter/breed",
+  data: {},
+  success: function (response) {
+    let breeds_list = response
+    // console.log(breeds_list)
+
+    $('#filter-breed').empty()
+    $('#filter-breed').append("<option selected value='전체'>전체</option>")
+    for (breeds of breeds_list) {
+      $('#filter-breed').append(`<option value="${breeds[0]}">${breeds[0]}</option>`)
+    }
+  }
+})
 
 /**
  * Filter Time
@@ -283,18 +161,6 @@ $(function () {
 function moveToDogPosts(item) {
   let desertionNo = $(item).attr("id")
   window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
-
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/find_dog/dog_info/dog_post",
-  //   data: {
-  //     desertionNo
-  //   },
-  //   async: false,
-  //   success: function (response) {
-  //     console.log(response)
-  //   }
-  // })
 }
 
 /**
@@ -302,74 +168,21 @@ function moveToDogPosts(item) {
  */
 function filterSearch() {
   let date_start = document.getElementById("datePickerStart");
-  var date_start_selected = date_start.value;
-  
-  let date_end = document.getElementById("datePickerEnd");
-  var date_end_selected = date_end.value;
-  
-  let state = document.getElementById("city-filter-list-toggle");
-  var state_selected = state.options[state.selectedIndex].value;
-  
-  let city = document.getElementById("city-filter-list-after");
-  var city_selected = city.options[city.selectedIndex].value;
-  
-  let breed = document.getElementById("filter-breed");
-  var breed_selected = breed.options[breed.selectedIndex].value;
-  
-  console.log(date_start_selected, date_end_selected, state_selected, city_selected, breed_selected)
+  let date_start_selected = date_start.value;
 
-  $.ajax({
-    type: "GET",
-    url: "/find_dog/list",
-    data: {
-      "ds_select": date_start_selected,
-      "de_select": date_end_selected,
-      "state_select": state_selected,
-      "city_select": city_selected,
-      "breed_select": breed_selected
-    },
-    async: false,
-    success: function (response) {
-      /**
-       * Load abandoned dogs thumbnails to find_dog page
-       */
-      let abandonedDogList = response
-      console.log(abandonedDogList)
-  
-      // let container = $('#pagination');
-      // container.pagination({
-      //   dataSource: abandonedDogList,
-      //   pageSize: 48,
-      //   autoHidePrevious: true,
-      //   autoHideNext: true,
-      //   pageRange: 1,
-      //   className: 'paginationjs-theme-blue paginationjs-big',
-      //   callback: function (abandonedDogList, pagination) {
-      //     // template method of yourself
-      //     let template_dog_list = document.querySelector("#template-dog-list").innerHTML
-      //     let res = ""
-      //     for (i = 0; i < abandonedDogList.length; i++) {
-      //       let dogSex;
-      //       if (abandonedDogList[i].sexCd == "M") {
-      //         dogSex = "<i class='fa-solid fa-mars fa-lg' style='color:#04A2F5'></i>"
-      //       } else {
-      //         dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
-      //       }
-      //       res += template_dog_list
-      //         .replace("{popfile}", abandonedDogList[i].popfile)
-      //         .replace("{kindCd}", abandonedDogList[i].kindCd)
-      //         // .replace("{sexCd}", abandonedDogList[i].sexCd)
-      //         .replace("{sexCd}", dogSex)
-      //         .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
-      //         .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-      //         .replace("{processState}", abandonedDogList[i].processState)
-      //         .replace("{desertionNo}", abandonedDogList[i].desertionNo)
-      //     }
-      //     document.querySelector(".dog-list").innerHTML = res
-      //   }
-      // })
-    }
-  })
+  let date_end = document.getElementById("datePickerEnd");
+  let date_end_selected = date_end.value;
+
+  let state = document.getElementById("city-filter-list-toggle");
+  let state_selected = state.options[state.selectedIndex].value;
+
+  let city = document.getElementById("city-filter-list-after");
+  let city_selected = city.options[city.selectedIndex].value;
+
+  let breed = document.getElementById("filter-breed");
+  let breed_selected = breed.options[breed.selectedIndex].value;
+
+  window.location.href = `/find_dog?ds=${date_start_selected}&de=${date_end_selected}&state=${state_selected}&city=${city_selected}&breed=${breed_selected}`
 }
 
 /**

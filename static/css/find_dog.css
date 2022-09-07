@@ -241,6 +241,9 @@ select.filter-breed {
 /**
  * Pagination
  */
+#pagination {
+  background-color: #9398B5;
+}
 .paginationjs {
   display: flex;
   align-items: center;
@@ -271,4 +274,12 @@ select.filter-breed {
 
 .paginationjs-pages>ul {
   font-size: 2rem !important;
+}
+
+/**
+ * Footer container
+ */
+.footer-container {
+  background-color: #9398B5;
+  color: #9398B5;
 }
