@@ -3,6 +3,7 @@ import pickle
 from flask import Blueprint, render_template, request, jsonify
 import pandas as pd
 import pymysql
+# from cb_recommender import ContentBasedRecommender
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -22,8 +23,8 @@ today_year = today[:4]  # 이번년도
 # ------------------- SURVEY PREDICT MODEL ------------------- #
 
 
-with open('survey_model/content_based_recommender.pkl', 'rb') as f:
-    model = pickle.load(f)  # 단 한줄씩 읽어옴
+# with open('content_based_recommender.pkl', 'rb') as f:
+#     model = pickle.load(f)  # 단 한줄씩 읽어옴
 
 
 # ------------------- SURVEY PAGE API ------------------- #
@@ -104,25 +105,24 @@ def survey_answer():
         }
 
         recommender = ContentBasedRecommender(breeds_panel=breeds_panel,
-                                                target_user_survey=user_survey_data,
+                                                target_user_survey=user_answer,
                                                 adopter_data=adopter_data,
                                                 dog_list_data=dog_list_data,
                                                 breed_info=breed_info)
 
-        recommender.fit_transform(target_user_survey=user_survey_data)
+        recommender.fit_transform(target_user_survey=user_answer)
         with open(file='content_based_recommender.pkl', mode='wb') as f:
             pickle.dump(recommender, f)
         recommended_dogs, recommended_scores = recommender.predict(
-            user_survey_data=user_survey_data)
+            user_survey_data=user_answer)
 
-        print(recommended_dogs)
-        print(recommended_scores)
-        print(recommender.get_processed_user_data())
-        print(recommender.get_processed_dog_data())
+        # print(recommended_dogs)
+        # print(recommended_scores)
+        # print(recommender.get_processed_user_data())
+        # print(recommender.get_processed_dog_data())
 
-        # return user_answer
-        # print(model.predict(user_survey_data=user_answer))
-        return jsonify(model.predict(user_survey_data=user_answer))
+        return jsonify(recommender.get_processed_dog_data())
+        # return jsonify(model.predict(user_survey_data=user_answer))
 
     except Exception as e:
         print("/survey/result ERROR")

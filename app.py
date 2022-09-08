@@ -1,29 +1,23 @@
 from datetime import datetime, timedelta
 from flask import Flask, render_template
 import pymysql
-from api_to_db import db_insert_dog, db_update_dog
-from dog_statistics import dog_statistics
-from find_dog import find_dog
-from dog_posts import dog_posts
-from survey import survey
+# from api_to_db import db_insert_dog, db_update_dog
+from blueprints.dog_statistics import dog_statistics
+from blueprints.find_dog import find_dog
+from blueprints.dog_posts import dog_posts
+from blueprints.filter_search import filter_search
+from blueprints.survey import survey
 
 
-# ------------------- Connect Flask and PyMySQL ------------------- #
+# ------------------- Flask Blueprint ------------------- #
 
 
 app = Flask(__name__)
 app.register_blueprint(dog_statistics, url_prefix="/")
 app.register_blueprint(find_dog, url_prefix="/find_dog")
-app.register_blueprint(dog_posts, url_prefix="/dog_posts")
+app.register_blueprint(dog_posts, url_prefix="/find_dog")
+app.register_blueprint(filter_search, url_prefix="/find_dog")
 app.register_blueprint(survey, url_prefix="/survey")
-db = pymysql.connect(
-    host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
-    port=3306,
-    user='kaist',
-    passwd='0916',
-    db='abandoned_dog',
-    charset="utf8")
-cursor = db.cursor()
 
 
 # ------------------- GETTING TODAY'S YEAR/MONTH/DATE ------------------- #
