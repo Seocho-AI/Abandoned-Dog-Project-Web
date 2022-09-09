@@ -64,9 +64,9 @@ def get_statistics():
 
         return jsonify(rescued_today, adopt_in_year, death_in_year, protect_in_year)
 
-    except Exception as e:
-        print("/dog_statistics ERROR")
-        print(e)
+    # except Exception as e:
+    #     print("/dog_statistics ERROR")
+    #     print(e)
 
     finally:
         cursor.close()

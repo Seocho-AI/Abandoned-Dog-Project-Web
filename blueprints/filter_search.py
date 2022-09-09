@@ -8,7 +8,8 @@ import ast
 # ------------------- Flask Blueprint ------------------- #
 
 
-filter_search = Blueprint("filter_search", __name__, template_folder="templates")
+filter_search = Blueprint("filter_search", __name__,
+                          template_folder="templates")
 
 
 # ------------------- GETTING TODAY'S YEAR/MONTH/DATE ------------------- #
@@ -29,28 +30,27 @@ today_year = today[:4]  # 이번년도
 def load_filter_breed():
     try:
         db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
-                     port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
+                             port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
         cursor = db.cursor()
         # Fetching filter(breed)
-        sql_breed = "SELECT DISTINCT(kindCd) FROM dog_list WHERE processState = '보호중' ORDER BY kindCd ASC;"
+        sql_breed = "SELECT kindCd, COUNT(*) as count FROM dog_list WHERE processState = '보호중' GROUP BY kindCd ORDER BY kindCd ASC;"
         cursor.execute(sql_breed)
         result_breed = cursor.fetchall()
-        # print(result_breed[0])
-        # breed_list = []
-        # for breeds in result_breed:
-        #     print(breeds[0])
-        #     result_breed_dict = {}
-        #     breed = breed_count[0]
-        #     count = breed_count[1]
-        #     result_breed_dict["breed"] = breed
-        #     result_breed_dict["count"] = count
-        #     breed_list.append(result_breed_dict)
 
-        return jsonify(result_breed)
+        breed_list = []
+        for breed_count in result_breed:
+            result_breed_dict = {}
+            breed = breed_count[0]
+            count = breed_count[1]
+            result_breed_dict["breed"] = breed
+            result_breed_dict["count"] = count
+            breed_list.append(result_breed_dict)
 
-    except Exception as e:
-        print("find_dog/filter/breed ERROR")
-        print(e)
+        return jsonify(breed_list)
+
+    # except Exception as e:
+    #     print("find_dog/filter/breed ERROR")
+    #     print(e)
 
     finally:
         cursor.close()
@@ -61,7 +61,7 @@ def load_filter_breed():
 def load_filter_city():
     try:
         db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
-                        port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
+                             port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
         cursor = db.cursor()
 
         # Fetching filter(region)
@@ -87,9 +87,9 @@ def load_filter_city():
 
         return jsonify(result_region_dict)
 
-    except Exception as e:
-        print("/find_dog/filter/city ERROR")
-        print(e)
+    # except Exception as e:
+    #     print("/find_dog/filter/city ERROR")
+    #     print(e)
 
     finally:
         cursor.close()

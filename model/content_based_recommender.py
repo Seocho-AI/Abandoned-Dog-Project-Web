@@ -53,6 +53,7 @@ class ContentBasedRecommender():
         self.adopter_data = adopter_data
         self.dog_list_data = dog_list_data
         self.breed_info = breed_info
+        self.recommendations = []
 
     def fit(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info):
         self.breeds_panel = breeds_panel
@@ -126,6 +127,9 @@ class ContentBasedRecommender():
     def predict(self, user_survey_data):
         # print("before", self.processed_dog_list)
         # self._breed_rec_scores = cosine_similarity(self.user_survey_data, self.breeds_data).argsort()[:, ::-1]
+        if len(self.processed_dog_list) == 0:
+            print("해당 품종이 없습니다.")
+            return [], []
         self._breed_rec_scores = cosine_similarity(self.processed_user_data, self.processed_dog_list)
 
         sorted_scores = sorted(self._breed_rec_scores[0], reverse=True)
@@ -187,6 +191,11 @@ class ContentBasedRecommender():
     def get_processed_dog_data(self):
         # print(self.processed_dog_list.index)
         # print(self.recommendations.index)
+        # print(type(self.recommendations))
+        # print(self.recommendations)
+        if len(self.recommendations) == 0:
+            return []
+
         processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(self.recommendations.index)]
         dicted_dog_list = processed_dog_data.T.to_dict()
         #print(dicted_dog_list)

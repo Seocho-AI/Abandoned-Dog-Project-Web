@@ -50,28 +50,28 @@ try:
     #user_survey_data = {key: 3 for key in survey_lst}
 
     user_survey_data={
-        'user_age': '50대',
+        'user_age': '40대',
         'user_sex': '여성',
-        'user_house_type': '단독주택',
+        'user_house_type': '아파트',
         'dog_experience': {
             'dog_experience_yn': '강아지를 키우고 있다',
-            'dog_num': 6,
-            'dog_time': 9
+            'dog_num': 3,
+            'dog_time': 3
         },
-        'dog_num': 6,
-        'dog_time': 9,
-        'user_family_size': '5인 이상',
-        'neighbor_agreement': '아니오',
-        'user_kids': '아니오',
-        'dog_size': '중형견',
-        'shedding_level': 8,
-        'bark_tolerance': 3,
+        'dog_num': 3,
+        'dog_time': 3,
+        'user_family_size': '3인',
+        'neighbor_agreement': '예',
+        'user_kids': '예',
+        'dog_size': '대형견',
+        'shedding_level': 5,
+        'bark_tolerance': 5,
         'spend_time': '적절한 : 6 ~ 10 시간',
         'spend_type': '실외 활동',
-        'dog_sex': '상관 없음',
-        'dog_environment': '실내외 둘 다',
+        'dog_sex': '암컷',
+        'dog_environment': '실외',
         'dog_support_agreement': '아니오',
-        'dog_health_agreement': '예',
+        'dog_health_agreement': '아니오',
         'want_dog_age': '자견(생후 2년 이하)',
         'neuter_yn': 'Y',
         'user_id': '1'
@@ -91,11 +91,10 @@ try:
     recommender.fit_transform(target_user_survey=user_survey_data)
     with open(file='content_based_recommender.pkl', mode='wb') as f:
         pickle.dump(recommender, f)
-    recommended_dogs, recommended_scores = recommender.predict(user_survey_data=user_survey_data)
+    recommender.predict(user_survey_data=user_survey_data)
     # for no in recommended_dogs:
     #     print(dog_list_data.loc[dog_list_data['desertionNo'] == no, :])
-    print(recommended_dogs)
-    print(recommended_scores)
+
     print(recommender.get_processed_user_data())
     print(recommender.get_processed_dog_data())
 

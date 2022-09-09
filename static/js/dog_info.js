@@ -46,25 +46,21 @@ $(function () {
 });
 
 /**
- * Load abandoned dogs filter features from DB
+ * Load abandoned dogs filter features from DB <option value="{key}">{key} ({value} 마리)</option>
  */
 $.ajax({
   type: "GET",
   url: "/find_dog/filter/breed",
   data: {},
   success: function (response) {
-    let breed_count = response
+    let breeds_list = response
+    console.log(breeds_list)
 
-    let template_breed_filter = document.querySelector("#template-breed-filter").innerHTML
-    let res = "<option selected>전체</option>"
-    Object.keys(breed_count).forEach(function (key) {
-      res += template_breed_filter
-        .replace("{key}", key)
-        .replace("{key}", key)
-        .replace("{value}", breed_count[key])
-    })
-
-    document.querySelector(".filter-breed").innerHTML = res
+    $('#filter-breed').empty()
+    $('#filter-breed').append("<option selected value='전체'>전체</option>")
+    for (breeds of breeds_list) {
+      $('#filter-breed').append(`<option value="${breeds["breed"]}">${breeds["breed"]} (${breeds["count"]} 마리)</option>`)
+    }
   }
 })
 

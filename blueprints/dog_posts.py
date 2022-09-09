@@ -90,9 +90,9 @@ def dog_info_page():
 
             return render_template("dog_info.html", dog_info=dog_info)
 
-    except Exception as e:
-        print("/find_dog/dog_info ERROR")
-        print(e)
+    # except Exception as e:
+    #     print("/find_dog/dog_info ERROR")
+    #     print(e)
 
     finally:
         cursor.close()

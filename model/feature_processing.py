@@ -517,8 +517,15 @@ class BreedsDataFeatureProcessor():
         #         dog_list_data[key] = self.panel_info[self.panel_info['breed']==]
         # print(type(dog_list_data))
         # print(type(panel))
+
+        dog_list_data = dog_list_data.dropna()
+        # print(dog_list_data)
+        if len(dog_list_data) == 0:
+            return dog_list_data
         for i in dog_list_data['desertionNo'].values:
+
             breed_kr = dog_list_data.loc[dog_list_data['desertionNo'] == i, 'kindCd'].values[0]
+
             if breed_kr=='믹스견':
                 breed_kr = self.breed_info.loc[dog_list_data['mixPredict'][0] == self.breed_info['breed_name_kr']]
             # print(breed_kr)

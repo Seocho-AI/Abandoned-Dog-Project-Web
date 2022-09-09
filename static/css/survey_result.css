@@ -112,8 +112,11 @@ body {
 }
 
 /**
- * SURVEY PAGE SECTION
+ * SURVEY RESULT SECTION
  */
+/* .survey-result-container {
+  padding-top: 72px;
+} */
 .survey-section,
 .survey-bg {
   background-size: 250px;

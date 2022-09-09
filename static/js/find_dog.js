@@ -84,12 +84,12 @@ $.ajax({
   data: {},
   success: function (response) {
     let breeds_list = response
-    // console.log(breeds_list)
+    console.log(breeds_list)
 
     $('#filter-breed').empty()
     $('#filter-breed').append("<option selected value='전체'>전체</option>")
     for (breeds of breeds_list) {
-      $('#filter-breed').append(`<option value="${breeds[0]}">${breeds[0]}</option>`)
+      $('#filter-breed').append(`<option value="${breeds["breed"]}">${breeds["breed"]} (${breeds["count"]} 마리)</option>`)
     }
   }
 })

@@ -89,9 +89,9 @@ def find_dog_page():
         # return render_template("find_dog.html", response=json.dumps(dog_list))
         return render_template("find_dog.html", response=json.dumps(dog_list))
 
-    except Exception as e:
-        print("/find_dog ERROR")
-        print(e)
+    # except Exception as e:
+    #     print("/find_dog ERROR")
+    #     print(e)
 
     finally:
         cursor.close()
