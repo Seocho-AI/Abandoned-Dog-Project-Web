@@ -109,24 +109,46 @@ def survey_answer():
         dog_data = recommender.get_processed_dog_data()
         dog_data_dict = {}
         for dog_dict in dog_data:
-            dog_data_dict[list(dog_dict.keys())[0]] = dog_dict[list(dog_dict.keys())[0]]
+            dog_data_dict[list(dog_dict.keys())[0]
+                          ] = dog_dict[list(dog_dict.keys())[0]]
 
-        # len(recommended_dogs) : 공고번호의 수 (Int) 
-        # recommended_dogs : 내림차순 정렬된 공고번호 (List) 
+        # len(recommended_dogs) : 공고번호의 수 (Int)
+        # recommended_dogs : 내림차순 정렬된 공고번호 (List)
         # recommended_scores : 각 유사도 스코어 Percentage (List)
         # survey_to_data : 유저 설문조사 수치로 바꾼 딕셔너리 (Dict)
         # dog_data : recommended_dogs의 공고번호의 개들 수치화 (List[Dict])
 
         ranking_order = []
         for i in range(len(recommended_dogs)):
+            sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE desertionNo = '{recommended_dogs[i]}';"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+
+            for dog_info in result:
+                popfile = dog_info[0]
+                kindCd = dog_info[1]
+                sexCd = dog_info[2]
+                happenDt = dog_info[3][:4] + "/" + \
+                    dog_info[3][4:6] + "/" + dog_info[3][6:]
+                noticeNo = dog_info[4].replace("-", " ")[:5]
+                processState = dog_info[5]
+
             survey_res = {
-                "des_no" : recommended_dogs[i],
-                "rec_score" : recommended_scores[i],
-                "trait_score" : dog_data_dict[recommended_dogs[i]]
+                "des_no": recommended_dogs[i],  # Desertion No
+                # Recommend Score (Percentage)
+                "rec_score": "{:.2%}".format(recommended_scores[i]),
+                # Panel data trait
+                "trait_score": dog_data_dict[recommended_dogs[i]],
+                "popfile": popfile,
+                "kindCd": kindCd,
+                "sexCd": sexCd,
+                "happenDt": happenDt,
+                "noticeNo": noticeNo,
+                "processState": processState
             }
             ranking_order.append(survey_res)
-        
-        return render_template("survey_result.html", ranking_order = ranking_order)
+
+        return render_template("survey_result.html", ranking_order=ranking_order)
         # return jsonify(survey_results)
 
     # except Exception as e:

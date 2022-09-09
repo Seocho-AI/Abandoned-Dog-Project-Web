@@ -133,85 +133,8 @@ body {
 }
 
 /**
- * SURVEY CUSTOMIZATION
+ * Carousel
  */
-
-/* Survey Body */
-.sd-root-modern {
-  background-color: #90c9c2;
-}
-.sd-body {
-  background-color: #90c9c2;
-  /* background-color: #FFFFFF; */
-}
-.sd-root-modern:not(.svc-tab-designer) .sd-container-modern__title {
-  background-color: #fefaf6;
-}
-
-/* Survey Title Container */
-.sd-title.sd-container-modern__title {
-  border: 2px solid #19B394;
-  border-radius: 1rem;
-  box-shadow: none !important;
-  text-align: center;
-}
-
-/* Survey Title Header */
-.sd-header__text h3 {
-  color: #19B394 !important;
-}
-
-/* Survey Question Title Container */
-.sd-question--html {
-  border: 2px solid #19B394 !important;
-  /* border-left: 1px solid lightgray !important; */
-}
-
-/* Survey Question Container */
-.sd-row__question {
-  border: 1px solid lightgray;
-  border-radius: 1rem !important;
-  border-left: 4px solid #19B394;
-  /* border-right: 4px solid #19B394; */
-  padding-top: 2rem !important;
-  padding-right: 2rem !important;
-  padding-bottom: 2rem !important;
-  padding-left: 2rem !important;
-  background-color: #fefaf6;
-  /* text-align: center; */
-}
-.svc-logic-question-value, .sd-element--with-frame:not(.sd-element--collapsed) {
-  background: #fefaf6;
-}
-.sd-row--multiple>div>.sd-question {
-  padding-right: 2rem !important;
-}
-.sd-page__row {
-  padding-left: 0 !important;
-}
-
-/* Dog experience visible on click container */
-.sd-page__row.sd-row--multiple {
-  background: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-:not(.svc-row)>.sd-row--multiple>div {
-  /* padding-left: 0 !important; */
-  padding-left: var(--base-unit, 8px) !important;
-  padding-right: var(--base-unit, 8px) !important;
-}
-
-.sd-page__row {
-  padding-left: calc(2 * var(--base-unit, 8px));
-}
-
-/* Survey Bottom Btn Container */
-.sd-action-bar {
-  justify-content: center;
-}
-
-/* Survey Bottom Btn Border */
-.sd-btn {
-  border-radius: 2rem !important;
+.carousel-inner img {
+  margin: auto;
 }
