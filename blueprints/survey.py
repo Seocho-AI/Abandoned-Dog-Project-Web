@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, jsonify
 import pandas as pd
 import numpy as np
 import pymysql
-from flaskr.model.content_based_recommender import ContentBasedRecommender
+from model.content_based_recommender import ContentBasedRecommender
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -109,13 +109,13 @@ def survey_answer():
             'neuter_yn': 'Y',
             'user_id': '1'
         }
-        
+
         recommender = ContentBasedRecommender(breeds_panel=breeds_panel,
-                                          target_user_survey=user_answer,
-                                          adopter_data=adopter_data,
-                                          dog_list_data=dog_list_data,
-                                          breed_info=breed_info,
-                                          panel_info=panel_info)
+                                              target_user_survey=user_answer,
+                                              adopter_data=adopter_data,
+                                              dog_list_data=dog_list_data,
+                                              breed_info=breed_info,
+                                              panel_info=panel_info)
 
         # #print(user)
         recommender.fit_transform(target_user_survey=user_answer)
@@ -125,7 +125,7 @@ def survey_answer():
 
         recommended_dogs, recommended_scores = recommender.predict(
             user_survey_data=user_answer)
-        
+
         print(f"HERE IS MODEL RETURN {recommender.get_processed_dog_data()}")
 
         return jsonify(recommender.get_processed_dog_data())

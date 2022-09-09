@@ -29,7 +29,7 @@ today_year = today[:4]  # 이번년도
 def find_dog_page():
     try:
         db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
-                     port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
+                             port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
         cursor = db.cursor()
 
         ds_select = request.args.get('ds')
@@ -47,24 +47,24 @@ def find_dog_page():
         sql_start = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' AND happenDt BETWEEN '{ds_select}' AND '{de_select}' "
         sql_end = "ORDER BY happenDt DESC;"
 
-        if state_select == "전체": # 시군구: 전체 / 도시: 전체
-            if breed_select == "전체": # 종: 전체
+        if state_select == "전체":  # 시군구: 전체 / 도시: 전체
+            if breed_select == "전체":  # 종: 전체
                 sql = sql_start + sql_end
-            else: # 종: 선택
+            else:  # 종: 선택
                 sql = sql_start + f"AND kindCd = '{breed_select}' " + sql_end
-        else: # 시군구: 선택
-            if city_select == "전체": # 도시: 전체
-                if breed_select == "전체": # 종: 전체
+        else:  # 시군구: 선택
+            if city_select == "전체":  # 도시: 전체
+                if breed_select == "전체":  # 종: 전체
                     sql = sql_start + \
                         f"AND orgNm LIKE '%{state_select}%' " + sql_end
-                else: # 종: 선택
+                else:  # 종: 선택
                     sql = sql_start + \
                         f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{state_select}%' " + sql_end
-            else: # 도시: 선택
-                if breed_select == "전체": # 종: 전체
+            else:  # 도시: 선택
+                if breed_select == "전체":  # 종: 전체
                     sql = sql_start + \
                         f"AND orgNm LIKE '%{region_select}%' " + sql_end
-                else: # 종: 선택
+                else:  # 종: 선택
                     sql = sql_start + \
                         f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{region_select}%' " + sql_end
 

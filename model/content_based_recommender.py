@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from flaskr.model.feature_processing import BreedsDataFeatureProcessor
+from model.feature_processing import BreedsDataFeatureProcessor
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import ndcg_score
 class ContentBasedRecommender():
