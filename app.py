@@ -2,11 +2,11 @@ from datetime import datetime, timedelta
 from flask import Flask, render_template
 import pymysql
 # from api_to_db import db_insert_dog, db_update_dog
-from blueprints.dog_statistics import dog_statistics
-from blueprints.find_dog import find_dog
-from blueprints.dog_posts import dog_posts
-from blueprints.filter_search import filter_search
-from blueprints.survey import survey
+from flaskr.blueprints.dog_statistics import dog_statistics
+from flaskr.blueprints.find_dog import find_dog
+from flaskr.blueprints.dog_posts import dog_posts
+from flaskr.blueprints.filter_search import filter_search
+from flaskr.blueprints.survey import survey
 
 
 # ------------------- Flask Blueprint ------------------- #

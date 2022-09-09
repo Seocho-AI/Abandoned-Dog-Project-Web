@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from feature_processing import BreedsDataFeatureProcessor
+from flaskr.model.feature_processing import BreedsDataFeatureProcessor
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import ndcg_score
 class ContentBasedRecommender():
@@ -46,8 +46,9 @@ class ContentBasedRecommender():
 
     """
 
-    def __init__(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info):
+    def __init__(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info, panel_info):
         self.breeds_panel = breeds_panel
+        self.panel_info = panel_info
         self.user_survey_data = target_user_survey
         self.adopter_data = adopter_data
         self.dog_list_data = dog_list_data
@@ -83,7 +84,8 @@ class ContentBasedRecommender():
             breeds_panel=self.breeds_panel,
             adopter_data=self.adopter_data,
             dog_list_data=self.dog_list_data,
-            breed_info=self.breed_info
+            breed_info=self.breed_info,
+            panel_info=self.panel_info
         )
         # print("BreedsDataFeatureProcessor Call Clear")
         # get breeds features and ratings
@@ -112,7 +114,7 @@ class ContentBasedRecommender():
         # print(processed_user_data.columns)
         # print(processed_user_data.T)
         # print(processed_dog_list.columns)
-        print(processed_dog_list.head())
+        # print(processed_dog_list.head())
         processed_user_data = processed_user_data.T.set_index('user_id')
         processed_dog_list = processed_dog_list.set_index('desertionNo')
         # print(processed_user_data.head())
@@ -122,23 +124,25 @@ class ContentBasedRecommender():
         self.processed_dog_list = processed_dog_list
 
     def predict(self, user_survey_data):
-
+        # print("before", self.processed_dog_list)
         # self._breed_rec_scores = cosine_similarity(self.user_survey_data, self.breeds_data).argsort()[:, ::-1]
         self._breed_rec_scores = cosine_similarity(self.processed_user_data, self.processed_dog_list)
+
         sorted_scores = sorted(self._breed_rec_scores[0], reverse=True)
-        # print(sorted(self._breed_rec_scores[0], reverse=True))
+
+
         self._breed_rec_scores=self._breed_rec_scores.argsort()[:, ::-1]
-        # print("user_id=", processed_user_data['user_id'])
+        # print(self._breed_rec_scores)
         #print(processed_dog_list.columns)
         top_n = len(self.processed_dog_list)
         self.recommendations = self.find_sim_breeds(user_survey_data=self.processed_user_data,
-                                                    dog_list=self.dog_list_data,
+                                                    dog_list=self.processed_dog_list,
                                                     sim_df=self._breed_rec_scores,
                                                     top_n=top_n) # 전체: len(self.dog_list_data)
         # print(self.recommendations)
         # print(self.NDCG(self.processed_user_data, self.recommendations['desertionNo']))
 
-        return list(self.recommendations['desertionNo']), sorted_scores[:top_n]
+        return list(self.recommendations.index), sorted_scores[:top_n]
 
     def find_sim_breeds(self, user_survey_data, dog_list, sim_df, target_user_id=None, top_n=10):
         # user_survey_data.reset_index(inplace=True)
@@ -147,14 +151,15 @@ class ContentBasedRecommender():
         # user_id = user_survey_data['user_id']
         # print(sim_df)
         #print(user_id)
-
+        # print("sim_df",sim_df)
+        # print(dog_list)
         # user_index = user_survey_data['user_id']
         #print("user_index=", user_index)
         similar_indexes = sim_df[:, :top_n]
 
         # 추출된 top_n index들 출력. top_n index는 2차원 데이터 임.
         #dataframe에서 index로 사용하기 위해서 1차원 array로 변경
-        #print(similar_indexes)
+        # print(similar_indexes)
         similar_indexes = similar_indexes.reshape(-1)
         return dog_list.iloc[similar_indexes]
     # def predict(self):
@@ -167,21 +172,23 @@ class ContentBasedRecommender():
     #
     #     return list(self.recommendations.index)
     # Normalized Discount Cumulative Gain
-    def NDCG(self, user, recBreeds):
-        print("NDCG: ")
-        print(user.columns)
-        print(self.processed_dog_list.columns)
-        print(recBreeds)
-        for idx in recBreeds:
-            print(idx)
-            print(ndcg_score(user, self.processed_dog_list[self.processed_dog_list.index == idx]))
+    # def NDCG(self, user, recBreeds):
+        # print("NDCG: ")
+        # print(user.columns)
+        # print(self.processed_dog_list.columns)
+        # print(recBreeds)
+        # for idx in recBreeds:
+        #     print(idx)
+        #     print(ndcg_score(user, self.processed_dog_list[self.processed_dog_list.index == idx]))
 
     def get_processed_user_data(self):
-        return self.processed_user_data.to_dict()
+        return self.processed_user_data.T.to_dict()
 
     def get_processed_dog_data(self):
-
-        dicted_dog_list = self.processed_dog_list.T.to_dict()
+        # print(self.processed_dog_list.index)
+        # print(self.recommendations.index)
+        processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(self.recommendations.index)]
+        dicted_dog_list = processed_dog_data.T.to_dict()
         #print(dicted_dog_list)
         lst=[{key:val} for key, val in dicted_dog_list.items()]
         # for desertionNo in list(self.recommendations['desertionNo']):

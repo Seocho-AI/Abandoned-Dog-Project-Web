@@ -2,8 +2,9 @@ from datetime import datetime, timedelta
 import pickle
 from flask import Blueprint, render_template, request, jsonify
 import pandas as pd
+import numpy as np
 import pymysql
-# from cb_recommender import ContentBasedRecommender
+from flaskr.model.content_based_recommender import ContentBasedRecommender
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -39,7 +40,7 @@ def survey_page():
 def survey_answer():
     try:
         db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
-                        port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
+                             port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
         cursor = db.cursor()
 
         user_answer = request.get_json()  # Stores user's survey answer
@@ -62,6 +63,10 @@ def survey_answer():
 
         user_answer['user_id'] = '1'
         print(user_answer)
+        print(type(user_answer["shedding_level"]))
+
+        query = 'SELECT * FROM mixprinted_include'
+        panel_info = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM breeds_panel'
         breeds_panel = pd.read_sql(sql=query, con=db)
@@ -75,6 +80,7 @@ def survey_answer():
 
         query = 'SELECT * FROM breed_info'
         breed_info = pd.read_sql(sql=query, con=db)
+        #user_survey_data = {key: 3 for key in survey_lst}
 
         user_survey_data = {
             'user_age': '50대',
@@ -103,30 +109,30 @@ def survey_answer():
             'neuter_yn': 'Y',
             'user_id': '1'
         }
-
+        
         recommender = ContentBasedRecommender(breeds_panel=breeds_panel,
-                                                target_user_survey=user_answer,
-                                                adopter_data=adopter_data,
-                                                dog_list_data=dog_list_data,
-                                                breed_info=breed_info)
+                                          target_user_survey=user_answer,
+                                          adopter_data=adopter_data,
+                                          dog_list_data=dog_list_data,
+                                          breed_info=breed_info,
+                                          panel_info=panel_info)
 
+        # #print(user)
         recommender.fit_transform(target_user_survey=user_answer)
-        with open(file='content_based_recommender.pkl', mode='wb') as f:
+
+        with open(file='flaskr/model/content_based_recommender.pkl', mode='wb') as f:
             pickle.dump(recommender, f)
+
         recommended_dogs, recommended_scores = recommender.predict(
             user_survey_data=user_answer)
-
-        # print(recommended_dogs)
-        # print(recommended_scores)
-        # print(recommender.get_processed_user_data())
-        # print(recommender.get_processed_dog_data())
+        
+        print(f"HERE IS MODEL RETURN {recommender.get_processed_dog_data()}")
 
         return jsonify(recommender.get_processed_dog_data())
-        # return jsonify(model.predict(user_survey_data=user_answer))
 
-    except Exception as e:
-        print("/survey/result ERROR")
-        print(e)
+    # except Exception as e:
+    #     print("/survey/result ERROR")
+    #     print(e)
 
     finally:
         cursor.close()
