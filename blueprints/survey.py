@@ -107,17 +107,26 @@ def survey_answer():
 
         survey_to_data = recommender.get_processed_user_data()
         dog_data = recommender.get_processed_dog_data()
+        dog_data_dict = {}
+        for dog_dict in dog_data:
+            dog_data_dict[list(dog_dict.keys())[0]] = dog_dict[list(dog_dict.keys())[0]]
 
-        survey_results = {
-            "Ranking_Count" : len(recommended_dogs),  # Ranking_Count : 공고번호의 수 (List) 
-            "D_No_Ranking" : recommended_dogs,        # D_No_Ranking : 내림차순 정렬된 공고번호 (List) 
-            "Rec_Score" : recommended_scores,         # Rec_Score : 각 유사도 스코어 Percentage (List)
-            "Survey_Score" : survey_to_data,          # Survey_Score : 설문조사 수치로 바꾼 딕셔너리 (Dict)
-            "Dog_Scores" : dog_data                   # Dog_Scores : recommended_dogs의 공고번호의 개들 수치화 (List[Dict])
-        }
-        print(survey_results)
+        # len(recommended_dogs) : 공고번호의 수 (Int) 
+        # recommended_dogs : 내림차순 정렬된 공고번호 (List) 
+        # recommended_scores : 각 유사도 스코어 Percentage (List)
+        # survey_to_data : 유저 설문조사 수치로 바꾼 딕셔너리 (Dict)
+        # dog_data : recommended_dogs의 공고번호의 개들 수치화 (List[Dict])
+
+        ranking_order = []
+        for i in range(len(recommended_dogs)):
+            survey_res = {
+                "des_no" : recommended_dogs[i],
+                "rec_score" : recommended_scores[i],
+                "trait_score" : dog_data_dict[recommended_dogs[i]]
+            }
+            ranking_order.append(survey_res)
         
-        return render_template("survey_result.html", survey_results = survey_results)
+        return render_template("survey_result.html", ranking_order = ranking_order)
         # return jsonify(survey_results)
 
     # except Exception as e:
