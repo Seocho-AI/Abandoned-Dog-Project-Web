@@ -114,9 +114,9 @@ body {
 /**
  * SURVEY RESULT SECTION
  */
-/* .survey-result-container {
-  padding-top: 72px;
-} */
+.survey-section {
+  height: calc(100vh - 72px);
+}
 .survey-section,
 .survey-bg {
   background-size: 250px;
@@ -127,9 +127,6 @@ body {
 .survey-container {
   /* background-color: #9398b5; */
   background-color: #90c9c2;
-}
-.overlay-survey-page-section .container {
-  padding-top: 72px;
 }
 
 /**
