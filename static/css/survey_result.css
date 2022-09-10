@@ -132,6 +132,33 @@ body {
 /**
  * Carousel
  */
+.survey-result-title {
+  height: 20%;
+}
+.survey-result-carousel {
+  height: 80%;
+}
+.carousel-dog-img-container {
+  height: 80%;
+}
+.carousel-caption {
+  height: 20%;
+}
+.carousel-inner {
+  height: 90%;
+}
+.carousel-indicators {
+  height: 10%;
+}
 .carousel-inner img {
   margin: auto;
+}
+.carousel-dog-img {
+  /* width: 100%; */
+  /* min-width: 100%; */
+  /* min-height: 100%; */
+  /* object-fit: contain; */
+  height: 100%;
+
+  /* border-radius: 1.5rem 1.5rem 0 0; */
 }

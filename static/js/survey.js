@@ -1023,7 +1023,6 @@ survey.onComplete.add(function (sender) {
   window.location.href = `/survey/result?${survey_query_string}`
   // window.location.href = "/survey/result?user_age=20대이하&user_sex=남성&user_house_type=다가구주택&dog_experience=없음&user_family_size=1인&neighbor_agreement=예&user_kids=예&dog_size=소형견&shedding_level=6&bark_tolerance=4&spend_time=조금 : 1 ~ 5 시간&spend_type=실내 활동&dog_sex=수컷&dog_environment=실내&dog_support_agreement=예&dog_health_agreement=예&want_dog_age=자견(생후 2년 이하)&neuter_yn=Y"
 
-  // window.location.href = "/survey/result" // Move to home page
   /**
    * Sending user answer to server
    */

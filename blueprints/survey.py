@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import pymysql
 from model.content_based_recommender import ContentBasedRecommender
+import copy
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -109,14 +110,22 @@ def survey_answer():
         dog_data = recommender.get_processed_dog_data()
         dog_data_dict = {}
         for dog_dict in dog_data:
-            dog_data_dict[list(dog_dict.keys())[0]
-                          ] = dog_dict[list(dog_dict.keys())[0]]
-
+            dog_data_dict[list(dog_dict.keys())[0]] = dog_dict[list(dog_dict.keys())[0]]
+        
         # len(recommended_dogs) : 공고번호의 수 (Int)
         # recommended_dogs : 내림차순 정렬된 공고번호 (List)
         # recommended_scores : 각 유사도 스코어 Percentage (List)
         # survey_to_data : 유저 설문조사 수치로 바꾼 딕셔너리 (Dict)
         # dog_data : recommended_dogs의 공고번호의 개들 수치화 (List[Dict])
+
+        # Dog info of recommended_dogs
+        # sql_field = recommended_dogs.copy()
+        # sql_field.insert(0, 'desertionNo')
+        # sql_field = ", ".join(sql_field)
+        # sql_field = "(" + sql_field + ")"
+        # sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE desertionNo IN {tuple(recommended_dogs)} ORDER BY field{sql_field};"
+        # cursor.execute(sql)
+        # recommended_dogs_info = cursor.fetchall()
 
         ranking_order = []
         for i in range(len(recommended_dogs)):
@@ -132,7 +141,7 @@ def survey_answer():
                     dog_info[3][4:6] + "/" + dog_info[3][6:]
                 noticeNo = dog_info[4].replace("-", " ")[:5]
                 processState = dog_info[5]
-
+            
             survey_res = {
                 "des_no": recommended_dogs[i],  # Desertion No
                 # Recommend Score (Percentage)
@@ -147,9 +156,23 @@ def survey_answer():
                 "processState": processState
             }
             ranking_order.append(survey_res)
+            
+            # survey_res = {
+            #     "des_no": recommended_dogs[i],  # Desertion No
+            #     # Recommend Score (Percentage)
+            #     "rec_score": "{:.2%}".format(recommended_scores[i]),
+            #     # Panel data trait
+            #     "trait_score": dog_data_dict[recommended_dogs[i]],
+            #     "popfile": recommended_dogs_info[i][0],
+            #     "kindCd": recommended_dogs_info[i][1],
+            #     "sexCd": recommended_dogs_info[i][2],
+            #     "happenDt": recommended_dogs_info[i][3][:4] + "/" + recommended_dogs_info[i][3][4:6] + "/" + recommended_dogs_info[i][3][6:],
+            #     "noticeNo": recommended_dogs_info[i][4].replace("-", " ")[:5],
+            #     "processState": recommended_dogs_info[i][5]
+            # }
+            # ranking_order.append(survey_res)
 
         return render_template("survey_result.html", ranking_order=ranking_order)
-        # return jsonify(survey_results)
 
     # except Exception as e:
     #     print("/survey/result ERROR")
