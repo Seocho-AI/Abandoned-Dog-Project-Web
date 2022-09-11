@@ -1,4 +1,3 @@
-
 let date = new Date()
 let priorDate = new Date(new Date().setDate(date.getDate() - 90))
 
@@ -34,6 +33,14 @@ function moveToSurveyPage() {
 }
 
 /**
+ * Move to selected dog page
+ */
+function moveToSelectedDog(item) {
+  let desertionNo = $(item).attr("id")
+  window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
+}
+
+/**
  * Nav change bg on scroll
  */
 $(function () {
@@ -42,6 +49,21 @@ $(function () {
     $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
   });
 });
+
+/**
+ * Swiper JS
+ */
+// var swiper = new Swiper(".mySwiper", {
+//   cssMode: true,
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//   },
+//   mousewheel: true,
+//   keyboard: true,
 
 /**
  * AOS JS Initiation

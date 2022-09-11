@@ -129,7 +129,7 @@ def survey_answer():
 
         ranking_order = []
         for i in range(len(recommended_dogs)):
-            sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE desertionNo = '{recommended_dogs[i]}';"
+            sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, colorCd, age, weight, neuterYn, desertionNo FROM dog_list WHERE desertionNo = '{recommended_dogs[i]}';"
             cursor.execute(sql)
             result = cursor.fetchall()
 
@@ -141,6 +141,11 @@ def survey_answer():
                     dog_info[3][4:6] + "/" + dog_info[3][6:]
                 noticeNo = dog_info[4].replace("-", " ")[:5]
                 processState = dog_info[5]
+                colorCd = dog_info[6]
+                age = dog_info[7]
+                weight = dog_info[8]
+                neuterYn = dog_info[9]
+                desertionNo = dog_info[10]
             
             survey_res = {
                 "des_no": recommended_dogs[i],  # Desertion No
@@ -153,7 +158,12 @@ def survey_answer():
                 "sexCd": sexCd,
                 "happenDt": happenDt,
                 "noticeNo": noticeNo,
-                "processState": processState
+                "processState": processState,
+                "colorCd": colorCd,
+                "age": age,
+                "weight": weight,
+                "neuterYn": neuterYn,
+                "desertionNo": desertionNo
             }
             ranking_order.append(survey_res)
             
