@@ -13,6 +13,7 @@
   <link href="https://unpkg.com/survey-jquery/modern.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/survey-jquery/defaultV2.min.css" type="text/css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
 
   <!-------------------- MAIN CSS -------------------->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/survey_result.css') }}">
@@ -71,7 +72,7 @@
 
           <div class="survey-result-title col-12 align-items-center justify-content-center d-flex">
             <div class="row">
-              <div class="col-12 text-center">
+              <div class="col-12 text-center" style="font-family: 'NanumSquareRoundExtraBold';">
                 <h1>유기견 매칭 AI추천 결과</h1>
               </div>
               <div class="col-12 text-center">
@@ -84,13 +85,24 @@
           <div class="survey-result-carousel col-12 p-0 justify-content-center align-items-center d-flex">
             <div class="row justify-content-center align-items-center d-flex h-100 m-0">
 
-              <div class="col-12 col-lg-8 h-100">
+              <div class="col-12 h-100 p-0">
                 <div id="carouselExampleCaptions" class="carousel slide h-100 row justify-content-center align-items-center m-0 d-flex" data-bs-ride="false">
 
                   <div class="carousel-inner col-12 m-0 p-0">
+
                     <div class="carousel-item active h-100 m-0 row">
-                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12">
+                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12 p-0">
                         <img src="{{ ranking_order[0]['popfile'] }}" class="carousel-dog-img" alt="">
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                       <div class="carousel-caption position-relative top-0 start-0 end-0 bottom-0 col-12">
                         <h5>귀하의 성향과 {{ ranking_order[0]["rec_score"] }} 적합한 유기견</h5>
@@ -99,8 +111,18 @@
                     </div>
 
                     <div class="carousel-item h-100 m-0 row">
-                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12">
+                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12 p-0">
                         <img src="{{ ranking_order[1]['popfile'] }}" class="carousel-dog-img" alt="">
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                       <div class="carousel-caption position-relative top-0 start-0 end-0 bottom-0 col-12">
                         <h5>귀하의 성향과 {{ ranking_order[1]["rec_score"] }} 적합한 유기견</h5>
@@ -109,8 +131,18 @@
                     </div>
 
                     <div class="carousel-item h-100 m-0 row">
-                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12">
+                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12 p-0">
                         <img src="{{ ranking_order[2]['popfile'] }}" class="carousel-dog-img" alt="">
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                       <div class="carousel-caption position-relative top-0 start-0 end-0 bottom-0 col-12">
                         <h5>귀하의 성향과 {{ ranking_order[2]["rec_score"] }} 적합한 유기견</h5>
@@ -119,8 +151,18 @@
                     </div>
 
                     <div class="carousel-item h-100 m-0 row">
-                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12">
+                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12 p-0">
                         <img src="{{ ranking_order[3]['popfile'] }}" class="carousel-dog-img" alt="">
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                       <div class="carousel-caption position-relative top-0 start-0 end-0 bottom-0 col-12">
                         <h5>귀하의 성향과 {{ ranking_order[3]["rec_score"] }} 적합한 유기견</h5>
@@ -129,8 +171,18 @@
                     </div>
 
                     <div class="carousel-item h-100 m-0 row">
-                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12">
+                      <div class="carousel-dog-img-container justify-content-center align-items-center d-flex col-12 p-0">
                         <img src="{{ ranking_order[4]['popfile'] }}" class="carousel-dog-img" alt="">
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                       <div class="carousel-caption position-relative top-0 start-0 end-0 bottom-0 col-12">
                         <h5>귀하의 성향과 {{ ranking_order[4]["rec_score"] }} 적합한 유기견</h5>
@@ -140,23 +192,13 @@
 
                   </div>
 
-                  <div class="carousel-indicators mx-0 col-12 position-relative">
+                  <div class="carousel-indicators mx-0 col-12 position-relative justify-content-center align-items-center d-flex">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                   </div>
-
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
 
                 </div>
               </div>

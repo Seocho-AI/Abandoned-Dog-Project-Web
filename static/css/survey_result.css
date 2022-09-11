@@ -1,4 +1,14 @@
 /**
+ * Font
+ */
+* {
+  /* font-family: 'NanumSquareRoundLight'; */
+  font-family: 'NanumSquareRound';
+  /* font-family: 'NanumSquareRoundBold'; */
+  /* font-family: 'NanumSquareRoundExtraBold'; */
+}
+
+/**
  * Smooth Scroll
  */
 html {
@@ -117,6 +127,7 @@ body {
 .survey-section {
   height: calc(100vh - 72px);
 }
+
 .survey-section,
 .survey-bg {
   background-size: 250px;
@@ -124,6 +135,7 @@ body {
   background-position: center top;
   /* background-attachment: fixed; */
 }
+
 .survey-container {
   /* background-color: #9398b5; */
   background-color: #90c9c2;
@@ -135,30 +147,43 @@ body {
 .survey-result-title {
   height: 20%;
 }
+
 .survey-result-carousel {
   height: 80%;
 }
+
 .carousel-dog-img-container {
   height: 80%;
 }
+
 .carousel-caption {
   height: 20%;
 }
+
 .carousel-inner {
   height: 90%;
 }
+
 .carousel-indicators {
   height: 10%;
 }
+
 .carousel-inner img {
   margin: auto;
 }
+
 .carousel-dog-img {
-  /* width: 100%; */
   /* min-width: 100%; */
   /* min-height: 100%; */
-  /* object-fit: contain; */
+  max-width: 100%;
+  object-fit: contain;
   height: 100%;
+  /* width: 100%; */
 
   /* border-radius: 1.5rem 1.5rem 0 0; */
+}
+
+.carousel-control-next, .carousel-control-prev {
+  top: auto;
+  bottom: auto;
 }
