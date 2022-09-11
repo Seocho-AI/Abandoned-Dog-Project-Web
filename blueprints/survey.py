@@ -88,7 +88,6 @@ def survey_answer():
 
         query = 'SELECT * FROM breed_info'
         breed_info = pd.read_sql(sql=query, con=db)
-        #user_survey_data = {key: 3 for key in survey_lst}
 
         recommender = ContentBasedRecommender(breeds_panel=breeds_panel,
                                               target_user_survey=user_answer,
@@ -97,7 +96,6 @@ def survey_answer():
                                               breed_info=breed_info,
                                               panel_info=panel_info)
 
-        # #print(user)
         recommender.fit_transform(target_user_survey=user_answer)
 
         with open(file='model/content_based_recommender.pkl', mode='wb') as f:
@@ -108,24 +106,14 @@ def survey_answer():
 
         survey_to_data = recommender.get_processed_user_data()
         dog_data = recommender.get_processed_dog_data()
-        dog_data_dict = {}
-        for dog_dict in dog_data:
-            dog_data_dict[list(dog_dict.keys())[0]] = dog_dict[list(dog_dict.keys())[0]]
+        dog_diff = recommender.get_user_dog_diff()
         
         # len(recommended_dogs) : 공고번호의 수 (Int)
         # recommended_dogs : 내림차순 정렬된 공고번호 (List)
         # recommended_scores : 각 유사도 스코어 Percentage (List)
-        # survey_to_data : 유저 설문조사 수치로 바꾼 딕셔너리 (Dict)
-        # dog_data : recommended_dogs의 공고번호의 개들 수치화 (List[Dict])
-
-        # Dog info of recommended_dogs
-        # sql_field = recommended_dogs.copy()
-        # sql_field.insert(0, 'desertionNo')
-        # sql_field = ", ".join(sql_field)
-        # sql_field = "(" + sql_field + ")"
-        # sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState FROM dog_list WHERE desertionNo IN {tuple(recommended_dogs)} ORDER BY field{sql_field};"
-        # cursor.execute(sql)
-        # recommended_dogs_info = cursor.fetchall()
+        # survey_to_data : 유저 설문조사 수치화 (Dict)
+        # dog_data : recommended_dogs의 공고번호의 개들 수치화 (Dict)
+        # dog_diff : 유저랑 유기견 성향 차이 수치화 (Dict)
 
         ranking_order = []
         for i in range(len(recommended_dogs)):
@@ -152,7 +140,8 @@ def survey_answer():
                 # Recommend Score (Percentage)
                 "rec_score": "{:.2%}".format(recommended_scores[i]),
                 # Panel data trait
-                "trait_score": dog_data_dict[recommended_dogs[i]],
+                "trait_score": dog_data[recommended_dogs[i]],
+                "trait_score_diff": dog_diff[recommended_dogs[i]],
                 "popfile": popfile,
                 "kindCd": kindCd,
                 "sexCd": sexCd,
@@ -166,21 +155,6 @@ def survey_answer():
                 "desertionNo": desertionNo
             }
             ranking_order.append(survey_res)
-            
-            # survey_res = {
-            #     "des_no": recommended_dogs[i],  # Desertion No
-            #     # Recommend Score (Percentage)
-            #     "rec_score": "{:.2%}".format(recommended_scores[i]),
-            #     # Panel data trait
-            #     "trait_score": dog_data_dict[recommended_dogs[i]],
-            #     "popfile": recommended_dogs_info[i][0],
-            #     "kindCd": recommended_dogs_info[i][1],
-            #     "sexCd": recommended_dogs_info[i][2],
-            #     "happenDt": recommended_dogs_info[i][3][:4] + "/" + recommended_dogs_info[i][3][4:6] + "/" + recommended_dogs_info[i][3][6:],
-            #     "noticeNo": recommended_dogs_info[i][4].replace("-", " ")[:5],
-            #     "processState": recommended_dogs_info[i][5]
-            # }
-            # ranking_order.append(survey_res)
 
         return render_template("survey_result.html", ranking_order=ranking_order)
 

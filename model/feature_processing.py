@@ -245,7 +245,7 @@ class BreedsDataFeatureProcessor():
         self.spend_time_dict = {
             '조금 : 1 ~ 5 시간': 1,
             '적절한 : 6 ~ 10 시간': 3,
-            '많이 : 10 시간 이상': 5
+            '많이 : 10+ 시간': 5
         }
         self.spend_type_dict = {
             '실내 활동': 1,
@@ -402,9 +402,9 @@ class BreedsDataFeatureProcessor():
         # processing dog_list features
         # 중성화 유무, 개 나이, 개 성별, 사이즈
 
-        small = list(self.breed_info.loc[self.breed_info['size'] == '소형견']['breed_name_kr'].values)
-        medium = list(self.breed_info[self.breed_info['size'] == '중형견']['breed_name_kr'].values)
-        big = list(self.breed_info[self.breed_info['size'] == '대형견']['breed_name_kr'].values)
+        small = list(self.panel_info.loc[self.panel_info['size'] == '소형견']['breed_name_kr'].values)
+        medium = list(self.panel_info[self.panel_info['size'] == '중형견']['breed_name_kr'].values)
+        big = list(self.panel_info[self.panel_info['size'] == '대형견']['breed_name_kr'].values)
         dog_list_data = self.dog_list_data.loc[(self.dog_list_data['neuterYn'] == self.user_survey_data['neuter_yn'])]
         # print(dog_list_data)
         # print(small)
@@ -527,26 +527,23 @@ class BreedsDataFeatureProcessor():
             breed_kr = dog_list_data.loc[dog_list_data['desertionNo'] == i, 'kindCd'].values[0]
 
             if breed_kr=='믹스견':
-                breed_kr = self.breed_info.loc[dog_list_data['mixPredict'][0] == self.breed_info['breed_name_kr']]
+                breed_kr = self.panel_info.loc[dog_list_data['mixPredict'][0] == self.panel_info['breed'], 'breed_name_kr']
             # print(breed_kr)
             if breed_kr not in self.breed_info['breed_name_kr'].values:
-                for key in panel:
-
-                    #print(panel_rating)
-                    dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
-                continue
-            breed_en = self.breed_info.loc[self.breed_info['breed_name_kr'] == breed_kr, 'breed_name'].values[0]
+               for key in panel:
+                   #print(panel_rating)
+                   dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
+               continue
+            breed_en = self.panel_info.loc[self.panel_info['breed_name_kr'] == breed_kr, 'breed'].values[0]
             # print(breed_en)
-            if breed_en not in self.breeds_panel['breed'].values:
+            if breed_en not in self.panel_info['breed'].values:
                 for key in panel:
-
                     #print(panel_rating)
                     dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
                 continue
             for key in panel:
                 # print(key)
-
-                panel_rating = self.breeds_panel.loc[self.breeds_panel['breed'] == breed_en, key]
+                panel_rating = self.panel_info.loc[self.panel_info['breed'] == breed_en, key]
                 #print(panel_rating)
                 dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = panel_rating.values[0]
                 #print(dog_list_data[dog_list_data['desertionNo']==i])

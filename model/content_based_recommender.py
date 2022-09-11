@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from model.feature_processing import BreedsDataFeatureProcessor
+# from feature_processing import BreedsDataFeatureProcessor
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import ndcg_score
 class ContentBasedRecommender():
@@ -202,6 +203,25 @@ class ContentBasedRecommender():
         lst=[{key:val} for key, val in dicted_dog_list.items()]
         # for desertionNo in list(self.recommendations['desertionNo']):
         #     lst.append(self.processed_dog_list[self.processed_dog_list['desertionNo'] == desertionNo].to_dict())
+        dic={}
+        for key in lst:
+            for k,v in key.items():
+                dic[k]=v
 
-        return lst
+        return dic
         # return lst
+
+    def get_user_dog_diff(self):
+        processed_dog_data = processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(self.recommendations.index)]
+        processed_user_data = self.processed_user_data
+        # print(processed_user_data)
+        # print(processed_dog_data)
+        processed_dog_data = processed_dog_data.loc[:,:].sub(processed_user_data.values, axis='columns').abs()
+
+        dicted_dog_list = processed_dog_data.T.to_dict()
+        lst=[{key:val} for key, val in dicted_dog_list.items()]
+        dic={}
+        for key in lst:
+            for k,v in key.items():
+                dic[k]=v
+        return dic

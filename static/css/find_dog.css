@@ -1,4 +1,14 @@
 /**
+ * Font
+ */
+* {
+  /* font-family: 'NanumSquareRoundLight'; */
+  font-family: 'NanumSquareRound';
+  /* font-family: 'NanumSquareRoundBold'; */
+  /* font-family: 'NanumSquareRoundExtraBold'; */
+}
+
+/**
  * Smooth Scroll
  */
 html {
@@ -244,6 +254,7 @@ select.filter-breed {
 #pagination {
   background-color: #9398B5;
 }
+
 .paginationjs {
   display: flex;
   align-items: center;

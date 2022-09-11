@@ -1,4 +1,14 @@
 /**
+ * Font
+ */
+* {
+  /* font-family: 'NanumSquareRoundLight'; */
+  font-family: 'NanumSquareRound';
+  /* font-family: 'NanumSquareRoundBold'; */
+  /* font-family: 'NanumSquareRoundExtraBold'; */
+}
+
+/**
  * Smooth Scroll
  */
 html {
@@ -141,6 +151,7 @@ body {
 .stat-card-body {
   height: 60%;
 }
+
 .stat-card-header {
   height: 40%;
 }

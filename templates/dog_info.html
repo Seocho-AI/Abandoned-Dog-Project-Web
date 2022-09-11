@@ -15,6 +15,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
 
   <!-------------------- MAIN CSS -------------------->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/dog_info.css') }}">
@@ -253,9 +254,9 @@
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["sexCd"] == 'M' %}
-                      <i class="fa-solid fa-mars fa-lg" style="color:#04A2F5"></i>
+                      <i class="fa-solid fa-mars fa-lg pe-2" style="color:#04A2F5"></i>수컷
                       {% else %}
-                      <i class="fa-solid fa-venus fa-lg" style="color:#E73E77"></i>
+                      <i class="fa-solid fa-venus fa-lg pe-2" style="color:#E73E77"></i>암컷
                       {% endif %}
                     </h4>
                   </div>
@@ -272,7 +273,14 @@
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
-                      중성화 {{ dog_info["neuterYn"] }}
+                      {% if dog_info["neuterYn"] == 'Y' %}
+                      <i class="fa-regular fa-circle-check fa-lg pe-1" style="color:#04A2F5"></i>
+                      {% elif dog_info["neuterYn"] == 'N' %}
+                      <i class="fa-regular fa-circle-xmark fa-lg pe-1" style="color:#E73E77"></i>
+                      {% else %}
+                      <i class="fa-regular fa-circle-question fa-lg pe-1" style="color:#FFAE42"></i>
+                      {% endif %}
+                      중성화
                     </h4>
                   </div>
                 </div>
@@ -324,7 +332,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-earth-americas fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-earth-americas fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">원산지</p>
                         <p class="m-0 pb-2">{{ dog_info["origin"] }}</p>
                       </div>
@@ -332,7 +340,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-shield-dog fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-shield-dog fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">견종 분류</p>
                         <p class="m-0 pb-2">{{ dog_info["usage"] }}</p>
                       </div>
@@ -340,7 +348,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-dog fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-dog fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">견종 크기</p>
                         <p class="m-0 pb-2">{{ dog_info["size"] }}</p>
                       </div>
@@ -348,7 +356,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-ruler-vertical fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-ruler-vertical fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">키</p>
                         <p class="m-0 pb-2">{{ dog_info["height"] }}</p>
                       </div>
@@ -356,7 +364,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-weight-scale fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-weight-scale fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">몸무게</p>
                         <p class="m-0 pb-2">{{ dog_info["breed_weight"] }}</p>
                       </div>
@@ -364,7 +372,7 @@
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
                       <div class="h-100 align-items-center justify-content-center d-flex flex-column border">
-                        <i class="fa-solid fa-palette fa-3x pb-3 pt-2"></i>
+                        <i class="fa-solid fa-palette fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">색깔</p>
                         <p class="m-0 pb-2">{{ dog_info["color"] }}</p>
                       </div>

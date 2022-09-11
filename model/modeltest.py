@@ -32,7 +32,7 @@ try:
     # user = {}
     # user = dict(user_survey_data.iloc[0])
     #
-    query = 'SELECT * FROM mixprinted_include'
+    query = 'SELECT * FROM final_mixprinted'
     panel_info = pd.read_sql(sql=query, con=db)
 
     query = 'SELECT * FROM breeds_panel'
@@ -50,8 +50,8 @@ try:
     #user_survey_data = {key: 3 for key in survey_lst}
 
     user_survey_data={
-        'user_age': '40대',
-        'user_sex': '여성',
+        'user_age': '20대이하',
+        'user_sex': '남성',
         'user_house_type': '아파트',
         'dog_experience': {
             'dog_experience_yn': '강아지를 키우고 있다',
@@ -63,18 +63,18 @@ try:
         'user_family_size': '3인',
         'neighbor_agreement': '예',
         'user_kids': '예',
-        'dog_size': '대형견',
+        'dog_size': '상관 없음',
         'shedding_level': 5,
         'bark_tolerance': 5,
         'spend_time': '적절한 : 6 ~ 10 시간',
         'spend_type': '실외 활동',
-        'dog_sex': '암컷',
+        'dog_sex': '상관 없음',
         'dog_environment': '실외',
         'dog_support_agreement': '아니오',
         'dog_health_agreement': '아니오',
         'want_dog_age': '자견(생후 2년 이하)',
-        'neuter_yn': 'Y',
-        'user_id': '1'
+        'neuter_yn': 'N',
+        'user_id': 1
     }
     # print(breeds_panel.head())
     # print(adopter_data.head())
@@ -97,6 +97,10 @@ try:
 
     print(recommender.get_processed_user_data())
     print(recommender.get_processed_dog_data())
+    print(recommender.get_user_dog_diff())
+    print(len(recommender.get_processed_dog_data().keys()))
+
+    print(dog_list_data.loc[dog_list_data['desertionNo'].isin(recommender.get_processed_dog_data().keys()),:])
 
 finally:
     db.close()
