@@ -245,7 +245,7 @@ class BreedsDataFeatureProcessor():
         self.spend_time_dict = {
             '조금 : 1 ~ 5 시간': 1,
             '적절한 : 6 ~ 10 시간': 3,
-            '많이 : 10+ 시간': 5
+            '많이 : 10 시간 이상': 5
         }
         self.spend_type_dict = {
             '실내 활동': 1,

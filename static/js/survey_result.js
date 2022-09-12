@@ -41,6 +41,15 @@ function moveToSelectedDog(item) {
 }
 
 /**
+ * Move to recommended dog list page
+ */
+function moveToRecDocListPage() {
+  let rec_list = $(".rec_list").attr("id")
+  let rec_list_score = $(".rec_list_score").attr("id")
+  window.location.href = `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}` // Move to find dog page
+}
+
+/**
  * Nav change bg on scroll
  */
 $(function () {

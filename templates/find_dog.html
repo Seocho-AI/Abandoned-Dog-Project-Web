@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>서초 AI 프로젝트 제목</title>
+  <title>Saving Dog</title>
 
   <!-------------------- CSS IMPORTS -------------------->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -43,7 +43,7 @@
       <div class="container">
 
         <!-- NAV-LOGO -->
-        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Abandog</a>
+        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Saving Dog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -239,7 +239,7 @@
     </div>
   </section>
 
-  <script id="template-dog-list" type="text/template">
+  <script id="template-dog-list" type="">
     <div class="dog-card-container col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12">
       <div class="dog-card card shadow-sm" id="{desertionNo}" onclick="moveToDogPosts(this)">
         
@@ -276,6 +276,8 @@
                 <div class="ms-auto">{noticeNo}</div>
               </div>
 
+              {rec_list_score}
+
             </div>
           </div>
           
@@ -288,12 +290,13 @@
     <option value="{key}">{key} ({value} 마리)</option>
   </script>
 
-  
+
   <script type="text/javascript">
     /**
-    * DB에서 현재 보호중인 유기견들 불러오기
-    */
-    let abandonedDogList = {{response|safe}}
+     * DB에서 현재 보호중인 유기견들 불러오기
+     */
+    // 이 라인 이 형식 그대로 유지!!! (중요)
+    let abandonedDogList = {{ response|safe }}
     console.log(abandonedDogList)
 
     let container = $('#pagination');
@@ -315,15 +318,33 @@
           } else {
             dogSex = "<i class='fa-solid fa-venus fa-lg' style='color:#E73E77'></i>"
           }
-          res += template_dog_list
-            .replace("{popfile}", abandonedDogList[i].popfile)
-            .replace("{kindCd}", abandonedDogList[i].kindCd)
-            // .replace("{sexCd}", abandonedDogList[i].sexCd)
-            .replace("{sexCd}", dogSex)
-            .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
-            .replace("{noticeNo}", abandonedDogList[i].noticeNo)
-            .replace("{processState}", abandonedDogList[i].processState)
-            .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+          if (abandonedDogList[i].rec_list_score) {
+            let dog_score = `<div class="d-flex">
+                              <div class="">적합도 :</div>
+                              <div class="ms-auto">${abandonedDogList[i].rec_list_score[i]}</div>
+                            </div>`
+            res += template_dog_list
+              .replace("{popfile}", abandonedDogList[i].popfile)
+              .replace("{kindCd}", abandonedDogList[i].kindCd)
+              .replace("{sexCd}", dogSex)
+              .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
+              .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+              .replace("{processState}", abandonedDogList[i].processState)
+              .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+              .replace("{rec_list_score}", dog_score)
+              console.log(template_dog_list)
+          }
+          else {
+            res += template_dog_list
+              .replace("{popfile}", abandonedDogList[i].popfile)
+              .replace("{kindCd}", abandonedDogList[i].kindCd)
+              .replace("{sexCd}", dogSex)
+              .replace("{happenDt}", abandonedDogList[i].happenDt.slice(2))
+              .replace("{noticeNo}", abandonedDogList[i].noticeNo)
+              .replace("{processState}", abandonedDogList[i].processState)
+              .replace("{desertionNo}", abandonedDogList[i].desertionNo)
+              .replace("{rec_list_score}", "")
+          }
         }
         document.querySelector(".dog-list").innerHTML = res
       }

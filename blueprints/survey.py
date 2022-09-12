@@ -137,9 +137,9 @@ def survey_answer():
             
             survey_res = {
                 "des_no": recommended_dogs[i],  # Desertion No
-                # Recommend Score (Percentage)
                 "rec_score": "{:.2%}".format(recommended_scores[i]),
-                # Panel data trait
+                "rec_list": recommended_dogs,
+                "rec_list_score": recommended_scores,
                 "trait_score": dog_data[recommended_dogs[i]],
                 "trait_score_diff": dog_diff[recommended_dogs[i]],
                 "popfile": popfile,

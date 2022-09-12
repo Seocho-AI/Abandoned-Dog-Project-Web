@@ -23,7 +23,7 @@ function moveToHomePage() {
 document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
+  window.location.href = `/find_dog?survey=false&ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
 }
 
 /**
@@ -174,7 +174,7 @@ function filterSearch() {
   let breed = document.getElementById("filter-breed");
   let breed_selected = breed.options[breed.selectedIndex].value;
 
-  window.location.href = `/find_dog?ds=${date_start_selected}&de=${date_end_selected}&state=${state_selected}&city=${city_selected}&breed=${breed_selected}`
+  window.location.href = `/find_dog?survey=false&ds=${date_start_selected}&de=${date_end_selected}&state=${state_selected}&city=${city_selected}&breed=${breed_selected}`
 }
 
 /**

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>서초 AI 프로젝트 제목</title>
+  <title>Saving Dog</title>
 
   <!-------------------- CSS IMPORTS -------------------->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -36,7 +36,7 @@
       <div class="container">
 
         <!-- NAV-LOGO -->
-        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Abandog</a>
+        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Saving Dog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -462,8 +462,11 @@
                           </div>
 
                           <div class="carousel-button col-12 pb-3 justify-content-center align-items-center d-flex">
-                            <button type="button" class="btn btn-outline-dark"><b>추천된 유기견 전체보기</b></button>
+                            <button type="button" class="survey-dog-list-btn btn btn-outline-dark" onclick="moveToRecDocListPage()"><b>추천된 유기견 전체보기</b></button>
                           </div>
+
+                          <div class="rec_list d-none" id="{{ ranking_order[0]['rec_list'] }}"></div>
+                          <div class="rec_list_score d-none" id="{{ ranking_order[0]['rec_list_score'] }}"></div>
 
                         </div>
                       </div>

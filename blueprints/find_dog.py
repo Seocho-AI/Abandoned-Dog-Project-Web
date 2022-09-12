@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, jsonify, request
 import pymysql
 import json
 import ast
+import copy
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -32,44 +33,69 @@ def find_dog_page():
                              port=3306, user='kaist', passwd='0916', db='abandoned_dog', charset="utf8")
         cursor = db.cursor()
 
-        ds_select = request.args.get('ds')
-        de_select = request.args.get('de')
-        state_select = request.args.get('state')
-        city_select = request.args.get('city')
-        region_select = f"{state_select} {city_select}"
-        breed_select = request.args.get('breed')
+        survey = request.args.get('survey')
 
-        # print(breed_select)
+        if survey == "false":
+            ds_select = request.args.get('ds')
+            de_select = request.args.get('de')
+            state_select = request.args.get('state')
+            city_select = request.args.get('city')
+            region_select = f"{state_select} {city_select}"
+            breed_select = request.args.get('breed')
 
-        ds_select = "".join(ds_select.split("-"))
-        de_select = "".join(de_select.split("-"))
+            # print(breed_select)
 
-        sql_start = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' AND happenDt BETWEEN '{ds_select}' AND '{de_select}' "
-        sql_end = "ORDER BY happenDt DESC;"
+            ds_select = "".join(ds_select.split("-"))
+            de_select = "".join(de_select.split("-"))
 
-        if state_select == "전체":  # 시군구: 전체 / 도시: 전체
-            if breed_select == "전체":  # 종: 전체
-                sql = sql_start + sql_end
-            else:  # 종: 선택
-                sql = sql_start + f"AND kindCd = '{breed_select}' " + sql_end
-        else:  # 시군구: 선택
-            if city_select == "전체":  # 도시: 전체
+            sql_start = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE processState = '보호중' AND happenDt BETWEEN '{ds_select}' AND '{de_select}' "
+            sql_end = "ORDER BY happenDt DESC;"
+
+            if state_select == "전체":  # 시군구: 전체 / 도시: 전체
                 if breed_select == "전체":  # 종: 전체
-                    sql = sql_start + \
-                        f"AND orgNm LIKE '%{state_select}%' " + sql_end
+                    sql = sql_start + sql_end
                 else:  # 종: 선택
-                    sql = sql_start + \
-                        f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{state_select}%' " + sql_end
-            else:  # 도시: 선택
-                if breed_select == "전체":  # 종: 전체
-                    sql = sql_start + \
-                        f"AND orgNm LIKE '%{region_select}%' " + sql_end
-                else:  # 종: 선택
-                    sql = sql_start + \
-                        f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{region_select}%' " + sql_end
+                    sql = sql_start + f"AND kindCd = '{breed_select}' " + sql_end
+            else:  # 시군구: 선택
+                if city_select == "전체":  # 도시: 전체
+                    if breed_select == "전체":  # 종: 전체
+                        sql = sql_start + \
+                            f"AND orgNm LIKE '%{state_select}%' " + sql_end
+                    else:  # 종: 선택
+                        sql = sql_start + \
+                            f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{state_select}%' " + sql_end
+                else:  # 도시: 선택
+                    if breed_select == "전체":  # 종: 전체
+                        sql = sql_start + \
+                            f"AND orgNm LIKE '%{region_select}%' " + sql_end
+                    else:  # 종: 선택
+                        sql = sql_start + \
+                            f"AND kindCd = '{breed_select}' AND orgNm LIKE '%{region_select}%' " + sql_end
+
+        elif survey == "true":
+            rec_list = request.args.get('rec_list') # Ranking list (desertionNo)
+            rec_list_field = copy.deepcopy(rec_list)
+
+            rec_list = ast.literal_eval(rec_list)
+            rec_list = tuple(rec_list)
+            
+            rec_list_field = "(desertionNo, " + rec_list_field[1:-1] + ")"
+            
+            sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, desertionNo FROM dog_list WHERE desertionNo in {rec_list} ORDER BY FIELD{rec_list_field};"
+
+            # Ranking list (percentage)
+            rec_list_score = request.args.get('rec_list_score')
+            rec_list_score = rec_list_score[1:-1]
+            rec_list_score = rec_list_score.split(", ")
+            for i, scores in enumerate(rec_list_score):
+                scores = float(scores)
+                scores = "{:.2%}".format(scores)
+                rec_list_score[i] = scores
 
         cursor.execute(sql)
         result = cursor.fetchall()
+
+        # print(result)
 
         dog_list = []
         for dog_info in result:
@@ -82,6 +108,8 @@ def find_dog_page():
                 "processState": dog_info[5],
                 "desertionNo": dog_info[6]
             }
+            if survey == "true":
+                dog_dict["rec_list_score"] = rec_list_score
             dog_list.append(dog_dict)
 
         # print(dog_list[0])
