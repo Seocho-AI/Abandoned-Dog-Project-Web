@@ -32,7 +32,8 @@ body {
   /* background-attachment: fixed; */
   background-image: none !important;
 
-  background-color: #fffffb;
+  background-color: #90C9C2;
+  /* background-color: #FEFAF6; */
 }
 
 .card-body {
@@ -242,7 +243,7 @@ select.filter-breed {
  * Basic Info
  */
 .basic-info-container>div {
-  background-color: #F7ECDE;
+  /* background-color: #F7ECDE; */
 }
 
 .basic-info-container,
@@ -251,15 +252,18 @@ select.filter-breed {
 }
 
 .basic-info-item-1 {
-  background-color: #CADEFC;
+  background-color: #FEFAF6;
   color: black;
-  border: #C3BEF0 2px solid;
+  border: #19B394 2px solid;
   border-radius: 1rem;
 }
 
 .basic-info-item-2 {
-  background-color: #CADEFC;
-  border-left: #CCA8E9 5px solid;
+  background-color: #FEFAF6;
+  border-left: #19B394 5px solid;
+  border-top: #19B394 2px solid;
+  border-right: #19B394 2px solid;
+  border-bottom: #19B394 2px solid;
   border-radius: 0 20px 20px 0;
 }
 
@@ -280,6 +284,37 @@ select.filter-breed {
 .panel-trait {
   /* height: calc((100vh - 144px)/12); */
   height: calc((100vh - 144px)/8);
+}
+
+.btn-outline-dark {
+  --bs-btn-color: #19B394;
+  --bs-btn-border-color: #19B394;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #19B394;
+  --bs-btn-hover-border-color: #19B394;
+  --bs-btn-focus-shadow-rgb: 33,37,41;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #19B394;
+  --bs-btn-active-border-color: #19B394;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #19B394;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #19B394;
+  --bs-gradient: none;
+
+  border: #19B394 2px solid;
+}
+
+.progress-bar {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--bs-progress-bar-color);
+  text-align: center;
+  white-space: nowrap; */
+  background-color: #19B394;
+  /* transition: var(--bs-progress-bar-transition); */
 }
 
 /**

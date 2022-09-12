@@ -71,8 +71,9 @@ def dog_info_page():
             # Retreive breed info from DB
             if breed == "믹스견":
                 mix_predict = ast.literal_eval(mix_predict)
-                breed = mix_predict[0]
-                sql_2 = f"SELECT * FROM final_mixprinted WHERE breed = '{breed}';"
+                breed_predict_en = mix_predict[0]
+                breed_chance = mix_predict[1]
+                sql_2 = f"SELECT * FROM final_mixprinted WHERE breed = '{breed_predict_en}';"
             else:
                 sql_2 = f"SELECT * FROM final_mixprinted WHERE breed_name_kr = '{breed}';"
             
@@ -80,6 +81,54 @@ def dog_info_page():
             result_2 = cursor.fetchall()
             result_unbox_2 = result_2[0]
 
+            if breed == "믹스견":
+                breed_predict_kr = result_unbox_2[39]
+                dog_info["kindCd_predict"] = breed_predict_kr
+                dog_info["breed_chance"] = breed_chance
+
+            dog_info["panel_data"] = {
+                "a_adaptability": {
+                    "A": result_unbox_2[3]*20,
+                    "a1": result_unbox_2[4]*20,
+                    "a2": result_unbox_2[5]*20,
+                    "a3": result_unbox_2[6]*20,
+                    "a4": result_unbox_2[7]*20,
+                    "a5": result_unbox_2[8]*20,
+                    "a6": result_unbox_2[9]*20
+                },
+                "b_friendliness": {
+                    "B": result_unbox_2[10]*20,
+                    "b1": result_unbox_2[11]*20,
+                    "b2": result_unbox_2[12]*20,
+                    "b3": result_unbox_2[13]*20,
+                    "b4": result_unbox_2[14]*20
+                },
+                "c_health_groom": {
+                    "C": result_unbox_2[15]*20,
+                    "c1": result_unbox_2[16]*20,
+                    "c2": result_unbox_2[17]*20,
+                    "c3": result_unbox_2[18]*20,
+                    "c4": result_unbox_2[19]*20,
+                    "c5": result_unbox_2[20]*20,
+                    "c6": result_unbox_2[21]*20
+                },
+                "d_train": {
+                    "D": result_unbox_2[22]*20,
+                    "d1": result_unbox_2[23]*20,
+                    "d2": result_unbox_2[24]*20,
+                    "d3": result_unbox_2[25]*20,
+                    "d4": result_unbox_2[26]*20,
+                    "d5": result_unbox_2[27]*20,
+                    "d6": result_unbox_2[28]*20
+                },
+                "e_exercise": {
+                    "E": result_unbox_2[29]*20,
+                    "e1": result_unbox_2[30]*20,
+                    "e2": result_unbox_2[31]*20,
+                    "e3": result_unbox_2[32]*20,
+                    "e4": result_unbox_2[33]*20
+                }
+            }
             dog_info["size"] = result_unbox_2[40]
             dog_info["origin"] = result_unbox_2[41]
             dog_info["usage"] = result_unbox_2[42]
@@ -88,6 +137,7 @@ def dog_info_page():
             dog_info["color"] = result_unbox_2[45]
             dog_info["describe"] = result_unbox_2[46]
 
+            print(dog_info["panel_data"])
             return render_template("dog_info.html", dog_info=dog_info)
 
     # except Exception as e:

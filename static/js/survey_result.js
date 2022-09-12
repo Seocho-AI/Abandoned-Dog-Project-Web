@@ -20,7 +20,7 @@ function moveToHomePage() {
 document.querySelector(".nav-find-dog").addEventListener("click", moveToAbandonedDogPage)
 
 function moveToAbandonedDogPage() {
-  window.location.href = `/find_dog?ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
+  window.location.href = `/find_dog?survey=false&ds=2019-01-01&de=${currentDate}&state=전체&city=전체&breed=전체` // Move to find dog page
 }
 
 /**
