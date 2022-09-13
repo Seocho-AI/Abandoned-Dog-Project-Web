@@ -6,6 +6,7 @@ import numpy as np
 import pymysql
 from model.content_based_recommender import ContentBasedRecommender
 import copy
+import json
 
 
 # ------------------- Flask Blueprint ------------------- #
@@ -142,6 +143,7 @@ def survey_answer():
                 "rec_list_score": recommended_scores,
                 "trait_score": dog_data[recommended_dogs[i]],
                 "trait_score_diff": dog_diff[recommended_dogs[i]],
+                "tot_trait_score_diff": json.dumps(dog_diff),
                 "popfile": popfile,
                 "kindCd": kindCd,
                 "sexCd": sexCd,

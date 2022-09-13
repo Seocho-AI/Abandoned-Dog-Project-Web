@@ -241,7 +241,7 @@
 
   <script id="template-dog-list" type="">
     <div class="dog-card-container col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12">
-      <div class="dog-card card shadow-sm" id="{desertionNo}" onclick="moveToDogPosts(this)">
+      <div class="dog-card card shadow-sm" id="{desertionNo}" trait_score_diff='{trait_score_diff}' onclick="moveToDogPosts(this)">
         
         <div class="row g-0">
           
@@ -332,7 +332,7 @@
               .replace("{processState}", abandonedDogList[i].processState)
               .replace("{desertionNo}", abandonedDogList[i].desertionNo)
               .replace("{rec_list_score}", dog_score)
-              console.log(template_dog_list)
+              .replace("{trait_score_diff}", abandonedDogList[i].trait_score_diff)
           }
           else {
             res += template_dog_list

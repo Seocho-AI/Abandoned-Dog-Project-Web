@@ -280,11 +280,11 @@
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["neuterYn"] == 'Y' %}
-                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-check fa-lg pe-1" style="color:#04A2F5"></i></h4>
+                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-check fa-lg pe-2" style="color:#04A2F5"></i></h4>
                       {% elif dog_info["neuterYn"] == 'N' %}
-                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-xmark fa-lg pe-1" style="color:#E73E77"></i></h4>
+                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-xmark fa-lg pe-2" style="color:#E73E77"></i></h4>
                       {% else %}
-                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-question fa-lg pe-1" style="color:#FFAE42"></i></h4>
+                      <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-question fa-lg pe-2" style="color:#FFAE42"></i></h4>
                       {% endif %}
                       <h4 class="m-0 fw-bold">중성화</h4>
                     </h4>
@@ -328,7 +328,7 @@
               </div>
             </div>
 
-            <!-- Breed, Care, Region Info -->
+            <!-- Breed, User diff, Care, Region Info -->
             <div class="detail-info-container col-12 border border-2 d-flex flex-row justify-content-evenly">
               <div class="row p-1">
 
@@ -925,12 +925,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_3" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">외로움을 잘 타는</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_3">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['a4_tolerates_being_alone']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['a4_tolerates_being_alone']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -971,12 +971,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_4" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">가족과 다정한</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_4">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['b1_affectionate_with_family']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['b1_affectionate_with_family']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1017,12 +1017,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_5" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">자녀 키우는</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_5">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['b2_incredibly_kid_friendly_dogs']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['b2_incredibly_kid_friendly_dogs']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1063,12 +1063,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_6" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">다른 강아지를 키우는</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_6">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['b3_dog_friendly']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['b3_dog_friendly']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1109,12 +1109,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_7" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">낮선 사람과 어울리는</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_7">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['b4_friendly_toward_strangers']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['b4_friendly_toward_strangers']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1155,12 +1155,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_8" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">털 날림</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_8">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['c1_amount_of_shedding']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['c1_amount_of_shedding']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1201,12 +1201,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_9" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">관리하기 쉬운</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_9">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['c3_easy_to_groom']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['c3_easy_to_groom']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1247,12 +1247,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_10" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">짖음</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_10">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['d5_tendency_to_bark_or_howl']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['d5_tendency_to_bark_or_howl']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1293,12 +1293,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_11" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">활동적</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_11">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['e1_energy_level']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['e1_energy_level']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>
@@ -1339,12 +1339,12 @@
                           </div>
                         </button>
                         {% else %}
-                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="x_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_12" aria-expanded="false" aria-controls="collapseExample">
                           <div class="d-flex flex-row align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-xmark fa-lg pe-2"></i>
-                            <p class="m-0 fw-bold">집 적합도</p>
+                            <p class="m-0 fw-bold">운동 필요성</p>
                           </div>
-                          <div class="collapse pt-2" id="diff_trait_1">
+                          <div class="collapse pt-2" id="diff_trait_12">
                             <div class="progress">
                               <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ 100 - dog_info['trait_score_diff']['e3_exercise_needs']*20 }}%" aria-valuenow="{{ 100 - dog_info['trait_score_diff']['e3_exercise_needs']*20 }}"
                                 aria-valuemin="0" aria-valuemax="100"></div>

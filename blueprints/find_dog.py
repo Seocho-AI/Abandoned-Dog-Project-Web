@@ -26,7 +26,7 @@ today_year = today[:4]  # 이번년도
 # ------------------- FIND DOG PAGE API ------------------- #
 
 
-@find_dog.route("/", methods=["GET"])  # Find dog page
+@find_dog.route("/", methods=["GET", "POST"])  # Find dog page
 def find_dog_page():
     try:
         db = pymysql.connect(host='abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com',
@@ -91,6 +91,18 @@ def find_dog_page():
                 scores = float(scores)
                 scores = "{:.2%}".format(scores)
                 rec_list_score[i] = scores
+            
+            # if request.method == 'POST':
+            #     tot_trait_score_diff = request.json
+            #     print(tot_trait_score_diff)
+            #     print(type(tot_trait_score_diff))
+            #     # tot_trait_score_diff = ast.literal_eval(tot_trait_score_diff)
+            # else:
+            tot_trait_score_diff = request.args.get('tot_trait_score_diff')
+            # tot_trait_score_diff = tot_trait_score_diff.replace("'", "\"")
+            tot_trait_score_diff = ast.literal_eval(tot_trait_score_diff)
+            # print(tot_trait_score_diff)
+            # print(type(tot_trait_score_diff))
 
         cursor.execute(sql)
         result = cursor.fetchall()
@@ -110,6 +122,7 @@ def find_dog_page():
             }
             if survey == "true":
                 dog_dict["rec_list_score"] = rec_list_score
+                dog_dict["trait_score_diff"] = json.dumps(tot_trait_score_diff[dog_info[6]])
             dog_list.append(dog_dict)
 
         # print(dog_list[0])

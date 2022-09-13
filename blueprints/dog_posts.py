@@ -141,9 +141,9 @@ def dog_info_page():
         # trait_score_diff = args.get('trait_score_diff')
         if args.get('survey') == "true":
             trait_score_diff = args.get('trait_score_diff')
-            # trait_score_diff = json.loads(trait_score_diff)
+            # trait_score_diff = json.loads(trait_score_diff.replace("'", "\""))
             trait_score_diff = ast.literal_eval(trait_score_diff)
-            print(trait_score_diff)
+            # print(trait_score_diff)
             dog_info["trait_score_diff"] = trait_score_diff
 
         # print(dog_info["panel_data"])

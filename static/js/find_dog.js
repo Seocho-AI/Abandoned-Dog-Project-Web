@@ -160,7 +160,14 @@ $(function () {
  */
 function moveToDogPosts(item) {
   let desertionNo = $(item).attr("id")
-  window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
+  let trait_score_diff = $(item).attr("trait_score_diff")
+  console.log(trait_score_diff)
+  if (trait_score_diff == "{trait_score_diff}") {
+    window.location.href = `/find_dog/dog_info?survey=false&id=${desertionNo}` // Move to dog posts page
+  }
+  else {
+    window.location.href = `/find_dog/dog_info?survey=true&id=${desertionNo}&trait_score_diff=${trait_score_diff}` // Move to dog posts page
+  }
 }
 
 /**

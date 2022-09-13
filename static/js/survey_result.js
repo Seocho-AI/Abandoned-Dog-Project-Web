@@ -50,7 +50,17 @@ function moveToSelectedDog(item) {
 function moveToRecDocListPage() {
   let rec_list = $(".rec_list").attr("id")
   let rec_list_score = $(".rec_list_score").attr("id")
-  window.location.href = `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}` // Move to find dog page
+  let tot_trait_score_diff = $(".tot_trait_score_diff").attr("id")
+  // console.log(tot_trait_score_diff)
+  window.location.href = `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}&tot_trait_score_diff=${tot_trait_score_diff}` // Move to find dog page
+  // $.ajax({
+  //   type: "POST",
+  //   url: `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}`,
+  //   data: { tot_trait_score_diff },
+  //   success: function (response) {
+  //     console.log(response)
+  //   }
+  // })
 }
 
 /**
