@@ -231,7 +231,7 @@
         <div class="dog-post-container justify-content-center">
 
           <!-- Dog post container -->
-          <div class="dog-post row justify-content-center">
+          <div class="dog-post row justify-content-center fw-bold">
 
             <!-- Dog img -->
             <div class="dog-img-container col-12 col-lg-5 align-items-center justify-content-center d-flex">
@@ -244,11 +244,11 @@
 
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center basic-info-item-1">
-                    <h4 class="m-0">
+                    <h4 class="m-0 fw-bold">
                       {{ dog_info["kindCd"] }}
                     </h4>
                     {% if 'kindCd_predict' in dog_info %}
-                    <h4 class="m-0">
+                    <h4 class="m-0 fw-bold">
                       ({{ dog_info["kindCd_predict"] }} {{ dog_info["breed_chance"] }}%)
                     </h4>
                     {% endif %}
@@ -260,9 +260,9 @@
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["sexCd"] == 'M' %}
-                      <i class="fa-solid fa-mars fa-lg pe-2" style="color:#04A2F5"></i>수컷
+                        <h4 class="m-0 fw-bold"><i class="fa-solid fa-mars fa-lg pe-2" style="color:#04A2F5"></i>수컷</h4>
                       {% else %}
-                      <i class="fa-solid fa-venus fa-lg pe-2" style="color:#E73E77"></i>암컷
+                        <h4 class="m-0 fw-bold"><i class="fa-solid fa-venus fa-lg pe-2" style="color:#E73E77"></i>암컷</h4>
                       {% endif %}
                     </h4>
                   </div>
@@ -270,7 +270,7 @@
 
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                    <h4 class="m-0">
+                    <h4 class="m-0 fw-bold">
                       {{ dog_info["age"] }}
                     </h4>
                   </div>
@@ -280,20 +280,20 @@
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["neuterYn"] == 'Y' %}
-                      <i class="fa-regular fa-circle-check fa-lg pe-1" style="color:#04A2F5"></i>
+                        <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-check fa-lg pe-1" style="color:#04A2F5"></i></h4>
                       {% elif dog_info["neuterYn"] == 'N' %}
-                      <i class="fa-regular fa-circle-xmark fa-lg pe-1" style="color:#E73E77"></i>
+                        <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-xmark fa-lg pe-1" style="color:#E73E77"></i></h4>
                       {% else %}
-                      <i class="fa-regular fa-circle-question fa-lg pe-1" style="color:#FFAE42"></i>
+                        <h4 class="m-0 fw-bold"><i class="fa-regular fa-circle-question fa-lg pe-1" style="color:#FFAE42"></i></h4>
                       {% endif %}
-                      중성화
+                      <h4 class="m-0 fw-bold">중성화</h4>
                     </h4>
                   </div>
                 </div>
 
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                    <h4 class="m-0">
+                    <h4 class="m-0 fw-bold">
                       {{ dog_info["colorCd"] }}
                     </h4>
                   </div>
@@ -301,7 +301,7 @@
 
                 <div class="col-4 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
-                    <h4 class="m-0">
+                    <h4 class="m-0 fw-bold">
                       {{ dog_info["weight"] }}
                     </h4>
                   </div>
@@ -309,19 +309,19 @@
 
                 <div class="col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0">공고번호 : {{ dog_info["noticeNo"] }}</h4>
+                    <h4 class="m-0 fw-bold">공고번호 : {{ dog_info["noticeNo"] }}</h4>
                   </div>
                 </div>
 
                 <div class="col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
+                    <h4 class="m-0 fw-bold">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
                   </div>
                 </div>
 
                 <div class="col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0">발견장소 : {{ dog_info["happenPlace"] }}</h4>
+                    <h4 class="m-0 fw-bold">발견장소 : {{ dog_info["happenPlace"] }}</h4>
                   </div>
                 </div>
 
@@ -456,10 +456,10 @@
                         <div class="card card-body">
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">아파트 적응도</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a1'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a1'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -468,10 +468,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">반려인 적합도</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a2'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a2'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -480,10 +480,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">민감도</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a3'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a3'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -492,10 +492,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">외로움 적응력</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a4'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a4'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -504,10 +504,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">추위 내성</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a5'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a5'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -516,10 +516,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">더위 내성</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['a_adaptability']['a6'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['a_adaptability']['a6'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -899,7 +899,7 @@
                         <div class="col-12 care_center_toggle">
                           <div class="h-100 align-items-center justify-content-center d-flex flex-column">
                             <div class="collapse" id="care_center">
-                              <div class="card card-body">
+                              <div class="card card-body align-items-center justify-content-center d-flex">
                                 <p class="m-0">{{ dog_info["careNm"] }}</p>
                                 <p class="m-0">{{ dog_info["careTel"] }}</p>
                               </div>
@@ -911,7 +911,7 @@
                         <div class="col-12 care_region_toggle">
                           <div class="h-100 align-items-center justify-content-center d-flex flex-column">
                             <div class="collapse" id="care_region">
-                              <div class="card card-body">
+                              <div class="card card-body align-items-center justify-content-center d-flex">
                                 <p class="m-0">{{ dog_info["orgNm"] }}</p>
                                 <p class="m-0">{{ dog_info["officetel"] }}</p>
                               </div>
@@ -936,6 +936,17 @@
     </div>
     </div>
   </section>
+
+  <!-------------------- NAVBAR ADOPT -------------------->
+  <nav class="navbar_adopt_container navbar sticky-bottom pb-4">
+    <div class="navbar_adopt container h-100 align-items-center justify-content-center d-flex p-0">
+      <div class="row h-100 w-100 align-items-center justify-content-center d-flex">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-8">
+          <button type="button" class="navbar_adopt_btn w-100 btn btn-outline-dark"><b>이 유기견 입양하기!</b></button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
   <script id="template-breed-filter" type="text/template">
     <option value="{key}">{key} ({value} 마리)</option>

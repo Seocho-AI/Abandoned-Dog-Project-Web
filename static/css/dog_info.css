@@ -19,7 +19,7 @@ html {
  * Body BG color
  */
 body {
-  background-color: #E9DAC1 !important;
+  background-color: #FFF !important;
 }
 
 /**
@@ -32,12 +32,12 @@ body {
   /* background-attachment: fixed; */
   background-image: none !important;
 
-  background-color: #90C9C2;
+  background-color: #FFF;
   /* background-color: #FEFAF6; */
 }
 
 .card-body {
-  background-color: #FFFFFF;
+  background-color: #FEFAF6;
   color: #7F8487 !important;
 }
 
@@ -210,7 +210,7 @@ select.filter-breed {
 .dog-img-container,
 .basic-info-container,
 .detail-info-container {
-  /* padding-top: 2rem; */
+  padding-top: 1rem;
 }
 
 /**
@@ -228,7 +228,7 @@ select.filter-breed {
   max-width: 100vw;
   object-fit: contain;
 
-  border: lightgray 2px solid;
+  border: #19B394 2px solid;
   border-radius: 2rem;
 }
 
@@ -346,9 +346,6 @@ select.filter-breed {
 /**
  * Breed Info
  */
-.breed-info-container>div>div>div {
-  /* background-color: #F7ECDE; */
-}
 
 .breed-info-container {
   /* min-height: calc((100vh - 144px)/2); */
@@ -356,36 +353,35 @@ select.filter-breed {
 }
 
 /**
- * Dog Cost
+ * Navbar Adopt
  */
-.dog-cost-container>div {
-  background-color: #F7ECDE;
+.navbar_adopt_container {
+  background-color: transparent;
 }
 
-/**
- * Dog Warning
- */
-.dog-warning-container>div {
-  background-color: #F7ECDE;
+.navbar_adopt {
+  /* width: 20%; */
+  border-radius: 2rem;
 }
 
-/**
- * Dog Comment
- */
-.dog-comment-container>div {
-  background-color: #F7ECDE;
-}
+.navbar_adopt_btn {
+  --bs-btn-color: #19B394;
+  --bs-btn-border-color: #19B394;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #19B394;
+  --bs-btn-hover-border-color: #19B394;
+  --bs-btn-focus-shadow-rgb: 33, 37, 41;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #19B394;
+  --bs-btn-active-border-color: #19B394;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #19B394;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #19B394;
+  --bs-gradient: none;
 
-/**
- * Care Center
- */
-.care-center-container>div {
-  background-color: #F7ECDE;
-}
-
-/**
- * Care Region
- */
-.care-region-container>div {
-  background-color: #F7ECDE;
+  background-color: #FEFAF6;
+  /* color: black; */
+  border: #19B394 2px solid;
+  border-radius: 2rem;
 }
