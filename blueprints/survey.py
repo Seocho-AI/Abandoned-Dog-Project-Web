@@ -73,7 +73,7 @@ def survey_answer():
             'user_id': '1'
         }
 
-        query = 'SELECT * FROM mixprinted_include'
+        query = 'SELECT * FROM final_mixprinted'
         panel_info = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM breeds_panel'

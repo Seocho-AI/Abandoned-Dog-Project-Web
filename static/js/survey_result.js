@@ -37,7 +37,11 @@ function moveToSurveyPage() {
  */
 function moveToSelectedDog(item) {
   let desertionNo = $(item).attr("id")
-  window.location.href = `/find_dog/dog_info?id=${desertionNo}` // Move to dog posts page
+  let trait_score_diff = $(item).attr("score_diff")
+  // trait_score_diff = JSON.parse(trait_score_diff)
+  // console.log(trait_score_diff)
+  // console.log(typeof trait_score_diff)
+  window.location.href = `/find_dog/dog_info?survey=true&id=${desertionNo}&trait_score_diff=${trait_score_diff}` // Move to dog posts page
 }
 
 /**

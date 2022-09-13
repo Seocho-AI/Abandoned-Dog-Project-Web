@@ -305,6 +305,72 @@ select.filter-breed {
   border-radius: 1rem;
 }
 
+.check_btn {
+  --bs-btn-color: #339900;
+  --bs-btn-border-color: #339900;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #339900;
+  --bs-btn-hover-border-color: #339900;
+  --bs-btn-focus-shadow-rgb: 33, 37, 41;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #339900;
+  --bs-btn-active-border-color: #339900;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #339900;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #339900;
+  --bs-gradient: none;
+
+  background-color: #FEFAF6;
+  /* color: black; */
+  border: #339900 2px solid;
+  border-radius: 1rem;
+}
+
+.exclamation_btn {
+  --bs-btn-color: #FFCC00;
+  --bs-btn-border-color: #FFCC00;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #FFCC00;
+  --bs-btn-hover-border-color: #FFCC00;
+  --bs-btn-focus-shadow-rgb: 33, 37, 41;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #FFCC00;
+  --bs-btn-active-border-color: #FFCC00;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #FFCC00;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #FFCC00;
+  --bs-gradient: none;
+
+  background-color: #FEFAF6;
+  /* color: black; */
+  border: #FFCC00 2px solid;
+  border-radius: 1rem;
+}
+
+.x_btn {
+  --bs-btn-color: #CC3300;
+  --bs-btn-border-color: #CC3300;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #CC3300;
+  --bs-btn-hover-border-color: #CC3300;
+  --bs-btn-focus-shadow-rgb: 33, 37, 41;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #CC3300;
+  --bs-btn-active-border-color: #CC3300;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #CC3300;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #CC3300;
+  --bs-gradient: none;
+
+  background-color: #FEFAF6;
+  /* color: black; */
+  border: #CC3300 2px solid;
+  border-radius: 1rem;
+}
+
 .breed_history_btn,
 .breed_info_btn,
 .care_comment_btn,
@@ -357,11 +423,13 @@ select.filter-breed {
  */
 .navbar_adopt_container {
   background-color: transparent;
+  /* height: 2rem; */
 }
 
 .navbar_adopt {
   /* width: 20%; */
   border-radius: 2rem;
+  /* height: 4rem; */
 }
 
 .navbar_adopt_btn {
@@ -384,4 +452,6 @@ select.filter-breed {
   /* color: black; */
   border: #19B394 2px solid;
   border-radius: 2rem;
+
+  height: 55px;
 }
