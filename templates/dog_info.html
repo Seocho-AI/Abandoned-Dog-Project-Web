@@ -328,16 +328,16 @@
               </div>
             </div>
 
-            <!-- Panel trait -->
-            <div class="panel-trait-container col-12 border border-2">
-              <div class="row p-2">
+            <!-- Breed, Care, Region Info -->
+            <div class="detail-info-container col-12 border border-2 d-flex flex-row justify-content-evenly">
+              <div class="row p-1">
 
                 <!-- Panel trait (basic) -->
                 <div class="panel-trait-basic-container col-12">
                   <div class="row border border-2">
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-earth-americas fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">원산지</p>
                         <p class="m-0 pb-2">{{ dog_info["origin"] }}</p>
@@ -345,7 +345,7 @@
                     </div>
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-shield-dog fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">견종 분류</p>
                         <p class="m-0 pb-2">{{ dog_info["usage"] }}</p>
@@ -353,7 +353,7 @@
                     </div>
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-dog fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">견종 크기</p>
                         <p class="m-0 pb-2">{{ dog_info["size"] }}</p>
@@ -361,7 +361,7 @@
                     </div>
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-ruler-vertical fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">키</p>
                         <p class="m-0 pb-2">{{ dog_info["height"] }}</p>
@@ -369,7 +369,7 @@
                     </div>
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-weight-scale fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">몸무게</p>
                         <p class="m-0 pb-2">{{ dog_info["breed_weight"] }}</p>
@@ -377,7 +377,7 @@
                     </div>
 
                     <div class="panel-trait-basic col-6 col-md-4 col-lg-2 p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center border">
+                      <div class="panel-trait-basic-badge h-100 align-items-center justify-content-center d-flex flex-column text-center">
                         <i class="fa-solid fa-palette fa-3x pb-3 pt-2" style="color: #19B394;"></i>
                         <p class="m-0 pb-2">색깔</p>
                         <p class="m-0 pb-2">{{ dog_info["color"] }}</p>
@@ -391,8 +391,8 @@
                 <div class="panel-trait-stat-container col-12">
                   <div class="row border border-2">
 
-                    <div class="panel-trait col-12 col-lg p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <div class="panel-trait col-12 col-lg">
+                      <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_A btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_A" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">적응 능력</p>
                           <div class="progress">
@@ -403,8 +403,8 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <div class="panel-trait col-12 col-lg">
+                      <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_B btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_B" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">친절함</p>
                           <div class="progress">
@@ -415,8 +415,8 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <div class="panel-trait col-12 col-lg">
+                      <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_C btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_C" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">건강 및 관리</p>
                           <div class="progress">
@@ -427,8 +427,8 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <div class="panel-trait col-12 col-lg">
+                      <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_D btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_D" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">훈련 난이도</p>
                           <div class="progress">
@@ -439,8 +439,8 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg p-2">
-                      <div class="h-100 align-items-center justify-content-center d-flex border">
+                    <div class="panel-trait col-12 col-lg">
+                      <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_E btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_E" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">활동량</p>
                           <div class="progress">
@@ -798,127 +798,127 @@
                   </div>
                 </div>
 
-              </div>
-            </div>
+                <!-- Breed info -->
+                <div class="breed-info-container col-12">
+                  <div class="row border border-2">
 
-            <!-- Breed info -->
-            <div class="breed-info-container col-12">
-              <div class="row h-100 p-2">
+                    <div class="col-12">
+                      <div class="row h-100">
 
-                <div class="col-12">
-                  <div class="row h-100 border border-2">
+                        <!--------------- INFORMATIONS (Button) --------------->
 
-                    <!--------------- INFORMATIONS (Button) --------------->
-
-                    <!-- Breed History Title (Button) -->
-                    <div class="col p-2 breed_history_title">
-                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
-                          <button class="breed_history_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#breed_history" aria-expanded="false" aria-controls="collapseExample">
-                            {% if 'kindCd_predict' in dog_info %}
-                            <p class="fw-bold m-0">{{ dog_info["kindCd_predict"] }} 기원과 역사</p>
-                            {% else %}
-                            <p class="fw-bold m-0">{{ dog_info["kindCd"] }} 기원과 역사</p>
-                            {% endif %}
-                          </button>
-                      </div>
-                    </div>
-
-                    <!-- Breed Info Title (Button) -->
-                    <div class="col p-2 breed_info_title">
-                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
-                          <button class="breed_info_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#breed_info" aria-expanded="false" aria-controls="collapseExample">
-                            {% if 'kindCd_predict' in dog_info %}
-                            <p class="fw-bold m-0">{{ dog_info["kindCd_predict"] }} 설명</p>
-                            {% else %}
-                            <p class="fw-bold m-0">{{ dog_info["kindCd"] }} 설명</p>
-                            {% endif %}
-                          </button>
-                      </div>
-                    </div>
-
-                    <!-- Care Comment Title (Button) -->
-                    <div class="col p-2 care_comment_title">
-                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
-                          <button class="care_comment_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_comment" aria-expanded="false" aria-controls="collapseExample">
-                            <p class="fw-bold m-0">보호소 소견</p>
-                          </button>
-                      </div>
-                    </div>
-
-                    <!-- Care Center Title (Button) -->
-                    <div class="col p-2 care_center_title">
-                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
-                          <button class="care_comment_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_center" aria-expanded="false" aria-controls="collapseExample">
-                            <p class="fw-bold m-0">보호센터</p>
-                          </button>
-                      </div>
-                    </div>
-
-                    <!-- Care Region Title (Button) -->
-                    <div class="col p-2 care_region_title">
-                      <div class="h-100 align-items-center justify-content-center d-flex border border-2">
-                        <button class="care_comment_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_region" aria-expanded="false" aria-controls="collapseExample">
-                          <p class="fw-bold m-0">담당부서</p>
-                        </button>
-                      </div>
-                    </div>
-
-                    <!--------------- INFORMATIONS (Toggle) --------------->
-
-                    <!-- Breed History Info (Toggle) -->
-                    <div class="col-12 breed_history_toggle">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column">
-                        <div class="collapse" id="breed_history">
-                          <div class="card card-body">
-                            <p class="m-0">{{ dog_info["describe"] }}</p>
+                        <!-- Breed History Title (Button) -->
+                        <div class="col-12 col-lg p-2 breed_history_title">
+                          <div class="h-100 align-items-center justify-content-center d-flex">
+                            <button class="breed_history_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#breed_history" aria-expanded="false" aria-controls="collapseExample">
+                              {% if 'kindCd_predict' in dog_info %}
+                              <p class="fw-bold m-0">{{ dog_info["kindCd_predict"] }} 기원과 역사</p>
+                              {% else %}
+                              <p class="fw-bold m-0">{{ dog_info["kindCd"] }} 기원과 역사</p>
+                              {% endif %}
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <!-- Breed Info (Toggle) -->
-                    <div class="col-12 breed_info_toggle">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column">
-                        <div class="collapse" id="breed_info">
-                          <div class="card card-body">
-                            <p class="m-0">{{ dog_info["trait"] }}</p>
+                        <!-- Breed Info Title (Button) -->
+                        <div class="col-12 col-lg p-2 breed_info_title">
+                          <div class="h-100 align-items-center justify-content-center d-flex">
+                            <button class="breed_info_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#breed_info" aria-expanded="false" aria-controls="collapseExample">
+                              {% if 'kindCd_predict' in dog_info %}
+                              <p class="fw-bold m-0">{{ dog_info["kindCd_predict"] }} 설명</p>
+                              {% else %}
+                              <p class="fw-bold m-0">{{ dog_info["kindCd"] }} 설명</p>
+                              {% endif %}
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <!-- Care Comment Info (Toggle) -->
-                    <div class="col-12 care_comment_toggle">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column">
-                        <div class="collapse" id="care_comment">
-                          <div class="card card-body">
-                            <p class="m-0">{{ dog_info["specialMark"] }}</p>
+                        <!-- Care Comment Title (Button) -->
+                        <div class="col-12 col-lg p-2 care_comment_title">
+                          <div class="h-100 align-items-center justify-content-center d-flex">
+                            <button class="care_comment_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_comment" aria-expanded="false" aria-controls="collapseExample">
+                              <p class="fw-bold m-0">보호소 소견</p>
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <!-- Care Center Info (Toggle) -->
-                    <div class="col-12 care_center_toggle">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column">
-                        <div class="collapse" id="care_center">
-                          <div class="card card-body">
-                            <p class="m-0">{{ dog_info["careNm"] }}</p>
-                            <p class="m-0">{{ dog_info["careTel"] }}</p>
+                        <!-- Care Center Title (Button) -->
+                        <div class="col-12 col-lg p-2 care_center_title">
+                          <div class="h-100 align-items-center justify-content-center d-flex">
+                            <button class="care_center_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_center" aria-expanded="false" aria-controls="collapseExample">
+                              <p class="fw-bold m-0">보호센터</p>
+                            </button>
                           </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <!-- Care Region Info (Toggle) -->
-                    <div class="col-12 care_region_toggle">
-                      <div class="h-100 align-items-center justify-content-center d-flex flex-column">
-                        <div class="collapse" id="care_region">
-                          <div class="card card-body">
-                            <p class="m-0">{{ dog_info["orgNm"] }}</p>
-                            <p class="m-0">{{ dog_info["officetel"] }}</p>
+                        <!-- Care Region Title (Button) -->
+                        <div class="col-12 col-lg p-2 care_region_title">
+                          <div class="h-100 align-items-center justify-content-center d-flex">
+                            <button class="care_region_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#care_region" aria-expanded="false" aria-controls="collapseExample">
+                              <p class="fw-bold m-0">담당부서</p>
+                            </button>
                           </div>
                         </div>
+
+                        <!--------------- INFORMATIONS (Toggle) --------------->
+
+                        <!-- Breed History Info (Toggle) -->
+                        <div class="col-12 breed_history_toggle">
+                          <div class="h-100 align-items-center justify-content-center d-flex flex-column">
+                            <div class="collapse" id="breed_history">
+                              <div class="card card-body">
+                                <p class="m-0">{{ dog_info["describe"] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Breed Info (Toggle) -->
+                        <div class="col-12 breed_info_toggle">
+                          <div class="h-100 align-items-center justify-content-center d-flex flex-column">
+                            <div class="collapse" id="breed_info">
+                              <div class="card card-body">
+                                <p class="m-0">{{ dog_info["trait"] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Care Comment Info (Toggle) -->
+                        <div class="col-12 care_comment_toggle">
+                          <div class="h-100 align-items-center justify-content-center d-flex flex-column">
+                            <div class="collapse" id="care_comment">
+                              <div class="card card-body">
+                                <p class="m-0">{{ dog_info["specialMark"] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Care Center Info (Toggle) -->
+                        <div class="col-12 care_center_toggle">
+                          <div class="h-100 align-items-center justify-content-center d-flex flex-column">
+                            <div class="collapse" id="care_center">
+                              <div class="card card-body">
+                                <p class="m-0">{{ dog_info["careNm"] }}</p>
+                                <p class="m-0">{{ dog_info["careTel"] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Care Region Info (Toggle) -->
+                        <div class="col-12 care_region_toggle">
+                          <div class="h-100 align-items-center justify-content-center d-flex flex-column">
+                            <div class="collapse" id="care_region">
+                              <div class="card card-body">
+                                <p class="m-0">{{ dog_info["orgNm"] }}</p>
+                                <p class="m-0">{{ dog_info["officetel"] }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
 
