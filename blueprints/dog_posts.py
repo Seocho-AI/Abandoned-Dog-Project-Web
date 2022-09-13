@@ -136,8 +136,9 @@ def dog_info_page():
             dog_info["breed_weight"] = result_unbox_2[44]
             dog_info["color"] = result_unbox_2[45]
             dog_info["describe"] = result_unbox_2[46]
+            dog_info["trait"] = result_unbox_2[47]
 
-            print(dog_info["panel_data"])
+            # print(dog_info["panel_data"])
             return render_template("dog_info.html", dog_info=dog_info)
 
     # except Exception as e:
