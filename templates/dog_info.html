@@ -43,7 +43,9 @@
       <div class="container">
 
         <!-- NAV-LOGO -->
-        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">Saving Dog</a>
+        <a class="navbar-brand navbar-logo" href="#home" onclick="moveToHomePage()">
+          <img style="height: 40px;" src="{{ url_for('static', filename='img/logo_long_1.png') }}" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dog-navbar" aria-controls="dog-navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
