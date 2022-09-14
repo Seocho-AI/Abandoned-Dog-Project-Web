@@ -242,7 +242,7 @@ class ContentBasedRecommender():
         # return lst
 
     def get_user_dog_diff(self):
-        processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(list(self.recommendations.index))]
+        processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(self.recommendations.index)]
         processed_user_data = self.processed_user_data
         # print(processed_user_data)
         # print(processed_dog_data)
