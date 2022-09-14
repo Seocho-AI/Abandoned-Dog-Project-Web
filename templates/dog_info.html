@@ -800,7 +800,7 @@
                   </div>
                 </div>
 
-                {% if 'trait_score_diff' in dog_info %}
+                {% if dog_info['trait_score_diff'] != "None" %}
                 <!-- User & Dog trait diff -->
                 <div class="panel-trait-stat-container col-12">
                   <div class="row">
@@ -1527,7 +1527,7 @@
               <p>나는 해당 유기견의 현재 건강 상태를 인지 하였습니다.</p>
             </label>
           </div>
-          
+
           <div class="form-check">
             <input class="agree_check form-check-input" type="checkbox" value="" id="agree_check_2">
             <label class="form-check-label" for="agree_check_2">

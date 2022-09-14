@@ -51,16 +51,26 @@ function moveToRecDocListPage() {
   let rec_list = $(".rec_list").attr("id")
   let rec_list_score = $(".rec_list_score").attr("id")
   let tot_trait_score_diff = $(".tot_trait_score_diff").attr("id")
+
+  rec_list = rec_list.slice(1, -1).replaceAll("'", "").split(", ")
+  tot_trait_score_diff_temp = JSON.parse(tot_trait_score_diff)
+  tot_trait_score_diff = {}
+
+  for (let i = 0; i < 100; i++) {
+    let d_no = rec_list[i]
+    if (tot_trait_score_diff_temp[d_no]) {
+      tot_trait_score_diff[d_no] = tot_trait_score_diff_temp[d_no]
+    }
+  }
+
+  // console.log(tot_trait_score_diff)
+  tot_trait_score_diff = JSON.stringify(tot_trait_score_diff)
+
+
+  // console.log(rec_list)
+  // console.log(tot_trait_score_diff_temp)
   // console.log(tot_trait_score_diff)
   window.location.href = `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}&tot_trait_score_diff=${tot_trait_score_diff}` // Move to find dog page
-  // $.ajax({
-  //   type: "POST",
-  //   url: `/find_dog?survey=true&rec_list=${rec_list}&rec_list_score=${rec_list_score}`,
-  //   data: { tot_trait_score_diff },
-  //   success: function (response) {
-  //     console.log(response)
-  //   }
-  // })
 }
 
 /**

@@ -122,7 +122,7 @@ def find_dog_page():
             }
             if survey == "true":
                 dog_dict["rec_list_score"] = rec_list_score
-                dog_dict["trait_score_diff"] = json.dumps(tot_trait_score_diff[dog_info[6]])
+                dog_dict["trait_score_diff"] = json.dumps(tot_trait_score_diff.get(dog_info[6], "None"))
             dog_list.append(dog_dict)
 
         # print(dog_list[0])
