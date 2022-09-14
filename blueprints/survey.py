@@ -74,6 +74,9 @@ def survey_answer():
             'user_id': '1'
         }
 
+        query = 'SELECT * FROM processed_dog_data'
+        processed_dog_data = pd.read_sql(sql=query, con=db)
+
         query = 'SELECT * FROM final_mixprinted'
         panel_info = pd.read_sql(sql=query, con=db)
 
@@ -84,7 +87,7 @@ def survey_answer():
         adopter_data = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM dog_list ' \
-                'WHERE processState="보호중" AND kindCd != "믹스견"'
+                'WHERE processState="보호중"'
         dog_list_data = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM breed_info'
@@ -95,7 +98,8 @@ def survey_answer():
                                               adopter_data=adopter_data,
                                               dog_list_data=dog_list_data,
                                               breed_info=breed_info,
-                                              panel_info=panel_info)
+                                              panel_info=panel_info,
+                                              processed_dog_data_db=processed_dog_data)
 
         recommender.fit_transform(target_user_survey=user_answer)
 
@@ -108,7 +112,7 @@ def survey_answer():
         survey_to_data = recommender.get_processed_user_data()
         dog_data = recommender.get_processed_dog_data()
         dog_diff = recommender.get_user_dog_diff()
-        
+
         # len(recommended_dogs) : 공고번호의 수 (Int)
         # recommended_dogs : 내림차순 정렬된 공고번호 (List)
         # recommended_scores : 각 유사도 스코어 Percentage (List)
@@ -135,7 +139,7 @@ def survey_answer():
                 weight = dog_info[8]
                 neuterYn = dog_info[9]
                 desertionNo = dog_info[10]
-            
+
             survey_res = {
                 "des_no": recommended_dogs[i],  # Desertion No
                 "rec_score": "{:.2%}".format(recommended_scores[i]),

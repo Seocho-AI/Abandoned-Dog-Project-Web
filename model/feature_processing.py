@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import Normalizer
 import gc
+import re
+import ast
+
 from collections import defaultdict
 # a1, a2, a3, a4
 # b1, b2, b3, b4
@@ -93,7 +96,7 @@ class BreedsDataFeatureProcessor():
     transform():
     """
 
-    def __init__(self, target_user_id: str, breeds_panel, user_survey_data, adopter_data, dog_list_data, breed_info, panel_info):
+    def __init__(self, target_user_id: str, breeds_panel, user_survey_data, adopter_data, dog_list_data, breed_info, panel_info, processed_dog_data_db):
         self.target_user_id = target_user_id
         self.panel_info = panel_info
         self.breeds_panel = breeds_panel
@@ -102,6 +105,7 @@ class BreedsDataFeatureProcessor():
         self.dog_list_data = dog_list_data
         self.breed_info = breed_info
         self.target_user_id = target_user_id
+        self.processed_dog_data_db = processed_dog_data_db
         # 추천을 위해 필요한 columns:
         # dog_list_data
         #     유기 번호: PK
@@ -212,12 +216,6 @@ class BreedsDataFeatureProcessor():
             '예': 5,
             '아니오': 1
         }
-        # self.dog_size_dict = {
-        #     '소형견': 1,
-        #     '중형견': 5,
-        #     '대형견': 9,
-        #     '상관없음': 5
-        # }
         self.shedding_level_dict = {
             1: 1,
             2: 1,
@@ -258,16 +256,6 @@ class BreedsDataFeatureProcessor():
             '암컷': 'F',
             '상관 없음': 'MFQ'
         }
-        # 쿼리에서 걸러야하는 것들
-        # self.want_dog_age_dict = {
-        #     '자견(생후 2년 이하)': dog_age_young,
-        #     '성견(생후 2년 이상)': dog_age_old
-        # }
-        # 쿼리에서 걸러야하는 것들
-        # self.neuter_yn = {
-        #     'Y': 5,
-        #     'N': 1
-        # }
 
     def mix_predict_processing(self):
         """
@@ -300,7 +288,7 @@ class BreedsDataFeatureProcessor():
         """
         pass
 
-    def processing_user_survey_data_features(self):
+    def processing_user_survey_data_features(self, user_survey_data):
         """
         # 추천을 위해 필요한 columns:
         dog_list_data
@@ -337,7 +325,7 @@ class BreedsDataFeatureProcessor():
         # dog_health_agreement: x
         # age
         #print("dddd",user_survey_data2)
-        user_survey_data = self.user_survey_data.copy()
+        user_survey_data = user_survey_data
         #print(user_survey_data.columns)
         # print(user_survey_data)
         self.processed_user_data['user_id'] = user_survey_data['user_id']
@@ -372,11 +360,6 @@ class BreedsDataFeatureProcessor():
         self.processed_user_data['e3_exercise_needs'] = (self.spend_time_dict[user_survey_data['spend_time']] +
                                                          self.spend_type_dict[user_survey_data['spend_type']]) // 2
 
-
-
-
-
-
         # 나이 년생 숫자로 전처리 해야함
         # if self.dog_list_data['age']>2022:
 
@@ -406,14 +389,8 @@ class BreedsDataFeatureProcessor():
         medium = list(self.panel_info[self.panel_info['size'] == '중형견']['breed_name_kr'].values)
         big = list(self.panel_info[self.panel_info['size'] == '대형견']['breed_name_kr'].values)
         dog_list_data = self.dog_list_data.loc[(self.dog_list_data['neuterYn'] == self.user_survey_data['neuter_yn'])]
-        # print(dog_list_data)
-        # print(small)
-        # print()
-        # print(medium)
-        # print()
-        # print(big)
 
-        # print(self.breed_info[self.breed_info['size'] == '중형견']['breed_name_kr'])
+        #print(self.breed_info[self.breed_info['size'] == '중형견']['breed_name_kr'])
         if self.user_survey_data['dog_size'] == '소형견':
             dog_list_data = dog_list_data.loc[dog_list_data.kindCd.isin(small)]
         elif self.user_survey_data['dog_size'] == '중형견':
@@ -434,133 +411,106 @@ class BreedsDataFeatureProcessor():
         else:
             dog_list_data = dog_list_data.loc[(dog_list_data['age'] != '2022(년생)') & (dog_list_data['age'] != '2021(년생)')]
 
-
+        # print("dog_list_data = ",dog_list_data['desertionNo'].values)
+        dog_list_data = self.processed_dog_data_db.loc[self.processed_dog_data_db.desertionNo.isin(dog_list_data['desertionNo'].values)]
         # breeds_panel = self.processing_breeds_panel_features()
         #print(dog_list_data.shape)
-        dog_list_data = dog_list_data.drop(columns=['age', 'sexCd', 'neuterYn','processState', 'specialMark', 'mixPredict', 'filename',
-                                                  'happenDt',
-                                                  'happenPlace',
-                                                  'colorCd',
-                                                  'weight',
-                                                  'noticeNo',
-                                                  'noticeSdt',
-                                                  'noticeEdt',
-                                                  'popfile',
-                                                  'careNm',
-                                                  'careTel',
-                                                  'careAddr',
-                                                  'orgNm',
-                                                  'officetel'], errors='ignore')
-        #print(dog_list_data.columns)
-        gc.collect()
-        # print("adopter scaled \n", self.adopter_scaled)
-        # print("dog_list_data = \n", dog_list_data)
-        # age
+        # dog_list_data = dog_list_data.drop(columns=['age',
+        #                                             'sexCd',
+        #                                             'neuterYn',
+        #                                             'processState',
+        #                                             'specialMark',
+        #                                             'mixPredict',
+        #                                             'filename',
+        #                                             'happenDt',
+        #                                             'happenPlace',
+        #                                             'colorCd',
+        #                                             'weight',
+        #                                             'noticeNo',
+        #                                             'noticeSdt',
+        #                                             'noticeEdt',
+        #                                             'popfile',
+        #                                             'careNm',
+        #                                             'careTel',
+        #                                             'careAddr',
+        #                                             'orgNm',
+        #                                             'officetel'], errors='ignore')
+        # #print(dog_list_data.columns)
+        # gc.collect()
+        # # age_range
+        # dog_list_data['age_range'] = self.adopter_scaled['나이대'].map({
+        #     '20대이하': 1,
+        #     '30대': 2,
+        #     '40대': 3,
+        #     '50대': 4,
+        #     '60대이상': 5
+        # }, na_action='ignore')
+        # dog_list_data['age_range'] = dog_list_data['age_range'].fillna(2)
+        # # house_type
+        # dog_list_data['house_type'] = self.adopter_scaled['주거형태'].map({
+        #     '단독주택': 1,
+        #     '다가구주택': 5,
+        #     '아파트': 5,
+        #     '오피스텔': 5,
+        #     '기타': 3
+        # }, na_action='ignore')
+        # dog_list_data['house_type'] = dog_list_data['house_type'].fillna(3)
+        #
+        # dog_list_data = dog_list_data.dropna()
 
-        # dog_list_data['age'] = dog_list_data['age'].map({
-        #     '2022(년생)': 1,
-        #     '2021(년생)': 2,
-        #     '2020(년생)': 3,
-        #     '2019(년생)': 4,
-        #     '2018(년생)': 5,
-        #     '2017(년생)': 6,
-        #     '2016(년생)': 7,
-        #     np.nan: int(0)
-        # }, na_action=None)
-        # print(dog_list_data)
 
-        # print(dog_list_data[self.dog_list_data.loc[:,'sexCd']=='M'])
-        # setCd
-
-
-        # dog_list_data[self.dog_list_data.loc['sexCd'] == 'M', 'sexCd'] = 1
-        # dog_list_data[self.dog_list_data.loc['sexCd'] != 'M', 'sexCd'] = 2
-        # print(dog_list_data)
-        # neuterYn
-
-        # self.dog_list_data[self.dog_list_data.loc[:, 'neuterYn']=='Y', 'neuterYn'] = 1
-        # self.dog_list_data[self.dog_list_data.loc[:, 'neuterYn']!='Y', 'neuterYn'] = 2
-        # print(dog_list_data)
-        # age_range
-        dog_list_data['age_range'] = self.adopter_scaled['나이대'].map({
-            '20대이하': 1,
-            '30대': 2,
-            '40대': 3,
-            '50대': 4,
-            '60대이상': 5
-        }, na_action='ignore')
-        dog_list_data['age_range'] = dog_list_data['age_range'].fillna(2)
-        # house_type
-        dog_list_data['house_type'] = self.adopter_scaled['주거형태'].map({
-            '단독주택': 1,
-            '다가구주택': 5,
-            '아파트': 5,
-            '오피스텔': 5,
-            '기타': 3
-        }, na_action='ignore')
-        dog_list_data['house_type'] = dog_list_data['house_type'].fillna(3)
-        # 나이 년생 숫자로 전처리 해야함
-        # if self.dog_list_data['age']>2022:
-        cnt = 0
-        # 추후 수정
-        # print(breeds_panel.columns)
-        # print(self.breed_info.columns)
-        # print(dog_list_data.columns)
-        # print(breeds_panel.head())
-        # print(self.breed_info.head())
-        # print(self.dog_list_data.head())
-        #print(self.breed_info[self.breed_info['breed_name_kr'].values == dog_list_data['kindCd'].values])
-        # dog = dog_list_data.loc[dog_list_data['desertionNo'] == '411304202200536']
-        # print(dog_list_data.loc[dog_list_data['desertionNo'] == '411304202200536'])
-        # for key in panel:
-        #     if dog_list_data['kindCd'] != '믹스견':
-        #         dog_list_data[key] = self.panel_info[self.panel_info['breed']==]
-        # print(type(dog_list_data))
-        # print(type(panel))
-
-        dog_list_data = dog_list_data.dropna()
-        # print(dog_list_data)
-        if len(dog_list_data) == 0:
-            return dog_list_data
-        for i in dog_list_data['desertionNo'].values:
-
-            breed_kr = dog_list_data.loc[dog_list_data['desertionNo'] == i, 'kindCd'].values[0]
-
-            if breed_kr=='믹스견':
-                breed_kr = self.panel_info.loc[dog_list_data['mixPredict'][0] == self.panel_info['breed'], 'breed_name_kr']
-            # print(breed_kr)
-            if breed_kr not in self.breed_info['breed_name_kr'].values:
-               for key in panel:
-                   #print(panel_rating)
-                   dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
-               continue
-            breed_en = self.panel_info.loc[self.panel_info['breed_name_kr'] == breed_kr, 'breed'].values[0]
-            # print(breed_en)
-            if breed_en not in self.panel_info['breed'].values:
-                for key in panel:
-                    #print(panel_rating)
-                    dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
-                continue
-            for key in panel:
-                # print(key)
-                panel_rating = self.panel_info.loc[self.panel_info['breed'] == breed_en, key]
-                #print(panel_rating)
-                dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = panel_rating.values[0]
-                #print(dog_list_data[dog_list_data['desertionNo']==i])
-            # cnt+=1
-            # print(cnt)
-            # print("processing_dog_list_data_features Clear")
-        # print(dog_list_data.columns)
+        # print(type(self.dog_list_data['mixPredict'].values[0]))
+        # if len(dog_list_data) == 0:
+        #     return dog_list_data
+        # for i in dog_list_data['desertionNo'].values:
+        #
+        #     breed_kr = dog_list_data.loc[dog_list_data['desertionNo'] == i, 'kindCd'].values[0]
+        #
+        #     if breed_kr == '믹스견':
+        #         #print(self.dog_list_data['mixPredict'].values[0])
+        #         #print(self.dog_list_data.columns)
+        #         #print(self.dog_list_data.loc[self.dog_list_data['desertionNo'] == i, 'mixPredict'].values[0])
+        #         print("desertionNo=", i)
+        #         print(self.dog_list_data.loc[self.dog_list_data['desertionNo'] == i, 'mixPredict'])
+        #         if self.dog_list_data.loc[self.dog_list_data['desertionNo'] == i, 'mixPredict'].values == None:
+        #             continue
+        #         mixdog = ast.literal_eval(self.dog_list_data.loc[self.dog_list_data['desertionNo'] == i, 'mixPredict'].values[0])
+        #         #print("mixdog=", mixdog[0], type(mixdog[0]))
+        #         #print(dog_list_data[dog_list_data['desertionNo']==i])
+        #         if mixdog==[]:
+        #             continue
+        #         breed_kr = self.panel_info.loc[self.panel_info['breed'] == mixdog[0], 'breed_name_kr'].values[0]
+        #     #print(breed_kr)
+        #     #print(self.panel_info['breed_name_kr'].values)
+        #     if breed_kr not in self.panel_info['breed_name_kr'].values:
+        #          continue
+        #     #    for key in panel:
+        #     #        #print(panel_rating)
+        #     #        dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
+        #     #    continue
+        #     breed_en = self.panel_info.loc[self.panel_info['breed_name_kr'] == breed_kr, 'breed'].values[0]
+        #     # print(breed_en)
+        #     if breed_en not in self.panel_info['breed'].values:
+        #     #     for key in panel:
+        #     #         #print(panel_rating)
+        #     #         dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = 3
+        #          continue
+        #     for key in panel:
+        #         # print(key)
+        #         panel_rating = self.panel_info.loc[self.panel_info['breed'] == breed_en, key]
+        #         #print(panel_rating)
+        #         dog_list_data.loc[dog_list_data['desertionNo'] == i, key] = panel_rating.values[0]
+        #         #print(dog_list_data[dog_list_data['desertionNo']==i])
+        #     # cnt+=1
+        #     # print(cnt)
+        #     # print("processing_dog_list_data_features Clear")
+        # # print(dog_list_data.columns)
         return dog_list_data
 
     def processing_all_features(self):
-        # breeds_panel_features = self.get_features(self.breeds_panel)
-        # user_survey_data_features = self.get_features(self.user_survey_data)
-        # adopter_data_features = self.get_features(self.adopter_data)
-        # dog_list_data_features = self.get_features(self.dog_list_data)
         # print("processing_all_features")
         return self.processing_breeds_panel_features(),\
-               self.processing_user_survey_data_features(),\
+               self.processing_user_survey_data_features(user_survey_data=self.user_survey_data),\
                self.processing_adopter_data_features(),\
                self.processing_dog_list_data_features()
 
@@ -568,6 +518,6 @@ class BreedsDataFeatureProcessor():
         processed_breeds_panel, processed_user_data, adopter_data, processed_dog_list = self.processing_all_features()
         # print("processing_all_features Clear")
         # print(processed_user_data)
-        processed_dog_list=processed_dog_list.drop(columns=['kindCd'])
+        # processed_dog_list = processed_dog_list.drop(columns=['kindCd'])
         gc.collect()
         return processed_user_data, processed_dog_list

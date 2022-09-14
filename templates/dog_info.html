@@ -236,15 +236,15 @@
           <div class="dog-post row justify-content-center fw-bold">
 
             <!-- Dog img -->
-            <div class="dog-img-container col-12 col-lg-5 align-items-center justify-content-center d-flex">
+            <div class="dog-img-container h-100 col-12 col-lg-5 align-items-center justify-content-center d-flex">
               <img class="dog-post-img d-block" src="{{ dog_info['popfile'] }}" alt="dog photo">
             </div>
 
             <!-- Dog basic info -->
-            <div class="basic-info-container col-12 col-lg-7">
-              <div class="row h-100">
+            <div class="basic-info-container col-12 col-lg-7 p-3 align-items-center justify-content-center d-flex">
+              <div class="row h-100 align-items-center justify-content-center d-flex">
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex flex-column text-center basic-info-item-1">
                     <h4 class="m-0 fw-bold">
                       {{ dog_info["kindCd"] }}
@@ -258,7 +258,7 @@
                   </div>
                 </div>
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["sexCd"] == 'M' %}
@@ -270,7 +270,7 @@
                   </div>
                 </div>
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0 fw-bold">
                       {{ dog_info["age"] }}
@@ -278,7 +278,7 @@
                   </div>
                 </div>
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0">
                       {% if dog_info["neuterYn"] == 'Y' %}
@@ -293,7 +293,7 @@
                   </div>
                 </div>
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0 fw-bold">
                       {{ dog_info["colorCd"] }}
@@ -301,7 +301,7 @@
                   </div>
                 </div>
 
-                <div class="col-4 p-2">
+                <div class="basic_info_box col-lg-4 col-6 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-1">
                     <h4 class="m-0 fw-bold">
                       {{ dog_info["weight"] }}
@@ -309,21 +309,21 @@
                   </div>
                 </div>
 
-                <div class="col-12 p-2">
+                <div class="basic_info_box col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0 fw-bold">공고번호 : {{ dog_info["noticeNo"] }}</h4>
+                    <h4 class="m-0 fw-bold text-center">공고번호 : {{ dog_info["noticeNo"] }}</h4>
                   </div>
                 </div>
 
-                <div class="col-12 p-2">
+                <div class="basic_info_box col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0 fw-bold">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
+                    <h4 class="m-0 fw-bold text-center">공고기간 : {{ dog_info["noticeSdt"] }} ~ {{ dog_info["noticeEdt"] }}</h4>
                   </div>
                 </div>
 
-                <div class="col-12 p-2">
+                <div class="basic_info_box col-12 p-2">
                   <div class="h-100 align-items-center justify-content-center d-flex basic-info-item-2">
-                    <h4 class="m-0 fw-bold">발견장소 : {{ dog_info["happenPlace"] }}</h4>
+                    <h4 class="m-0 fw-bold text-center">발견장소 : {{ dog_info["happenPlace"] }}</h4>
                   </div>
                 </div>
 
@@ -390,10 +390,21 @@
                 </div>
 
                 <!-- Panel trait (stats) -->
-                <div class="panel-trait-stat-container col-12">
+                <div class="panel-trait-stat-container col-12 pt-4">
                   <div class="row">
 
-                    <div class="panel-trait col-12 col-lg">
+                    <div class="col-12 p-3 d-flex align-items-center justify-content-center" style="border-bottom: #19B394 2px solid;">
+                      <h4 class="m-0 fw-bold" style="color: #19B394;">
+                        {{ dog_info["kindCd"] }} 수치
+                      </h4>
+                      {% if 'kindCd_predict' in dog_info %}
+                      <h4 class="m-0 fw-bold" style="color: #19B394;">
+                        ({{ dog_info["kindCd_predict"] }} {{ dog_info["breed_chance"] }}%) 수치
+                      </h4>
+                      {% endif %}
+                    </div>
+
+                    <div class="panel-trait col-12 col-lg py-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_A btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_A" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">적응 능력</p>
@@ -405,7 +416,7 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg">
+                    <div class="panel-trait col-12 col-lg py-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_B btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_B" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">친절함</p>
@@ -417,7 +428,7 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg">
+                    <div class="panel-trait col-12 col-lg py-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_C btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_C" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">건강 및 관리</p>
@@ -429,7 +440,7 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg">
+                    <div class="panel-trait col-12 col-lg py-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_D btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_D" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">훈련 난이도</p>
@@ -441,7 +452,7 @@
                       </div>
                     </div>
 
-                    <div class="panel-trait col-12 col-lg">
+                    <div class="panel-trait col-12 col-lg py-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         <button class="trait_E btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panel_E" aria-expanded="false" aria-controls="collapseExample">
                           <p class="m-0 fw-bold pb-2">활동량</p>
@@ -536,10 +547,10 @@
                         <div class="card card-body">
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">가족과 다정하다</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['b_friendliness']['b1'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['b_friendliness']['b1'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -548,10 +559,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">아이들과 잘 어울리는</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['b_friendliness']['b2'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['b_friendliness']['b2'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -560,10 +571,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">다른 개들과 잘 어울리는</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['b_friendliness']['b3'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['b_friendliness']['b3'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -572,10 +583,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">낯선사람과 잘 어울리는</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['b_friendliness']['b4'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['b_friendliness']['b4'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -590,10 +601,10 @@
                         <div class="card card-body">
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">털 날림</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c1'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c1'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -602,10 +613,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">침 흘림</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c2'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c2'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -614,10 +625,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">관리하기 쉬운</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c3'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c3'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -626,10 +637,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">건강</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c4'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c4'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -638,10 +649,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">체중 증가 가능성</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c5'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c5'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -650,10 +661,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">크기</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['c_health_groom']['c6'] }}%"
                                   aria-valuenow="{{ dog_info['panel_data']['c_health_groom']['c6'] }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -668,10 +679,10 @@
                         <div class="card card-body">
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">훈련 하기 쉬운</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d1'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d1'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -680,10 +691,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">지능</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d2'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d2'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -692,10 +703,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">입질</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d3'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d3'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -704,10 +715,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">사냥 본능</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d4'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d4'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -716,10 +727,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">짖는 경향</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d5'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d5'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -728,10 +739,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">호기심</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['d_train']['d6'] }}%" aria-valuenow="{{ dog_info['panel_data']['d_train']['d6'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -746,10 +757,10 @@
                         <div class="card card-body">
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">활동적</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['e_exercise']['e1'] }}%" aria-valuenow="{{ dog_info['panel_data']['e_exercise']['e1'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -758,10 +769,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">활기찬/기운</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['e_exercise']['e2'] }}%" aria-valuenow="{{ dog_info['panel_data']['e_exercise']['e2'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -770,10 +781,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">운동 필요성</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['e_exercise']['e3'] }}%" aria-valuenow="{{ dog_info['panel_data']['e_exercise']['e3'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -782,10 +793,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                               <p class="fw-bold" style="color: #19B394;">놀기 좋아하는</p>
                             </div>
-                            <div class="col-10">
+                            <div class="col-lg-10 col-md-9 col-sm-8 col-7">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: {{ dog_info['panel_data']['e_exercise']['e4'] }}%" aria-valuenow="{{ dog_info['panel_data']['e_exercise']['e4'] }}"
                                   aria-valuemin="0" aria-valuemax="100"></div>
@@ -802,11 +813,22 @@
 
                 {% if dog_info['trait_score_diff'] != "None" %}
                 <!-- User & Dog trait diff -->
-                <div class="panel-trait-stat-container col-12">
+                <div class="panel-trait-stat-container col-12 pt-4">
                   <div class="row">
 
+                    <div class="col-12 p-3 d-flex align-items-center justify-content-center" style="border-bottom: #19B394 2px solid;">
+                      <h4 class="m-0 fw-bold" style="color: #19B394;">
+                        귀하와 {{ dog_info["kindCd"] }}의 적합도
+                      </h4>
+                      {% if 'kindCd_predict' in dog_info %}
+                      <h4 class="m-0 fw-bold" style="color: #19B394;">
+                        귀하와 ({{ dog_info["kindCd_predict"] }} {{ dog_info["breed_chance"] }}%)의 적합도
+                      </h4>
+                      {% endif %}
+                    </div>
+
                     <!-- User & Dog trait diff #1 (a1_adapts_well_to_apartment_living) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["a1_adapts_well_to_apartment_living"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_1" aria-expanded="false" aria-controls="collapseExample">
@@ -852,7 +874,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #2 (a2_good_for_novice_owners) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["a2_good_for_novice_owners"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_2" aria-expanded="false" aria-controls="collapseExample">
@@ -898,7 +920,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #3 (a4_tolerates_being_alone) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["a4_tolerates_being_alone"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_3" aria-expanded="false" aria-controls="collapseExample">
@@ -944,7 +966,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #4 (b1_affectionate_with_family) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["b1_affectionate_with_family"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_4" aria-expanded="false" aria-controls="collapseExample">
@@ -990,7 +1012,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #5 (b2_incredibly_kid_friendly_dogs) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["b2_incredibly_kid_friendly_dogs"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_5" aria-expanded="false" aria-controls="collapseExample">
@@ -1036,7 +1058,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #6 (b3_dog_friendly) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["b3_dog_friendly"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_6" aria-expanded="false" aria-controls="collapseExample">
@@ -1082,7 +1104,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #7 (b4_friendly_toward_strangers) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["b4_friendly_toward_strangers"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_7" aria-expanded="false" aria-controls="collapseExample">
@@ -1128,7 +1150,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #8 (c1_amount_of_shedding) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["c1_amount_of_shedding"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_8" aria-expanded="false" aria-controls="collapseExample">
@@ -1174,7 +1196,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #9 (c3_easy_to_groom) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["c3_easy_to_groom"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_9" aria-expanded="false" aria-controls="collapseExample">
@@ -1220,7 +1242,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #10 (d5_tendency_to_bark_or_howl) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["d5_tendency_to_bark_or_howl"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_10" aria-expanded="false" aria-controls="collapseExample">
@@ -1266,7 +1288,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #11 (e1_energy_level) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["e1_energy_level"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_11" aria-expanded="false" aria-controls="collapseExample">
@@ -1312,7 +1334,7 @@
                     </div>
 
                     <!-- User & Dog trait diff #12 (e3_exercise_needs) -->
-                    <div class="panel-trait col-6 col-lg-2">
+                    <div class="panel-trait col-6 col-lg-2 pt-3">
                       <div class="h-100 align-items-center justify-content-center d-flex">
                         {% if dog_info["trait_score_diff"]["e3_exercise_needs"] < 2.0 %}
                         <button class="check_btn btn btn-outline-dark w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diff_trait_12" aria-expanded="false" aria-controls="collapseExample">
@@ -1362,11 +1384,22 @@
                 {% endif %}
 
                 <!-- Breed info -->
-                <div class="breed-info-container col-12">
+                <div class="breed-info-container col-12 pt-4">
                   <div class="row">
 
                     <div class="col-12">
                       <div class="row h-100">
+
+                        <div class="col-12 p-3 d-flex align-items-center justify-content-center" style="border-bottom: #19B394 2px solid;">
+                          <h4 class="m-0 fw-bold" style="color: #19B394;">
+                            {{ dog_info["kindCd"] }} 입양 정보
+                          </h4>
+                          {% if 'kindCd_predict' in dog_info %}
+                          <h4 class="m-0 fw-bold" style="color: #19B394;">
+                            ({{ dog_info["kindCd_predict"] }} {{ dog_info["breed_chance"] }}%) 입양 정보
+                          </h4>
+                          {% endif %}
+                        </div>
 
                         <!--------------- INFORMATIONS (Button) --------------->
 

@@ -74,7 +74,8 @@ def find_dog_page():
 
         elif survey == "true":
             rec_list = request.args.get('rec_list') # Ranking list (desertionNo)
-            rec_list_field = copy.deepcopy(rec_list)
+            # rec_list_field = copy.deepcopy(rec_list)
+            rec_list_field = rec_list
 
             rec_list = ast.literal_eval(rec_list)
             rec_list = tuple(rec_list)

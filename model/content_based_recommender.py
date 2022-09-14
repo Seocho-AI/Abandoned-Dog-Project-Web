@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
 from model.feature_processing import BreedsDataFeatureProcessor
-# from feature_processing import BreedsDataFeatureProcessor
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import ndcg_score
+from sqlalchemy import create_engine
+import pymysql
+
 class ContentBasedRecommender():
     """
     A class used to select a target user to provide recommendations.
@@ -47,7 +49,7 @@ class ContentBasedRecommender():
 
     """
 
-    def __init__(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info, panel_info):
+    def __init__(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info, panel_info,processed_dog_data_db=None):
         self.breeds_panel = breeds_panel
         self.panel_info = panel_info
         self.user_survey_data = target_user_survey
@@ -55,6 +57,19 @@ class ContentBasedRecommender():
         self.dog_list_data = dog_list_data
         self.breed_info = breed_info
         self.recommendations = []
+        self.processed_dog_data_db = processed_dog_data_db
+        user_survey_data=pd.Series(self.user_survey_data)
+        self.target_user_id = None
+        self._transform = BreedsDataFeatureProcessor(
+            target_user_id=self.target_user_id,
+            user_survey_data=user_survey_data,
+            breeds_panel=self.breeds_panel,
+            adopter_data=self.adopter_data,
+            dog_list_data=self.dog_list_data,
+            breed_info=self.breed_info,
+            panel_info=self.panel_info,
+            processed_dog_data_db=self.processed_dog_data_db
+        )
 
     def fit(self, target_user_survey, breeds_panel, adopter_data, dog_list_data, breed_info):
         self.breeds_panel = breeds_panel
@@ -73,12 +88,11 @@ class ContentBasedRecommender():
 
         """
 
-        user_survey_data=pd.Series(self.user_survey_data)
+
         #print(self.user_survey_data)
 
 
-
-
+        user_survey_data=pd.Series(self.user_survey_data)
         self.target_user_id = target_user_id
         self._transform = BreedsDataFeatureProcessor(
             target_user_id=self.target_user_id,
@@ -87,13 +101,17 @@ class ContentBasedRecommender():
             adopter_data=self.adopter_data,
             dog_list_data=self.dog_list_data,
             breed_info=self.breed_info,
-            panel_info=self.panel_info
+            panel_info=self.panel_info,
+            processed_dog_data_db=self.processed_dog_data_db
+
         )
+
+
         # print("BreedsDataFeatureProcessor Call Clear")
         # get breeds features and ratings
         # print(self.breeds_panel.columns)
         # print(self.breed_info.columns)
-        processed_user_data, processed_dog_list = self._transform.transform()
+        processed_user_data, self.processed_dog_list = self._transform.transform()
         # print("transform Clear")
         processed_user_data = pd.DataFrame.from_dict(processed_user_data, orient='index')
         # print(processed_user_data)
@@ -108,17 +126,23 @@ class ContentBasedRecommender():
         # print(processed_dog_list[processed_dog_list.isnull()==True])
         # print(processed_dog_list)
         # processed_dog_list = processed_dog_list.fillna(3) # null값 예외처리 해야함 8/27
-        processed_dog_list = processed_dog_list.dropna() # null값 예외처리 해야함 8/27
+        processed_dog_list = self.processed_dog_list.dropna() # null값 예외처리 해야함 8/27
         #processed_dog_list['sexCd'] = processed_dog_list.loc[:, 'sexCd'].astype(dtype='int64')
 
         # print(len(self.dog_list_data))
         #print(processed_dog_list.isnull())
         # print(processed_user_data.columns)
         # print(processed_user_data.T)
-        # print(processed_dog_list.columns)
+        # # print(processed_dog_list.columns)
         # print(processed_dog_list.head())
-        processed_user_data = processed_user_data.T.set_index('user_id')
-        processed_dog_list = processed_dog_list.set_index('desertionNo')
+        # db_connection_str = 'mysql+pymysql://kaist:0916@abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com/abandoned_dog'
+        # db_connection = create_engine(db_connection_str)
+        # conn = db_connection.connect()
+        # processed_dog_list.to_sql(name="processed_dog_data", con=conn, if_exists='append',index=False)
+        # print("to_db clear")
+
+
+
         # print(processed_user_data.head())
         # print(processed_dog_list.head())
 
@@ -128,6 +152,12 @@ class ContentBasedRecommender():
     def predict(self, user_survey_data):
         # print("before", self.processed_dog_list)
         # self._breed_rec_scores = cosine_similarity(self.user_survey_data, self.breeds_data).argsort()[:, ::-1]
+        #self.processed_user_data=self._transform.processing_user_survey_data_features(user_survey_data=user_survey_data)
+        #processed_user_data = pd.DataFrame.from_dict(self.processed_user_data, orient='index')
+
+        self.processed_user_data = self.processed_user_data.T.set_index('user_id')
+        self.processed_dog_list = self.processed_dog_list.set_index('desertionNo')
+
         if len(self.processed_dog_list) == 0:
             print("해당 품종이 없습니다.")
             return [], []
@@ -212,7 +242,7 @@ class ContentBasedRecommender():
         # return lst
 
     def get_user_dog_diff(self):
-        processed_dog_data = processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(self.recommendations.index)]
+        processed_dog_data = self.processed_dog_list[self.processed_dog_list.index.isin(list(self.recommendations.index))]
         processed_user_data = self.processed_user_data
         # print(processed_user_data)
         # print(processed_dog_data)

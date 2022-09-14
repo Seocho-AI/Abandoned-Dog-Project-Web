@@ -4,7 +4,7 @@ import pandas as pd
 from content_based_recommender import ContentBasedRecommender
 import pickle
 import dill
-
+from sqlalchemy import create_engine
 import pymysql
 
 db = pymysql.connect(
@@ -26,28 +26,41 @@ try:
                 'dog_sex', 'dog_environment', 'dog_support_agreement', 'dog_health_agreement',
                 'want_dog_age', 'neuter_yn']
 
-
+    # print("start")
     # print(user_survey_data.iloc[0])
 
     # user = {}
     # user = dict(user_survey_data.iloc[0])
     #
+    query = 'SELECT * FROM processed_dog_data'
+    processed_dog_data = pd.read_sql(sql=query, con=db)
+
     query = 'SELECT * FROM final_mixprinted'
     panel_info = pd.read_sql(sql=query, con=db)
+
+    # print("panel clear")
 
     query = 'SELECT * FROM breeds_panel'
     breeds_panel = pd.read_sql(sql=query, con=db)
 
+    # print("breed clear")
+
     query = 'SELECT * FROM adopter_data'
     adopter_data = pd.read_sql(sql=query, con=db)
 
+    # print("adopter clear")
+
     query = 'SELECT * FROM dog_list ' \
-            'WHERE processState="보호중" AND kindCd != "믹스견"'
+            'WHERE processState="보호중"'
     dog_list_data = pd.read_sql(sql=query, con=db)
+
+    # print("dog_list clear")
 
     query = 'SELECT * FROM breed_info'
     breed_info = pd.read_sql(sql=query, con=db)
     #user_survey_data = {key: 3 for key in survey_lst}
+
+    # print("breed_info clear")
 
     user_survey_data={
         'user_age': '20대이하',
@@ -58,8 +71,6 @@ try:
             'dog_num': 3,
             'dog_time': 3
         },
-        'dog_num': 3,
-        'dog_time': 3,
         'user_family_size': '3인',
         'neighbor_agreement': '예',
         'user_kids': '예',
@@ -79,28 +90,43 @@ try:
     # print(breeds_panel.head())
     # print(adopter_data.head())
     # print(dog_list_data.head())
+
+
+    # print("db clear")
     recommender = ContentBasedRecommender(breeds_panel=breeds_panel,
                                           target_user_survey=user_survey_data,
                                           adopter_data=adopter_data,
                                           dog_list_data=dog_list_data,
                                           breed_info=breed_info,
-                                          panel_info=panel_info)
+                                          panel_info=panel_info,
+                                          processed_dog_data_db=processed_dog_data)
 
 
     # #print(user)
+    # with open('content_based_recommender.pkl', 'rb') as f:
+    #     recommender = pickle.load(f)
     recommender.fit_transform(target_user_survey=user_survey_data)
     with open(file='content_based_recommender.pkl', mode='wb') as f:
         pickle.dump(recommender, f)
-    recommender.predict(user_survey_data=user_survey_data)
+    recommended_dog, recommended_scores=recommender.predict(user_survey_data=user_survey_data)
     # for no in recommended_dogs:
     #     print(dog_list_data.loc[dog_list_data['desertionNo'] == no, :])
+    print(len(recommended_dog))
+    print(len(recommended_scores))
 
-    print(recommender.get_processed_user_data())
-    print(recommender.get_processed_dog_data())
-    print(recommender.get_user_dog_diff())
-    print(len(recommender.get_processed_dog_data().keys()))
 
-    print(dog_list_data.loc[dog_list_data['desertionNo'].isin(recommender.get_processed_dog_data().keys()),:])
+    # print(recommender.get_processed_user_data())
+    #print(recommender.get_processed_dog_data())
+    # print(recommender.get_user_dog_diff())
+    # print(len(recommender.get_processed_dog_data().keys()))
+    # db_connection_str = 'mysql+pymysql://kaist:0916@abandoned-dogs.cdlurfzj5gl4.ap-northeast-2.rds.amazonaws.com/abandoned_dog'
+    # db_connection = create_engine(db_connection_str)
+    # conn = db_connection.connect()
+    # processed_dog_data = pd.DataFrame(recommender.get_processed_dog_data())
+    # print(processed_dog_data.T.reset_index().head())
+    # df=processed_dog_data.T.reset_index().astype(dtype="int64")
+    # df.to_sql(name="processed_dog_data", con=db_connection, if_exists='append',index=False)
+    #print(dog_list_data.loc[dog_list_data['desertionNo'].isin(recommender.get_processed_dog_data().keys()),:])
 
 finally:
     db.close()
