@@ -455,3 +455,12 @@ select.filter-breed {
 
   height: 55px;
 }
+
+.sd-header__text {
+  text-align: center;
+}
+.sd-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

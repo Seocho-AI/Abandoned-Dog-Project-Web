@@ -186,6 +186,120 @@ function moveToDogPosts(item) {
 }
 
 /**
+ * Survey 2
+ */
+Survey.StylesManager.applyTheme("defaultV2"); // Survey Themes : defaultV2, modern
+var json = {
+  firstPageIsStarted: false,
+  title: "유기견 입양신청서",
+  description: "반려동물 입양은 한생명을 책임지는 일입니다. 문항수가 많아 번거로우시겠지만 신중한 답변 부탁드립니다(공란 없이 작성해주세요)",
+  // showProgressBar: "top",
+  locale: "ko",
+  pages: [{
+    elements: [{
+        "type": "panel",
+        "name": "adoptee_info",
+        "title": "입양신청자 정보 (실제로 반려견과 함께 하실 분이 작성해주세요)",
+        "elements": [{
+          "type": "text",
+          "name": "info_name",
+          "title": "이름",
+          "startWithNewLine": true,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_sex",
+          "title": "성별",
+          "startWithNewLine": false,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_bday",
+          "inputType": "date",
+          "title": "생년월일",
+          "startWithNewLine": true,
+          "isRequired": true,
+          "autoComplete": "bdate"
+        }, {
+          "type": "text",
+          "name": "info_phone_num",
+          "title": "연락처",
+          "startWithNewLine": true,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_region",
+          "title": "지역",
+          "startWithNewLine": false,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_phone_etc",
+          "title": "대체연락처(본인외)",
+          "startWithNewLine": true,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_relation",
+          "title": "관계",
+          "startWithNewLine": false,
+          "isRequired": true
+        }, {
+          "type": "text",
+          "name": "info_email",
+          "inputType": "email",
+          "title": "이메일",
+          "placeHolder": "예) 홍길동@naver.com",
+          "isRequired": true,
+          "startWithNewLine": true,
+          "autoComplete": "email",
+          "validators": [{
+            "type": "email"
+          }]
+        }, {
+          "type": "text",
+          "name": "info_work",
+          "title": "직업",
+          "startWithNewLine": true,
+          "isRequired": true,
+          "placeHolder": "(프리랜서의 경우 직종 기입)"
+        }]
+      },
+      {
+        "type": "panel",
+        "name": "adoptee_info",
+        "title": "입양 희망 강아지 정보 (Saving Dog 홈페이지 참고)",
+        "elements": [{
+          "type": "text",
+          "name": "info_dog_name",
+          "title": "이름 (공고번호)",
+          "startWithNewLine": true,
+          "isRequired": true,
+          "placeHolder": "예) 전북-완주-2022-00219"
+        }]
+      }
+    ]
+  }]
+};
+
+/**
+ * Targeting HTML Survey div to JS
+ */
+window.survey = new Survey.Model(json);
+
+$("#surveyElement").Survey({
+  model: survey,
+});
+
+/**
+ * Actions when Survey 2 is complete
+ */
+survey.onComplete.add(function (sender) {
+  
+  // document.querySelector('#surveyResult').textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+});
+
+/**
  * AOS JS Initiation
  */
 window.addEventListener('load', () => {
