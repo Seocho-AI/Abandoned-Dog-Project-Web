@@ -225,6 +225,7 @@ select.filter-breed {
 .dog-post-img {
   /* height: 41.5vh; */
   /* height: calc((100vh - 144px)/2); */
+  height: 100%;
   max-width: 100%;
   object-fit: contain;
 

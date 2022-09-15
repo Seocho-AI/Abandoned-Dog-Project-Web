@@ -15,6 +15,7 @@ dog_statistics = Blueprint("dog_statistics", __name__,
 
 today = datetime.strftime(datetime.now() - timedelta(1), '%Y%m%d')  # 오늘
 yesterday = datetime.strftime(datetime.now() - timedelta(2), '%Y%m%d')  # 어제
+testToday = datetime.strftime(datetime.now() - timedelta(7), '%Y%m%d')  # 시연용
 today_year = today[:4]  # 이번년도
 
 
@@ -53,7 +54,7 @@ def get_statistics():
         protect_in_year = protect_in_year[0][0]
 
         # Number of rescued dogs today (yesterday)
-        sql = f"select count(*) from dog_list where happenDt = '{today}' and processState = '보호중';"
+        sql = f"select count(*) from dog_list where happenDt = '{testToday}' and processState = '보호중';"
         cursor.execute(sql)
         rescued_today = cursor.fetchall()
         rescued_today = rescued_today[0][0]
