@@ -74,8 +74,8 @@ def survey_answer():
             'user_id': '1'
         }
 
-        query = 'SELECT * FROM processed_dog_data'
-        processed_dog_data = pd.read_sql(sql=query, con=db)
+        # query = 'SELECT * FROM processed_dog_data'
+        # processed_dog_data = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM final_mixprinted'
         panel_info = pd.read_sql(sql=query, con=db)
@@ -86,8 +86,7 @@ def survey_answer():
         query = 'SELECT * FROM adopter_data'
         adopter_data = pd.read_sql(sql=query, con=db)
 
-        query = 'SELECT * FROM dog_list ' \
-                'WHERE processState="보호중"'
+        query = 'SELECT * FROM dog_list WHERE processState="보호중"'
         dog_list_data = pd.read_sql(sql=query, con=db)
 
         query = 'SELECT * FROM breed_info'
@@ -98,8 +97,8 @@ def survey_answer():
                                               adopter_data=adopter_data,
                                               dog_list_data=dog_list_data,
                                               breed_info=breed_info,
-                                              panel_info=panel_info,
-                                              processed_dog_data_db=processed_dog_data)
+                                              panel_info=panel_info)
+        #   processed_dog_data_db=processed_dog_data)
 
         recommender.fit_transform(target_user_survey=user_answer)
 
@@ -120,11 +119,22 @@ def survey_answer():
         # dog_data : recommended_dogs의 공고번호의 개들 수치화 (Dict)
         # dog_diff : 유저랑 유기견 성향 차이 수치화 (Dict)
 
+        recommended_dogs_tuple = tuple(recommended_dogs)
+        recommended_dogs_field = ", ".join(recommended_dogs)
+        recommended_dogs_field = "(desertionNo, " + recommended_dogs_field[1:-1] + ")"
+
+        sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, colorCd, age, weight, neuterYn, desertionNo FROM dog_list WHERE desertionNo in {recommended_dogs_tuple} ORDER BY FIELD{recommended_dogs_field};"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        # print(result)
+        # print(type(result))
+
         ranking_order = []
         for i in range(len(recommended_dogs)):
-            sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, colorCd, age, weight, neuterYn, desertionNo FROM dog_list WHERE desertionNo = '{recommended_dogs[i]}';"
-            cursor.execute(sql)
-            result = cursor.fetchall()
+            # sql = f"SELECT popfile, kindCd, sexCd, happenDt, noticeNo, processState, colorCd, age, weight, neuterYn, desertionNo FROM dog_list WHERE desertionNo = '{recommended_dogs[i]}';"
+            # cursor.execute(sql)
+            # result = cursor.fetchall()
 
             for dog_info in result:
                 popfile = dog_info[0]
