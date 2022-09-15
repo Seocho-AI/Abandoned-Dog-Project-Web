@@ -65,6 +65,7 @@ def dog_info_page():
             "orgNm": result_unbox1[19],
             "officetel": result_unbox1[20],
             "mixPredict": result_unbox1[21],
+            "trait_score_diff": "None"
         }
 
         # Retreive breed info from DB

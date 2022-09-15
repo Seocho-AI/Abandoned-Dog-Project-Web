@@ -86,8 +86,8 @@ def find_dog_page():
 
             # Ranking list (percentage)
             rec_list_score = request.args.get('rec_list_score')
-            rec_list_score = rec_list_score[1:-1]
-            rec_list_score = rec_list_score.split(", ")
+            # rec_list_score = rec_list_score[1:-1]
+            rec_list_score = rec_list_score.split(",")
             for i, scores in enumerate(rec_list_score):
                 scores = float(scores)
                 scores = "{:.2%}".format(scores)
@@ -119,14 +119,15 @@ def find_dog_page():
                 "happenDt": dog_info[3][:4] + "/" + dog_info[3][4:6] + "/" + dog_info[3][6:],
                 "noticeNo": dog_info[4].replace("-", " ")[:5],
                 "processState": dog_info[5],
-                "desertionNo": dog_info[6]
+                "desertionNo": dog_info[6],
+                "trait_score_diff": "None"
             }
             if survey == "true":
                 dog_dict["rec_list_score"] = rec_list_score
                 dog_dict["trait_score_diff"] = json.dumps(tot_trait_score_diff.get(dog_info[6], "None"))
             dog_list.append(dog_dict)
 
-        # print(dog_list[0])
+        print(dog_list[0])
         # return jsonify(dog_list)
         # return render_template("find_dog.html", response=json.dumps(dog_list))
         return render_template("find_dog.html", response=json.dumps(dog_list))
